@@ -36,8 +36,9 @@
 	color: white;
 }
 
-.dropdown-content a:hover, .dropbtn:hover, .nav-link:hover {
+.dropdown-content a:hover, .dropbtn:hover, .nav-link:hover, .card-title a:hover {
 	color: grey;
+	text-decoration: none;
 }
 
 .dropdown {
@@ -110,7 +111,7 @@
 	max-width: 400px;
 }
 
-.bio-info, .portfolio-title p, .form-title {
+.bio-info, .portfolio-title p, .form-title, .portfolio-cap, .portfolio-caption {
    	font-family: 'Neuton', serif;
    	font-size: 20px;
 }
@@ -128,7 +129,7 @@
 	
 }
 
-.portfolio-title h2 {
+.portfolio-title {
 	font-family: 'Merriweather', serif;	
 }
 
@@ -177,10 +178,29 @@
   	border-radius: 0 !important;
 }
 
+.card img {
+	height: 100%;
+}
+
 .card-title {
 	text-align: center;
 	padding: 5px 0 5px 0;
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: black;
+	color: white;
+}
+
+.card-text {
+	margin: 0 20px 0 20px;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 3px;
+}
+
+.card-text a:hover {
+	text-decoration: none;
+}
+
+.card-title a {
+	color: white;
 }
 
 .card-img-overlay {

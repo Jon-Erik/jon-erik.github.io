@@ -14,3 +14,8 @@ $(".links").on("click", function() {
 	$(".dropdown-content").css("display", "none")
 	showLinks = false;
 })
+
+$(".submitbutton").on("click", function () {
+	event.preventDefault();
+	//alert("form submitted");
+});
