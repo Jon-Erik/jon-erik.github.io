@@ -203,6 +203,15 @@
 	color: white;
 }
 
+.italic  {
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 20px;
+}
+
+.portfolio-cap {
+	line-height: 23px;
+}
+
 .card-img-overlay {
 	padding: 0;
 }
