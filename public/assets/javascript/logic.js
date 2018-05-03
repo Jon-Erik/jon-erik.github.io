@@ -15,7 +15,21 @@ $(".links").on("click", function() {
 	showLinks = false;
 })
 
-$(".submitbutton").on("click", function () {
+$("#contact-form").submit(function () {
 	event.preventDefault();
-	//alert("form submitted");
+	
+
+	var name = $("#name-input").val().trim();
+	var email = $("#email-input").val().trim();
+	var message = $("#messagebox-input").val();
+
+	var newMessage =  {
+		name: name,
+		email: email,
+		message: message
+	}
+
+	console.log(newMessage);
+
+	alert("form submitted");
 });
