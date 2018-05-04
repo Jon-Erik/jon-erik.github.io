@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.static("."));
 
-
 var mailgun = require('mailgun-js')({apiKey: credentials.api_key, domain: credentials.domain});
 
 app.get("/", function(req, res) {
@@ -20,12 +19,12 @@ app.get("/", function(req, res) {
 
 app.post("/newmessage", function(req, res) {
 	var newMessage = req.body;
-	console.log(newMessage);
+	//console.log(newMessage);
 
 	var data = {
-		from: "" + newMessage.name + " <postmaster@sandbox4ae35f2480b344418f52af8281fa4b7c.mailgun.org>",
+		from: "" + newMessage.name + " <" + newMessage.email + ">",
 		to: 'symphonyconcertante@gmail.com',
-		subject: 'Email from portfolio website from ' + newMessage.name,
+		subject: 'Portfolio website email from ' + newMessage.name,
 		text: "Name of contact: " + newMessage.name +
 		"\n\nEmail address of contact: " + newMessage.email + 
 		"\n\nMessage: " + newMessage.message + 
@@ -33,16 +32,14 @@ app.post("/newmessage", function(req, res) {
 	};
 
 	mailgun.messages().send(data, function (error, body) {
-		//console.log(body);
+		console.log(body);
 		if (!error) {
-			res.send("Mail sent");
+			res.status(200).send("Mail submitted");
 		} else {
 			console.log(error);
-			res.send("Mail not sent");
+			res.status(200).send("Mail could not submit");
 		}
 	});
-
-	res.status(200).send();
 })
 
 app.listen(PORT, function() {

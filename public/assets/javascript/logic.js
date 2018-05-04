@@ -41,18 +41,20 @@ $("#contact-form").submit(function () {
 			}).then(
 				function(data) {
 					console.log(data);
+					if(data === "Mail submitted") {
+						$(".modal-title").text("Success!")
+						$(".modal-text").text("Thank you for submitting. I will be in contact with you soon.");
+						$('#contact-modal').modal({});
+					} else {
+						$(".modal-title").text("Something went wrong...")
+						$(".modal-text").text("Sorry, your email didn't go through. Please try again.");
+						$('#contact-modal').modal({});
+					}
 					$("#name-input").val("");
 					$("#email-input").val("");
 					$("#messagebox").val("");
-					
-					$(".modal-title").text("Success!")
-					$(".modal-text").text("Thank you for submitting. I will be contact soon.");
-					$('#contact-modal').modal({});
 				}
 			);		
-		$.post("/newMessage", newMessage).then(function(data) {
-			console.log(data);
-		})
 	} else {
 		$(".modal-title").text("Something is missing...")
 		$(".modal-text").text("Please ensure all fields are properly filled.");
