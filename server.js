@@ -11,8 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.static("."));
 
-var api_key = 'key-063d21b73c4c717d3c7f4dee87308372';
-var domain = 'sandbox4ae35f2480b344418f52af8281fa4b7c.mailgun.org';
+
 var mailgun = require('mailgun-js')({apiKey: credentials.api_key, domain: credentials.domain});
 
 app.get("/", function(req, res) {
