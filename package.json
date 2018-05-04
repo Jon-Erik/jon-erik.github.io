@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Jon-Erik/jon-erik.github.io#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mailgun-js": "^0.18.0"
   }
 }

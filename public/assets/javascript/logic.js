@@ -1,3 +1,5 @@
+//var credentials = require("../../../mailgun-credentials/mailgun-credentials.js")
+
 var showLinks = false;
 
 $(".dropbtn").on("click", function() {
@@ -21,7 +23,7 @@ $("#contact-form").submit(function () {
 
 	var name = $("#name-input").val().trim();
 	var email = $("#email-input").val().trim();
-	var message = $("#messagebox-input").val();
+	var message = $("#messagebox").val();
 
 	var newMessage =  {
 		name: name,
@@ -29,7 +31,31 @@ $("#contact-form").submit(function () {
 		message: message
 	}
 
-	console.log(newMessage);
-
-	alert("form submitted");
+	if ($.trim(name).length > 0 && 
+		$.trim(email).length > 0 && 
+		$.trim(message).length > 0 && email.includes("@")) {
+		
+		$.ajax("/newmessage", {
+				type: "POST",
+				data: newMessage
+			}).then(
+				function(data) {
+					console.log(data);
+					$("#name-input").val("");
+					$("#email-input").val("");
+					$("#messagebox").val("");
+					
+					$(".modal-title").text("Success!")
+					$(".modal-text").text("Thank you for submitting. I will be contact soon.");
+					$('#contact-modal').modal({});
+				}
+			);		
+		$.post("/newMessage", newMessage).then(function(data) {
+			console.log(data);
+		})
+	} else {
+		$(".modal-title").text("Something is missing...")
+		$(".modal-text").text("Please ensure all fields are properly filled.");
+		$('#contact-modal').modal({});
+	};
 });

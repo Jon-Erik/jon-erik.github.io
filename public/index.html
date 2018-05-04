@@ -8,7 +8,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700i|Merriweather|Neuton:300,400" rel="stylesheet">
 	<link rel="stylesheet" href="aos-files/aos.css" />
 	<script src="aos-files/aos.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 </head>
 <body>
 	<div class="row fixed-top">
@@ -151,8 +151,9 @@
 			<form id="contact-form" data-aos="fade-right">
 				<div class="form-title">Name</div>
 				<input id="name-input" type="text" placeholder="Firstname Lastname">
-				<div class="form-title">Email</div>
+				<div class="form-title">Email </div>
 				<input id="email-input" type="text" name="email address" placeholder="example@gmail.com">
+				<br><span class="italic2">Please ensure your email is valid and accurate. Otherwise I may be unable to reply.</span>
 				<div class="form-title">Message</div>
 				<textarea id="messagebox" type="text" rows="7"></textarea>
 				<button class="submitbutton btn" type="submit">Submit</button>
@@ -164,11 +165,26 @@
 	<div>
 		<p class="footer">© Jon-Erik Chandler 2018</p>
 	</div>
+
+	<div id="contact-modal" class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p class="modal-text">Modal body text goes here.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	
-
-		
-
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script>

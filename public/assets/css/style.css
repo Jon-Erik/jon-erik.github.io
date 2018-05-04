@@ -231,6 +231,12 @@ textarea {
 	margin-top: 5px;
 }
 
+.italic2  {
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 15px;
+	line-height: 17px;
+}
+
 .submitbutton {
 	border-radius: 0;
 	background-color: #42b0f4;
@@ -247,7 +253,25 @@ textarea {
 	font-size: 20px;
 }
 
-h5.card-title {
+h5.card-title, .modal-title {
 	font-family: 'Merriweather', serif;
 	font-size: 25px;
+}
+
+.modal-content {
+	border-radius: 0;
+	border: 0;
+}
+
+.modal-body p {
+	font-family: 'Neuton', serif;
+	font-size: 20px;
+}
+
+.modal-footer button {
+	border-radius: 0;
+	background-color: #42b0f4;
+	color: white;
+	border: 0;
+	font-family: 'Merriweather', serif;
 }
