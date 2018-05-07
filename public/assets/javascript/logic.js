@@ -47,7 +47,7 @@ $("#contact-form").submit(function () {
 						$('#contact-modal').modal({});
 					} else {
 						$(".modal-title").text("Something went wrong...")
-						$(".modal-text").text("Sorry, your email didn't go through. Please try again.");
+						$(".modal-text").text("Sorry, your email didn't go through. Please double check the email address you entered and try again.");
 						$('#contact-modal').modal({});
 					}
 					$("#name-input").val("");

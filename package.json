@@ -1,5 +1,5 @@
 {
-  "name": "jon-erik.github.io",
+  "name": "jon-erikchandler",
   "version": "1.0.0",
   "description": "This is my portfolio website in progress.",
   "main": "server.js",
@@ -7,19 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jon-Erik/jon-erik.github.io.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Jon-Erik/jon-erik.github.io/issues"
-  },
-  "homepage": "https://github.com/Jon-Erik/jon-erik.github.io#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "mailgun-js": "^0.18.0"
-  }
+  },
+  "devDependencies": {}
 }

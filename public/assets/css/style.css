@@ -56,7 +56,6 @@
 }
 
 .main-title {
-	
 	position: absolute;
 	left: 0;
 	top: 217px;
@@ -108,7 +107,11 @@
 
 #bio-pic {
 	width: 100%;
-	max-width: 400px;
+	/*max-width: 400px;*/
+}
+
+.bio-info {
+	margin: 15px;
 }
 
 .bio-info, .portfolio-title p, .form-title, .portfolio-cap, .portfolio-caption {
@@ -131,10 +134,6 @@
 
 .portfolio-title {
 	font-family: 'Merriweather', serif;	
-}
-
-.portfolio-body {
-	
 }
 
 .portfolio {
@@ -180,6 +179,9 @@
 
 .card img {
 	height: 100%;
+	max-height: 350px;
+	/*background-size: cover;
+	background-position: center center;*/
 }
 
 .card-title {
