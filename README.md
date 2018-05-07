@@ -1,3 +1,3 @@
 # jon-erik.github.io
 
-This is my portfolio website in progress.
+These are the sources files and the source code for my portfolio website. Visit at https://jon-erikchandler.herokuapp.com/.
