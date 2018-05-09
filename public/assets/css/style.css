@@ -69,7 +69,7 @@
 	margin: 0 12.5% 0 12.5%;
 	font-family: 'Cormorant Garamond', serif;
 	font-style: bold;
-	font-size: 
+	padding: 15px;
 }
 
 .nav, .title {
@@ -107,7 +107,6 @@
 
 #bio-pic {
 	width: 100%;
-	/*max-width: 400px;*/
 }
 
 .bio-info {
@@ -178,10 +177,9 @@
 }
 
 .card img {
+
 	height: 100%;
-	max-height: 350px;
-	/*background-size: cover;
-	background-position: center center;*/
+	
 }
 
 .card-title {
@@ -212,6 +210,7 @@
 
 .portfolio-cap {
 	line-height: 23px;
+	padding: 10px;
 }
 
 .card-img-overlay {
@@ -268,6 +267,7 @@ h5.card-title, .modal-title {
 .modal-body p {
 	font-family: 'Neuton', serif;
 	font-size: 20px;
+	line-height: 20px;
 }
 
 .modal-footer button {

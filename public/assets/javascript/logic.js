@@ -1,5 +1,3 @@
-//var credentials = require("../../../mailgun-credentials/mailgun-credentials.js")
-
 var showLinks = false;
 
 $(".dropbtn").on("click", function() {
@@ -10,27 +8,28 @@ $(".dropbtn").on("click", function() {
 		$(".dropdown-content").css("display", "none")
 		showLinks = false;
 	}
-})
+});
 
 $(".links").on("click", function() {
 	$(".dropdown-content").css("display", "none")
 	showLinks = false;
-})
+});
 
 $("#contact-form").submit(function () {
 	event.preventDefault();
-	
 
 	var name = $("#name-input").val().trim();
 	var email = $("#email-input").val().trim();
 	var message = $("#messagebox").val();
+	var captcha = $("#g-recaptcha-response").val();
 
 	var newMessage =  {
 		name: name,
 		email: email,
-		message: message
+		message: message,
+		captcha: captcha
 	}
-
+	console.log(newMessage)
 	if ($.trim(name).length > 0 && 
 		$.trim(email).length > 0 && 
 		$.trim(message).length > 0 && email.includes("@")) {
@@ -40,14 +39,15 @@ $("#contact-form").submit(function () {
 				data: newMessage
 			}).then(
 				function(data) {
-					console.log(data);
-					if(data === "Mail submitted") {
+					//console.log(data);
+					if(data === "Captcha passed and email submitted") {
 						$(".modal-title").text("Success!")
 						$(".modal-text").text("Thank you for submitting. I will be in contact with you soon.");
 						$('#contact-modal').modal({});
 					} else {
 						$(".modal-title").text("Something went wrong...")
-						$(".modal-text").text("Sorry, your email didn't go through. Please double check the email address you entered and try again.");
+						$(".modal-text").text("Sorry, your email didn't go through. Please ensure you have checked the reCAPTCHA verification and that you've entered a valid email address." +
+							" You may need to refresh your browser.");
 						$('#contact-modal').modal({});
 					}
 					$("#name-input").val("");

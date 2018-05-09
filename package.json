@@ -12,7 +12,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "mailgun-js": "^0.18.0"
+    "mailgun-js": "^0.18.0",
+    "request": "^2.85.0"
   },
   "devDependencies": {}
 }
