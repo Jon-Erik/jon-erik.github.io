@@ -11,15 +11,15 @@
 	padding: 0 15px 0 15px;
 }
 
-.dropbtn {
+/*.dropbtn {
 	padding: 4px 0 0 0;
 	border: 0;
 	background-color: black;
 	cursor: pointer;
 	color: white;
-}
+}*/
 
-.dropdown-content {
+/*.dropdown-content {
 	display: none;
 	position: absolute;
 	z-index: 1;
@@ -27,23 +27,21 @@
 	margin-top: 4px;
 	width: 110px;
 	padding-left: 5px;
-}
+}*/
 
-.dropdown-content a {
+.links {
 	text-decoration: none;
 	display: block;
 	padding: 3px 0px 5px 5px;
 	color: white;
+	display: inline-block;
+	font-size: 20px;
 }
 
-.dropdown-content a:hover, .dropbtn:hover, .nav-link:hover, .card-title a:hover {
+
+.links:hover, .dropbtn:hover, .nav-link:hover, .card-title a:hover {
 	color: grey;
 	text-decoration: none;
-}
-
-.dropdown {
-	position: relative;
-	display: inline-block;
 }
 
 .main-picture {
@@ -276,4 +274,10 @@ h5.card-title, .modal-title {
 	color: white;
 	border: 0;
 	font-family: 'Merriweather', serif;
+}
+
+@media screen and (max-width: 350px) {
+    div.main-picture {
+    	height: 875px;
+    }
 }
