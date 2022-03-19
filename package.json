@@ -2,11 +2,10 @@
   "name": "portfolio_front",
   "version": "1.0.0",
   "description": "Portfolio Website Front End React Web Application",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rm -rf dist && parcel index.html",
-    "build": "rm -rf dist && parcel build index.html statics/images/logo-sm-full.png",
+    "build": "rm -rf dist && parcel build index.html",
     "format": "prettier --config ../.prettierrc --write \"js/**/*.js\"",
     "lint": "eslint ."
   },
