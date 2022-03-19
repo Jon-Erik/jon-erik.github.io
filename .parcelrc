@@ -1,0 +1,6 @@
+{
+	"extends": "@parcel/config-default",
+	"transformers": {
+		"logo-sm-full.png": ["@parcel/transformer-raw"]
+	}
+}

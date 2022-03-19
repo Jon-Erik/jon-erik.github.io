@@ -1,4 +1,5 @@
 node_modules
-mailgun-credentials.js
-mailgun-credentials
-reCAPTCHA-credentials.js
+/old
+/dist
+/.cache
+/.parcel-cache
