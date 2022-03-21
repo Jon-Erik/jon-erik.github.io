@@ -14,7 +14,6 @@
 				".cache",
 				".parcel-cache",
 				"node_modules",
-				".next"
 			],
 			"path": "."
 		}

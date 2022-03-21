@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rm -rf dist && parcel index.html",
     "build": "rm -rf dist && parcel build index.html",
-    "format": "prettier --config ../.prettierrc --write \"js/**/*.js\"",
+    "format": "prettier --config ./.prettierrc --write \"js/**/*.js\"",
     "lint": "eslint ."
   },
   "repository": {

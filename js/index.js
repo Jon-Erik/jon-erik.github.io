@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "normalize.css";
-import App from "./App";
+import React from "react"
+import ReactDOM from "react-dom"
+import "normalize.css"
+import App from "./App"
 
 document.addEventListener("DOMContentLoaded", () => {
 	ReactDOM.render(
@@ -9,5 +9,5 @@ document.addEventListener("DOMContentLoaded", () => {
 			<App />
 		</React.StrictMode>,
 		document.getElementById("root")
-	);
-});
+	)
+})

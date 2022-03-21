@@ -1,5 +1,5 @@
-import React from "react";
-import "./Header.styl";
+import React from "react"
+import "./Header.styl"
 
 export default function Header() {
 	return (
@@ -22,5 +22,5 @@ export default function Header() {
 				</a>
 			</div>
 		</div>
-	);
+	)
 }
