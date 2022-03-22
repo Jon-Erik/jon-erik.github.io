@@ -1,0 +1,22 @@
+.ScreenshotView
+	border 1px solid gray
+	border-radius 4px
+	width fit-content
+	height fit-content
+	margin auto
+	padding 10px
+	background whitesmoke
+	text-align center
+	&:not(:last-of-type)
+		margin-right 20px
+	img
+		max-height 400px
+	.caption
+		color #808080
+		font-size 70%
+		font-family "Arial"
+		margin-top 0.5em
+	@media screen and (max-width: 430px)
+		max-width calc(100vw)
+		img, .caption
+			max-width calc(100vw)

@@ -13,11 +13,14 @@ export default function Profile() {
 			<div className="bio">
 				<p>
 					Currently seeking in-person, remote, or hybrid position in web
-					development. Resume available{" "}
-					<a href={resumePDF} rel="noreferrer" target="_blank">
-						here
-					</a>
-					.
+					development.{" "}
+					<strong>
+						Resume available{" "}
+						<a href={resumePDF} rel="noreferrer" target="_blank">
+							here
+						</a>
+						.
+					</strong>
 				</p>
 
 				<p>

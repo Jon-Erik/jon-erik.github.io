@@ -1,11 +1,16 @@
 import React from "react"
+import { NavLink } from "react-router-dom"
+
 import "./Projects.styl"
 
 export default function Projects() {
 	return (
 		<div className="Projects" id="projects">
 			<h1>Projects</h1>
-			<h3>Power Tool Repair Ohio</h3>
+			<h3>
+				Power Tool Repair Ohio |{" "}
+				<NavLink to="/projects/power-tool-repair">Details</NavLink>
+			</h3>
 			<h4>Commercial application in Node.js, React.js, and Next.js</h4>
 			<ul>
 				<li>
@@ -31,7 +36,10 @@ export default function Projects() {
 				<li>Set up business analytics through Grafana dashboard</li>
 			</ul>
 
-			<h3>Task Management Application</h3>
+			<h3>
+				Task Management Application |{" "}
+				<NavLink to="/projects/task-mgmt-app">Details</NavLink>
+			</h3>
 			<h4>Web application for scheduling, time keeping, and billing</h4>
 			<ul>
 				<li>
