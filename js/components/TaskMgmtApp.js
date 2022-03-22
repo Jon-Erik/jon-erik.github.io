@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./TaskMgmtApp.styl"
 
 import ScreenshotView from "./ScreenshotView"
@@ -8,6 +8,10 @@ import taskMgmtAgendaScreenshot from "url:../../statics/images/task_mgmt_agenda_
 import taskMgmtScheduleScreenshot from "url:../../statics/images/task_mgmt_schedule_screenshot.png"
 
 export default function TaskMgmtApp() {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
+
 	return (
 		<div className="TaskMgmtApp">
 			<h1>Task Management Application</h1>

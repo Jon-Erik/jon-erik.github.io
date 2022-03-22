@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./PowerToolRepair.styl"
 
 import ScreenshotView from "./ScreenshotView"
@@ -15,6 +15,10 @@ import ptrInternalReports from "url:../../statics/images/ptr-screenshots/interna
 import ptrInternalShippingModal from "url:../../statics/images/ptr-screenshots/internal-shipping-modal.png"
 
 export default function PowerToolRepair() {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
+
 	return (
 		<div className="PowerToolRepair">
 			<h1>Power Tool Repair Ohio</h1>
