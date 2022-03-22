@@ -4,8 +4,8 @@ import "./TaskMgmtApp.styl"
 import ScreenshotView from "./ScreenshotView"
 import CodeSample from "./CodeSample"
 
-import taskMgmtAgendaScreenshot from "url:../../statics/images/task_mgmt_agenda_screenshot.png"
-import taskMgmtScheduleScreenshot from "url:../../statics/images/task_mgmt_schedule_screenshot.png"
+import taskMgmtAgendaScreenshot from "url:../../statics/images/task-mgmt-screenshots/agenda.png"
+import taskMgmtScheduleScreenshot from "url:../../statics/images/task-mgmt-screenshots/schedule.png"
 
 export default function TaskMgmtApp() {
 	useEffect(() => {
