@@ -1,0 +1,45 @@
+timer = () => {
+	// Updates the current time in state and entry in progress if necessary
+	const currentTime = moment().toDate()
+	let newStateObj = { currentTime }
+
+	// Save state data to local storage every minute
+	let { secsToSave } = this.state
+	if (!secsToSave || secsToSave <= 0) {
+		this.saveStateToLocalStorage()
+		secsToSave = 60
+	}
+	newStateObj.secsToSave = secsToSave - 1
+
+	// Do some checks and updates if the timer is running
+	const { timeEntries, entryInProgress } = this.state
+	const timerRunning = Object.keys(entryInProgress).length > 0
+
+	if (timerRunning) {
+		//check to see if the entryInProgress has passed midnight by comparing currentTime with start of entryInProgress
+		if (
+			moment(currentTime).format("YYYY-MM-DD") !==
+			moment(entryInProgress.originalEntry.start).format("YYYY-MM-DD")
+		) {
+			let midnight = moment(moment(currentTime).format("YYYY-MM-DD")).toDate()
+			let { id, taskID, start } = entryInProgress.originalEntry
+
+			//create a new entry with the start as entryInProgress.originalEntry.start and end as midnight
+			this.endActiveEntry(id, taskID, start, midnight, false)
+
+			//add an new actual entry in progress starting at midnight
+			this.addTimeEntry(taskID, midnight, null, false)
+		} else {
+			//if the time in entry in progress has not passed midnight, just update the entry in progress
+			let updates = updateActiveEntryHelper(
+				entryInProgress.originalEntry.taskID,
+				entryInProgress.originalEntry.start,
+				this.state.tasks
+			)
+			updates.originalEntry = this.state.entryInProgress.originalEntry
+			newStateObj.entryInProgress = updates
+		}
+	}
+
+	this.setState(newStateObj)
+}
