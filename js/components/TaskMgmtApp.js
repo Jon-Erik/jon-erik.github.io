@@ -3,6 +3,7 @@ import "./TaskMgmtApp.styl"
 
 import ScreenshotView from "./ScreenshotView"
 import CodeSample from "./CodeSample"
+import Carousel from "./Carousel"
 
 import taskMgmtAgenda from "url:../../statics/images/task-mgmt-screenshots/agenda.png"
 import taskMgmtSchedule from "url:../../statics/images/task-mgmt-screenshots/schedule.png"
@@ -36,11 +37,10 @@ export default function TaskMgmtApp() {
 			</ul>
 
 			<h3>Screenshots</h3>
-
-			<div className="screenshots">
+			<Carousel>
 				<ScreenshotView src={taskMgmtAgenda} caption="Agenda view" />
 				<ScreenshotView src={taskMgmtSchedule} caption="Scheduling view" />
-			</div>
+			</Carousel>
 
 			<h3>Code Snippets</h3>
 			<CodeSample

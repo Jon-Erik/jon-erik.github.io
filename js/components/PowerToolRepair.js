@@ -3,6 +3,7 @@ import "./PowerToolRepair.styl"
 
 import ScreenshotView from "./ScreenshotView"
 import CodeSample from "./CodeSample"
+import Carousel from "./Carousel"
 
 import ptrEcomHomepage from "url:../../statics/images/ptr-screenshots/ecom-homepage.png"
 import ptrEcomToolDetails from "url:../../statics/images/ptr-screenshots/ecom-tool-details.png"
@@ -57,7 +58,7 @@ export default function PowerToolRepair() {
 			</ul>
 
 			<h3>Screenshots</h3>
-			<div className="screenshots">
+			<Carousel>
 				<ScreenshotView src={ptrEcomHomepage} caption="Ecommerce homepage" />
 
 				<ScreenshotView
@@ -99,7 +100,7 @@ export default function PowerToolRepair() {
 					src={ptrInternalShippingModal}
 					caption="Internal application shipping modal"
 				/>
-			</div>
+			</Carousel>
 
 			<h3>Code Snippets</h3>
 			<CodeSample
