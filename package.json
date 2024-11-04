@@ -2,7 +2,6 @@
   "name": "profile",
   "version": "1.0.0",
   "description": "Personal website",
-  "homepage": "http://jon-erik.github.io/profile",
   "scripts": {
     "start": "rm -rf dist && parcel ./index.html",
     "build": "rm -rf dist && parcel build ./index.html --dist-dir dist",
