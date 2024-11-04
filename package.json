@@ -1,34 +1,29 @@
 {
-  "name": "portfolio_front",
+  "name": "profile",
   "version": "1.0.0",
-  "description": "Portfolio Website Front End React Web Application",
+  "description": "Personal website",
+  "homepage": "http://jon-erik.github.io/profile",
   "scripts": {
+    "start": "rm -rf dist && parcel ./src/index.html",
+    "build": "rm -rf dist && parcel build ./src/index.html --dist-dir dist --public-url https://jon-erik.github.io/profile",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rm -rf dist && parcel index.html",
-    "build": "rm -rf dist && parcel build index.html",
-    "format": "prettier --config ./.prettierrc --write \"js/**/*.js\"",
-    "lint": "eslint ."
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Jon-Erik/jon-erik.github.io"
-  },
-  "private": true,
-  "author": "Jon-Erik Chandler",
-  "license": "None",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@parcel/transformer-stylus": "^2.3.2",
-    "normalize.css": "^8.0.1",
-    "parcel": "^2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.2"
+    "@reduxjs/toolkit": "^2.3.0",
+    "gh-pages": "^6.2.0",
+    "modern-normalize": "^3.0.1",
+    "parcel-bundler": "^1.12.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
-    "eslint": "^8.11.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "prettier": "^2.6.0"
+    "@parcel/transformer-stylus": "^2.12.0",
+    "parcel": "^2.12.0"
   }
 }
