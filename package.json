@@ -4,7 +4,7 @@
   "description": "Personal website",
   "scripts": {
     "start": "rm -rf dist && parcel ./index.html",
-    "build": "rm -rf dist && parcel build ./index.html --dist-dir dist",
+    "build": "rm -rf dist && parcel build ./index.html --dist-dir dist --public-url ./",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
