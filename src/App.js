@@ -2,12 +2,9 @@ import React from 'react'
 import "./App.styl"
 
 import {
-    createHashRouter,
-    RouterProvider,
     Route,
     Routes,
     HashRouter,
-    createHashRouter
 } from "react-router-dom"
 
 import { loadData } from "./services/wixAPI"
@@ -26,60 +23,27 @@ import Navbar from "./components/navbar"
 import Footer from "./components/footer"
 
 loadData("homepage")
-
-const router = createHashRouter([
-    {
-      path: "/",
-      element: <Homepage/>
-    },
-    {
-      path: "/software",
-      element: <Software/>
-    },
-    {
-      path: "/software/resume",
-      element: <SoftwareResume/>
-    },
-    {
-      path: "/software/technologies",
-      element: <SoftwareTechnologies/>
-    },
-    {
-      path: "/music",
-      element: <Music/>
-    },
-    {
-      path: "/music/resume",
-      element: <MusicResume/>
-    },
-    {
-      path: "/music/resources",
-      element: <MusicResources/>
-    },
-    {
-      path: "/music/events",
-      element: <MusicEvents/>
-    },
-    {
-      path: "/*",
-      element: <NotFound/>
-    }
-  ])
   
-  function App() {
-    return (
-        <div className="app-wrapper">
-            <Navbar/>
-            <RouterProvider router={router} />
-            <Footer/>
-        </div>
-    );
+function App() {
+  return (
+      <div className="app-wrapper">
+        <HashRouter>
+          <Navbar/>
+          <Routes>
+            <Route path="/" element={<Homepage/>}/>
+            <Route path="/software" element={<Software/>}/>
+            <Route path="/software/resume" element={<SoftwareResume/>}/>
+            <Route path="/software/technologies" element={<SoftwareTechnologies/>}/>
+            <Route path="/music" element={<Music/>}/>
+            <Route path="/music/resume" element={<MusicResume/>}/>
+            <Route path="/music/resources" element={<MusicResources/>}/>
+            <Route path="/music/events" element={<MusicEvents/>}/>
+            <Route path="/*" element={<NotFound/>}/>
+          </Routes>
+          <Footer/>
+        </HashRouter>
+      </div>
+  );
 }
 
 export default App;
-{/* <HashRouter>
-    <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/software" element={<Software />} />
-    </Routes>
-    </HashRouter> */}

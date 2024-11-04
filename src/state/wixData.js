@@ -24,7 +24,7 @@ export default produce((draft, action) => {
     const { type, payload } = action
     switch (type) {
         case NAVBAR_LOADING:
-            draft.navbarDataLoading = true
+            draft.navbarDataLoading = payload
             break
         case NAVBAR_FAIL:
             draft.navbarDataLoading = false
@@ -51,7 +51,7 @@ export default produce((draft, action) => {
 export function fetchNavbarData() {
     return async (dispatch) => {
         let response
-        dispatch(createAction(NAVBAR_LOADING))
+        dispatch(createAction(NAVBAR_LOADING, true))
 
         try {
             response = await loadData('navbar-links')
@@ -59,6 +59,19 @@ export function fetchNavbarData() {
             dispatch(createAction(NAVBAR_FAIL, error.message))
         }
 
-        dispatch(createAction(NAVBAR_SUCCESS, response))
+        dispatch(createAction(NAVBAR_SUCCESS, parseNavbarItems(response)))
     }
+}
+
+function parseNavbarItems(rawData) {
+    const arr = rawData.dataItems.map(i => i.data)
+    const parsed = arr.filter(i => i.navLevel == 1).sort(sortByField)
+    parsed.forEach(p => {
+        p.children = arr.filter(i => i.parent == p.title && i.navLevel == 2).sort(sortByField)
+    })
+    return parsed
+}
+
+function sortByField(a, b) {
+    return a.sortOrder - b.sortOrder
 }
