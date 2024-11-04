@@ -4,8 +4,8 @@
   "description": "Personal website",
   "homepage": "http://jon-erik.github.io/profile",
   "scripts": {
-    "start": "rm -rf dist && parcel ./src/index.html",
-    "build": "rm -rf dist && parcel build ./src/index.html --dist-dir dist",
+    "start": "rm -rf dist && parcel ./index.html",
+    "build": "rm -rf dist && parcel build ./index.html --dist-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
