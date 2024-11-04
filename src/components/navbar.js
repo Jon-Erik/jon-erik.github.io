@@ -1,43 +1,34 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import store from "../app/store"
+import { connect } from 'react-redux';
 
 import "./navbar.styl"
-import { loadData } from "../services/wixAPI"
-import { 
-    setNavbarData, 
-    toggleNavbarLoading, 
-    setHomepageData, 
-    homepageDataLoading 
-} from '../features/wixData/wixDataSlice'
 
-function Navbar() {
-    const navbarData = useSelector((state) => state.navbarData)
-    const navbarDataLoading = useSelector((state) => state.navbarDataLoading)
-    const homepageData = useSelector((state) => state.homepageData)
-    const homepageDataLoading = useSelector((state) => state.homepageDataLoading)
-    const dispatch = useDispatch()
+import { wixData as wixDataState } from "../state"
 
-    async function getData() {
-        if (!navbarData || navbarData.length == 0) {
-            const rawNavbarData = await loadData("navbar-links")
-            console.log(rawNavbarData)
-            store.dispatch(setNavbarData(rawNavbarData.dataItems))
-            console.log(navbarData)
+const { fetchNavbarData } = wixDataState
 
-        }
-    }
+
+export function Navbar({ onFetchNavbarData }) {
 
     useEffect(() => {
-        getData()
+        onFetchNavbarData()
     }, [])
-
-    console.log(navbarData)
+    
+    console.log({wixDataState,})
 
     return <div className="navbar">
         Navbar
-        {navbarData && navbarData.map(d => <span>d.id</span>)}
     </div>
 }
 
-export default Navbar;
+const mapState = state => {
+    return {
+        navbarData: state.wixData.navbarData
+    };
+}
+
+const mapDispatch = dispatch => ({
+    onFetchNavbarData: () => dispatch(fetchNavbarData())
+})
+
+export default connect(mapState, mapDispatch)(Navbar);

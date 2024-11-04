@@ -1,4 +1,4 @@
-export default async function sendRequest ({
+export default async function req ({
 	url,
   	method,
     headers = { "Content-Type": "application/json" },

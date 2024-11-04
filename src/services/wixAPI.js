@@ -43,7 +43,7 @@ async function getToken() {
     let token = localStorage.getItem(ACCESS_TOKEN)
     let expiry = localStorage.getItem(TOKEN_EXPIRY)
 
-    if (token && expiry && parseInt(expiry) > Date.now()) {
+    if (token && expiry && parseInt(expiry) < Date.now()) {
         return token
     } else {
         if (!tokenPromise) {
