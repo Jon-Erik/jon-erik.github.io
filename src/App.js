@@ -2,12 +2,12 @@ import React from 'react'
 import "./App.styl"
 
 import {
-    createBrowserRouter,
+    createHashRouter,
     RouterProvider,
     Route,
     Routes,
     HashRouter,
-    createB,
+    createHashRouter
 } from "react-router-dom"
 
 import { loadData } from "./services/wixAPI"
@@ -27,7 +27,7 @@ import Footer from "./components/footer"
 
 loadData("homepage")
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
       path: "/",
       element: <Homepage/>
