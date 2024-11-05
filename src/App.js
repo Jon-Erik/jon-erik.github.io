@@ -19,8 +19,8 @@ import SoftwareResume from "./pages/software/Resume"
 import SoftwareTechnologies from "./pages/software/Technologies"
 import NotFound from "./pages/NotFound"
 
-import Navbar from "./components/navbar"
-import Footer from "./components/footer"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 loadData("homepage")
   

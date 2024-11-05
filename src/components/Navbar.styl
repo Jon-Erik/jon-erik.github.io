@@ -1,0 +1,73 @@
+json("../style-vars.json")
+
+Black = rasinBlack
+NavBackground = navBackground
+PageBackground = pageBackground
+LinkFont = linkFont
+TitleFont = titleFont
+
+.navbar
+    background NavBackground
+    padding 10px
+    font-family TitleFont
+    font-weight 500
+    text-transform uppercase
+
+    a
+        color PageBackground
+        text-decoration none
+        &:visited
+            color PageBackground
+
+        &:after     
+            background: none repeat scroll 0 0 transparent
+            bottom: 0
+            content: ""
+            display: block
+            height: 2px
+            left: 50%
+            position: absolute
+            background: #fff
+            transition: width 0.3s ease 0s, left 0.3s ease 0s
+            width: 0
+        
+        &:hover:after  
+            width: 100% 
+            left: 0 
+   
+
+    .links-list
+        display flex
+        justify-content center
+
+        .link
+            margin-right 0.5em
+            margin-left 0.5em
+            position relative
+            font-size 20px
+            width 120px
+            text-align center
+            
+            &.active
+                font-weight 700
+
+            &:hover .subnav
+                display block
+
+            .subnav
+                display none
+                position absolute
+                background NavBackground
+                padding 5px
+                left -0.5em
+
+                .subnav-link
+                    font-weight 500
+                    font-size 16px
+                    margin 3.5px
+                    text-transform none
+
+                    &.active
+                        font-weight 700
+
+            
