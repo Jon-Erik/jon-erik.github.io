@@ -9,7 +9,6 @@ import { Loader } from "./Loader"
 
 const { fetchNavbarData } = wixDataState
 
-
 export function Navbar({ 
     onFetchNavbarData, 
     navbarData,
