@@ -2,6 +2,11 @@ import { produce } from 'immer'
 import createAction from './createAction'
 import { loadData } from "../services/wixAPI"
 
+const { 
+    REACT_APP_WIX_STATIC_URL,
+    REACT_APP_WIX_IMG_PREFIX
+} = process.env
+
 export const NAVBAR_LOADING = 'NAVBAR_LOADING'
 export const NAVBAR_SUCCESS = 'NAVBAR_SUCCESS'
 export const NAVBAR_FAIL = 'NAVBAR_FAIL'
@@ -96,8 +101,36 @@ export function fetchFooterData() {
     }
 }
 
+export function fetchHomepageData() {
+    return async (dispatch) => {
+        let response
+        dispatch(createAction(HOMEPAGE_LOADING, true))
+
+        try {
+            response = await loadData('homepage')
+        } catch (error) {
+            dispatch(createAction(HOMEPAGE_FAIL, error.message))
+        }
+
+        dispatch(createAction(HOMEPAGE_SUCCESS, parseSingleItemCollection(response)))
+    }
+}
+
 function parseSingleItemCollection(rawData) {
-    return rawData.dataItems[0].data
+    const data = rawData.dataItems[0].data
+    Object.keys(data).forEach(key => {
+        data[key] = processWixImgURL(data[key])
+    })
+    return data
+}
+
+// URL value returned from wix CMS is like this: wix:image://v1/4abd8b_afba7c517e824975be8177a9743354d1~mv2.jpg/....
+function processWixImgURL(value) {
+    if (typeof value == "string" && value.startsWith(REACT_APP_WIX_IMG_PREFIX)) {
+        const parsed = value.replace(REACT_APP_WIX_IMG_PREFIX, "")
+        return REACT_APP_WIX_STATIC_URL + parsed.split("/")[1]
+    }
+    return value
 }
 
 function parseNavbarItems(rawData) {

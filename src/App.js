@@ -26,10 +26,10 @@ loadData("homepage")
   
 function App() {
   return (
-      <div>
+      <div className="app-wrapper">
         <HashRouter>
           <Navbar/>
-          <div className="app-wrapper">
+          <div className="page-content">
             <Routes>
               <Route path="/" element={<Homepage/>}/>
               <Route path="/software" element={<Software/>}/>

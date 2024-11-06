@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import { Link } from "react-router-dom"
 
 import { wixData as wixDataState } from "../state"
 
@@ -27,7 +26,7 @@ function Footer({
 
     return <div className="footer">
         <div className="footer-item copyright">
-            Website © {new Date().getFullYear()} by Jon-Erik Chandler
+            Website © {new Date().getFullYear()} Jon-Erik Chandler
         </div>
         <div className="footer-item">
             <a href={linkedinLink} target="_blank"><LinkedInIcon/></a>

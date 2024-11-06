@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom"
 import "./Navbar.styl"
 
 import { wixData as wixDataState } from "../state"
-import { Loader } from "./Loader"
+import Loader from "./Loader"
 
 const { fetchNavbarData } = wixDataState
 
