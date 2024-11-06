@@ -1,12 +1,11 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux'
 
-import { Link } from "react-router-dom"
-
 import PageContentWrapper from "../components/PageContentWrapper"
 import Header from "../components/Header"
 import SubHeader from "../components/SubHeader"
 import ParagraphText from "../components/ParagraphText"
+import ButtonLink from "../components/ButtonLink"
 import { wixData as wixDataState } from "../state"
 
 import "./Homepage.styl"
@@ -24,8 +23,6 @@ function homepage({
 }) {
     const { bannerImage, description, mainBannerText, subtitle } = homepageData
 
-    console.log(homepageData)
-
     useEffect(() => {
         if (!Object.keys(homepageData).length) {
             onFetchHomepageData()
@@ -33,7 +30,7 @@ function homepage({
     }, [])
 
 	return (
-		<PageContentWrapper loading={homepageDataLoading} centerChildren={true}>
+		<PageContentWrapper loading={homepageDataLoading || navbarDataLoading} centerChildren={true}>
 			<div className="homepage">
     		    <div className="image">
 					<img src={bannerImage}/>
@@ -42,6 +39,9 @@ function homepage({
 					<Header text={mainBannerText}/>
 					<SubHeader text={subtitle}/>
 					<ParagraphText text={description}/>
+					<div className="links">
+						{navbarData.filter(d => d.route !== "/").map(d => <ButtonLink route={d.route} text={d.title}/>)}
+					</div>
 				</div>
     		</div>
 		</PageContentWrapper>

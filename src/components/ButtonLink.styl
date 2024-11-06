@@ -1,0 +1,19 @@
+json("../style-vars.json")
+
+NavBackground = navBackground
+PageBackground = pageBackground
+TitleFont = titleFont
+
+a.button-link
+    background NavBackground
+    font-family TitleFont
+    text-transform uppercase
+    padding 5px
+    color PageBackground
+    text-decoration none
+
+    &:hover
+        filter brightness(90%)
+
+    &:visited
+        color PageBackground

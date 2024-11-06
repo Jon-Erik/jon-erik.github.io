@@ -1,6 +1,7 @@
 import { produce } from 'immer'
 import createAction from './createAction'
 import { loadData } from "../services/wixAPI"
+import { create } from '@mui/material/styles/createTransitions'
 
 const { 
     REACT_APP_WIX_STATIC_URL,
@@ -19,17 +20,65 @@ export const HOMEPAGE_LOADING = 'HOMEPAGE_LOADING'
 export const HOMEPAGE_SUCCESS = 'HOMEPAGE_SUCCESS'
 export const HOMEPAGE_FAIL = 'HOMEPAGE_FAIL'
 
+export const SOFTWARE_LOADING = 'SOFTWARE_LOADING'
+export const SOFTWARE_SUCCESS = 'SOFTWARE_SUCCESS'
+export const SOFTWARE_FAIL = 'SOFTWARE_FAIL'
+
+export const SOFTWARE_RESUME_LOADING = 'SOFTWARE_RESUME_LOADING'
+export const SOFTWARE_RESUME_SUCCESS = 'SOFTWARE_RESUME_SUCCESS'
+export const SOFTWARE_RESUME_FAIL = 'SOFTWARE_RESUME_FAIL'
+
+export const SOFTWARE_TECHNOLOGIES_LOADING = 'SOFTWARE_TECHNOLOGIES_LOADING'
+export const SOFTWARE_TECHNOLOGIES_SUCCESS = 'SOFTWARE_TECHNOLOGIES_SUCCESS'
+export const SOFTWARE_TECHNOLOGIES_FAIL = 'SOFTWARE_TECHNOLOGIES_FAIL'
+
+export const MUSIC_LOADING = 'MUSIC_LOADING'
+export const MUSIC_SUCCESS = 'MUSIC_SUCCESS'
+export const MUSIC_FAIL = 'MUSIC_FAIL'
+
+export const MUSIC_RESUME_LOADING = 'MUSIC_RESUME_LOADING'
+export const MUSIC_RESUME_SUCCESS = 'MUSIC_RESUME_SUCCESS'
+export const MUSIC_RESUME_FAIL = 'MUSIC_RESUME_FAIL'
+
+export const MUSIC_RESOURCES_LOADING = 'MUSIC_RESOURCES_LOADING'
+export const MUSIC_RESOURCES_SUCCESS = 'MUSIC_RESOURCES_SUCCESS'
+export const MUSIC_RESOURCES_FAIL = 'MUSIC_RESOURCES_FAIL'
+
+export const MUSIC_EVENTS_LOADING = 'MUSIC_EVENTS_LOADING'
+export const MUSIC_EVENTS_SUCCESS = 'MUSIC_EVENTS_SUCCESS'
+export const MUSIC_EVENTS_FAIL = 'MUSIC_EVENTS_FAIL'
 
 const initialState = {
     navbarData: [],
     navbarDataLoading: false,
     navbarDataError: "",
-    homepageData: {},
-    homepageDataLoading: false,
-    homepageDataError: "",
     footerData: {},
     footerDataLoading: false,
     footerDataError: "",
+    homepageData: {},
+    homepageDataLoading: false,
+    homepageDataError: "",
+    softwareData: {},
+    softwareDataLoading: false,
+    softwareDataError: "",
+    softwareResumeData: {},
+    softwareResumeDataLoading: false,
+    softwareResumeDataError: "",
+    softwareTechnologiesData: {},
+    softwareTechnologiesDataLoading: false,
+    softwareTechnologiesDataError: "",
+    musicData: {},
+    musicDataLoading: false,
+    musicDataError: "",
+    musicResumeData: {},
+    musicResumeDataLoading: false,
+    musicResumeDataError: "",
+    musicResourcesData: {},
+    musicResourcesDataLoading: false,
+    musicResourcesDataError: "",
+    musicEventsData: {},
+    musicEventsDataLoading: false,
+    musicEventsDataError: "",
 }
 
 export default produce((draft, action) => {
@@ -68,52 +117,97 @@ export default produce((draft, action) => {
             draft.homepageData = payload
             draft.homepageDataLoading = false
             break
+        case SOFTWARE_LOADING:
+            draft.softwareDataLoading = true
+            break
+        case SOFTWARE_FAIL:
+            draft.softwareDataLoading = false
+            draft.softwareDataError = payload
+            break
+        case SOFTWARE_SUCCESS:
+            draft.softwareData = payload
+            draft.softwareDataLoading = false
+            break
+        case SOFTWARE_RESUME_LOADING:
+            draft.softwareResumeDataLoading = true
+            break
+        case SOFTWARE_RESUME_FAIL:
+            draft.softwareResumeDataLoading = false
+            draft.softwareResumeDataError = payload
+            break
+        case SOFTWARE_RESUME_SUCCESS:
+            draft.softwareResumeData = payload
+            draft.softwareResumeDataLoading = false
+            break
+        case SOFTWARE_TECHNOLOGIES_LOADING:
+            draft.softwareResumeDataLoading = true
+            break
+        case SOFTWARE_TECHNOLOGIES_FAIL:
+            draft.softwareResumeDataLoading = false
+            draft.softwareResumeDataError = payload
+            break
+        case SOFTWARE_TECHNOLOGIES_SUCCESS:
+            draft.softwareResumeData = payload
+            draft.softwareResumeDataLoading = false
+            break
+        case MUSIC_LOADING:
+            draft.musicDataLoading = true
+            break
+        case MUSIC_FAIL:
+            draft.musicDataLoading = false
+            draft.musicDataError = payload
+            break
+        case MUSIC_SUCCESS:
+            draft.musicData = payload
+            draft.musicDataLoading = false
+            break
+        case MUSIC_RESUME_LOADING:
+            draft.musicResumeDataLoading = true
+            break
+        case MUSIC_RESUME_FAIL:
+            draft.musicResumeDataLoading = false
+            draft.musicResumeDataError = payload
+            break
+        case MUSIC_RESUME_SUCCESS:
+            draft.musicResumeData = payload
+            draft.musicResumeDataLoading = false
+            break
+        case MUSIC_RESOURCES_LOADING:
+            draft.musicResourcesDataLoading = true
+            break
+        case MUSIC_RESOURCES_FAIL:
+            draft.musicResourcesDataLoading = false
+            draft.musicResourcesDataError = payload
+            break
+        case MUSIC_RESOURCES_SUCCESS:
+            draft.musicResourcesData = payload
+            draft.musicResourcesDataLoading = false
+            break
+        case MUSIC_EVENTS_LOADING:
+            draft.musicEventsDataLoading = true
+            break
+        case MUSIC_EVENTS_FAIL:
+            draft.musicEventsDataLoading = false
+            draft.musicEventsDataError = payload
+            break
+        case MUSIC_EVENTS_SUCCESS:
+            draft.musicEventsData = payload
+            draft.musicEventsDataLoading = false
+            break
     }
 }, initialState)
 
-export function fetchNavbarData() {
-    return async (dispatch) => {
-        let response
-        dispatch(createAction(NAVBAR_LOADING, true))
-
-        try {
-            response = await loadData('navbar-links')
-        } catch (error) {
-            dispatch(createAction(NAVBAR_FAIL, error.message))
-        }
-
-        dispatch(createAction(NAVBAR_SUCCESS, parseNavbarItems(response)))
+async function wixRequest({ dispatch, wixCollection, loadingVar, failVar, successVar, parser }) {
+    let response
+    dispatch(createAction(loadingVar, true))
+    
+    try {
+        response = await loadData(wixCollection)
+    } catch (error) {
+        dispatch(createAction(failVar, error.message))
     }
-}
-
-export function fetchFooterData() {
-    return async (dispatch) => {
-        let response
-        dispatch(createAction(FOOTER_LOADING, true))
-
-        try {
-            response = await loadData('footer')
-        } catch (error) {
-            dispatch(createAction(FOOTER_FAIL, error.message))
-        }
-
-        dispatch(createAction(FOOTER_SUCCESS, parseSingleItemCollection(response)))
-    }
-}
-
-export function fetchHomepageData() {
-    return async (dispatch) => {
-        let response
-        dispatch(createAction(HOMEPAGE_LOADING, true))
-
-        try {
-            response = await loadData('homepage')
-        } catch (error) {
-            dispatch(createAction(HOMEPAGE_FAIL, error.message))
-        }
-
-        dispatch(createAction(HOMEPAGE_SUCCESS, parseSingleItemCollection(response)))
-    }
+    
+    dispatch(createAction(successVar, parser(response)))
 }
 
 function parseSingleItemCollection(rawData) {
@@ -122,6 +216,10 @@ function parseSingleItemCollection(rawData) {
         data[key] = processWixImgURL(data[key])
     })
     return data
+}
+
+function sortByField(a, b) {
+    return a.sortOrder - b.sortOrder
 }
 
 // URL value returned from wix CMS is like this: wix:image://v1/4abd8b_afba7c517e824975be8177a9743354d1~mv2.jpg/....
@@ -142,6 +240,67 @@ function parseNavbarItems(rawData) {
     return parsed
 }
 
-function sortByField(a, b) {
-    return a.sortOrder - b.sortOrder
+export function fetchNavbarData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'navbar-links',
+            loadingVar: NAVBAR_LOADING,
+            failVar: NAVBAR_FAIL,
+            successVar: NAVBAR_SUCCESS,
+            parser: parseNavbarItems
+        })
+    }
+}
+
+export function fetchFooterData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'footer',
+            loadingVar: FOOTER_LOADING,
+            failVar: FOOTER_FAIL,
+            successVar: FOOTER_SUCCESS,
+            parser: parseSingleItemCollection
+        })
+    }
+}
+
+export function fetchHomepageData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'homepage',
+            loadingVar: HOMEPAGE_LOADING,
+            failVar: HOMEPAGE_FAIL,
+            successVar: HOMEPAGE_SUCCESS,
+            parser: parseSingleItemCollection
+        })
+    }
+}
+
+export function fetchSoftwareData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'software',
+            loadingVar: SOFTWARE_LOADING,
+            failVar: SOFTWARE_FAIL,
+            successVar: SOFTWARE_SUCCESS,
+            parser: parseSingleItemCollection
+        })
+    }
+}
+
+export function fetchMusicData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'music',
+            loadingVar: MUSIC_LOADING,
+            failVar: MUSIC_FAIL,
+            successVar: MUSIC_SUCCESS,
+            parser: parseSingleItemCollection
+        })
+    }
 }
