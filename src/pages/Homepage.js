@@ -40,7 +40,7 @@ function homepage({
 					<SubHeader text={subtitle}/>
 					<ParagraphText text={description}/>
 					<div className="links">
-						{navbarData.filter(d => d.route !== "/").map(d => <ButtonLink route={d.route} text={d.title}/>)}
+						{navbarData.filter(d => d.route !== "/").map(d => <ButtonLink key={d.route} route={d.route} text={d.title}/>)}
 					</div>
 				</div>
     		</div>

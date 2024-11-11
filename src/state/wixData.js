@@ -292,6 +292,19 @@ export function fetchSoftwareData() {
     }
 }
 
+export function fetchSoftwareResumeData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'softwareResume',
+            loadingVar: SOFTWARE_RESUME_LOADING,
+            failVar: SOFTWARE_RESUME_FAIL,
+            successVar: SOFTWARE_RESUME_SUCCESS,
+            parser: parseSingleItemCollection
+        })
+    }
+}
+
 export function fetchMusicData() {
     return async (dispatch) => {
         await wixRequest({

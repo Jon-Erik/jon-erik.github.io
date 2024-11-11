@@ -38,7 +38,7 @@ function Software({
                 <Header text={mainHeader}/>
                 <ParagraphText text={description}/>
                 <div className="links">
-                    {softwareLink && softwareLink.children.map(d => <ButtonLink route={d.route} text={d.title}/>)}
+                    {softwareLink && softwareLink.children.map(d => <ButtonLink key={d.route} route={d.route} text={d.title}/>)}
                 </div>
     		</div>
 		</PageContentWrapper>
