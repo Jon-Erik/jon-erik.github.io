@@ -12,7 +12,7 @@ import "./Resume.styl"
 
 const { fetchSoftwareResumeData } = wixDataState
 
-function Software({
+function SoftwareResume({
     softwareResumeData,
     softwareResumeDataLoading,
     softwareResumeDataError,
@@ -25,7 +25,6 @@ function Software({
     const { pathname } = useLocation()
 
     const softwareLink = navbarData.find(d => d.route.startsWith("/" + pathname.split("/")[1]))
-    console.log(softwareResumeData, pathname, softwareLink)
 
     useEffect(() => {
         if (!Object.keys(softwareResumeData).length) {
@@ -67,4 +66,4 @@ const mapDispatch = dispatch => ({
     onFetchSoftwareResumeData: () => dispatch(fetchSoftwareResumeData())
 })
 
-export default connect(mapState, mapDispatch)(Software);
+export default connect(mapState, mapDispatch)(SoftwareResume);

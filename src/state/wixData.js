@@ -140,15 +140,15 @@ export default produce((draft, action) => {
             draft.softwareResumeDataLoading = false
             break
         case SOFTWARE_TECHNOLOGIES_LOADING:
-            draft.softwareResumeDataLoading = true
+            draft.softwareTechnologiesDataLoading = true
             break
         case SOFTWARE_TECHNOLOGIES_FAIL:
-            draft.softwareResumeDataLoading = false
-            draft.softwareResumeDataError = payload
+            draft.softwareTechnologiesDataLoading = false
+            draft.softwareTechnologiesDataError = payload
             break
         case SOFTWARE_TECHNOLOGIES_SUCCESS:
-            draft.softwareResumeData = payload
-            draft.softwareResumeDataLoading = false
+            draft.softwareTechnologiesData = payload
+            draft.softwareTechnologiesDataLoading = false
             break
         case MUSIC_LOADING:
             draft.musicDataLoading = true
@@ -206,7 +206,7 @@ async function wixRequest({ dispatch, wixCollection, loadingVar, failVar, succes
     } catch (error) {
         dispatch(createAction(failVar, error.message))
     }
-    
+
     dispatch(createAction(successVar, parser(response)))
 }
 
@@ -300,6 +300,19 @@ export function fetchSoftwareResumeData() {
             loadingVar: SOFTWARE_RESUME_LOADING,
             failVar: SOFTWARE_RESUME_FAIL,
             successVar: SOFTWARE_RESUME_SUCCESS,
+            parser: parseSingleItemCollection
+        })
+    }
+}
+
+export function fetchSoftwareTechnologiesData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'softwareTechnologies',
+            loadingVar: SOFTWARE_TECHNOLOGIES_LOADING,
+            failVar: SOFTWARE_TECHNOLOGIES_FAIL,
+            successVar: SOFTWARE_TECHNOLOGIES_SUCCESS,
             parser: parseSingleItemCollection
         })
     }
