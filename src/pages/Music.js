@@ -6,11 +6,11 @@ import PageContentWrapper from "../components/PageContentWrapper"
 import Header from "../components/Header"
 import ParagraphText from "../components/ParagraphText"
 import ButtonLink from "../components/ButtonLink"
-import { wixData as wixDataState } from "../state"
+import { externalData as externalDataState } from "../state"
 
 import "./Software.styl"
 
-const { fetchMusicData } = wixDataState
+const { fetchMusicData } = externalDataState
 
 function Software({
     musicData,
@@ -47,12 +47,12 @@ function Software({
 
 const mapState = state => {
     return {
-        musicData: state.wixData.musicData,
-        musicDataLoading: state.wixData.musicDataLoading,
-        musicDataError: state.wixData.musicDataError,
-		navbarData: state.wixData.navbarData,
-        navbarDataLoading: state.wixData.navbarDataLoading,
-        navbarDataError: state.wixData.navbarDataError
+        musicData: state.externalData.musicData,
+        musicDataLoading: state.externalData.musicDataLoading,
+        musicDataError: state.externalData.musicDataError,
+		navbarData: state.externalData.navbarData,
+        navbarDataLoading: state.externalData.navbarDataLoading,
+        navbarDataError: state.externalData.navbarDataError
     }
 }
 

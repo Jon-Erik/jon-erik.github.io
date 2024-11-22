@@ -2,6 +2,7 @@ import { produce } from 'immer'
 import createAction from './createAction'
 import { loadData } from "../services/wixAPI"
 import { create } from '@mui/material/styles/createTransitions'
+import { client as prismicClient } from '../services/prismic'
 
 const { 
     REACT_APP_WIX_STATIC_URL,
@@ -73,7 +74,7 @@ const initialState = {
     musicResumeData: {},
     musicResumeDataLoading: false,
     musicResumeDataError: "",
-    musicResourcesData: {},
+    musicResourcesData: [],
     musicResourcesDataLoading: false,
     musicResourcesDataError: "",
     musicEventsData: {},
@@ -210,6 +211,24 @@ async function wixRequest({ dispatch, wixCollection, loadingVar, failVar, succes
     dispatch(createAction(successVar, parser(response)))
 }
 
+async function prismicReq({ dispatch, dataType, loadingVar, failVar, successVar, reqType, parser }) {
+    let response
+    dispatch(createAction(loadingVar, true))
+    
+    try {
+        if (reqType === "single") {
+            response = await prismicClient.getSingle(dataType)
+        } else if (reqType === "allByType") {
+            response = await prismicClient.getAllByType(dataType)
+        }
+    } catch (error) {
+        dispatch(createAction(failVar, error.message))
+    }
+
+    console.log({response})
+    dispatch(createAction(successVar, parser(response)))
+}
+
 function parseSingleItemCollection(rawData) {
     const data = rawData.dataItems[0].data
     Object.keys(data).forEach(key => {
@@ -219,7 +238,7 @@ function parseSingleItemCollection(rawData) {
 }
 
 function sortByField(a, b) {
-    return a.sortOrder - b.sortOrder
+    return a.sortorder - b.sortorder
 }
 
 // URL value returned from wix CMS is like this: wix:image://v1/4abd8b_afba7c517e824975be8177a9743354d1~mv2.jpg/....
@@ -231,25 +250,39 @@ function processWixImgURL(value) {
     return value
 }
 
-function parseNavbarItems(rawData) {
-    const arr = rawData.dataItems.map(i => i.data)
-    const parsed = arr.filter(i => i.navLevel == 1).sort(sortByField)
+function parseNavLinks(rawData) {
+    const arr = rawData.map(i => i.data)
+    const parsed = arr.filter(i => i.navlevel == 1).sort(sortByField)
     parsed.forEach(p => {
-        p.children = arr.filter(i => i.parent == p.title && i.navLevel == 2).sort(sortByField)
+        p.children = arr.filter(i => i.parent == p.title && i.navlevel == 2).sort(sortByField)
     })
+    console.log(parsed)
     return parsed
+}
+
+function parseMultiItemCollection(rawData) {
+    return rawData.dataItems
 }
 
 export function fetchNavbarData() {
     return async (dispatch) => {
-        await wixRequest({
+        await prismicReq({
             dispatch,
-            wixCollection: 'navbar-links',
+            reqType: "allByType",
+            dataType: 'navlinks',
             loadingVar: NAVBAR_LOADING,
             failVar: NAVBAR_FAIL,
             successVar: NAVBAR_SUCCESS,
-            parser: parseNavbarItems
+            parser: parseNavLinks
         })
+        //     dispatch,
+        //     wixCollection: 'navbar-links',
+        //     loadingVar: NAVBAR_LOADING,
+        //     failVar: NAVBAR_FAIL,
+        //     successVar: NAVBAR_SUCCESS,
+        //     parser: parseNavbarItems
+        // await wixRequest({
+        // })
     }
 }
 
@@ -268,14 +301,27 @@ export function fetchFooterData() {
 
 export function fetchHomepageData() {
     return async (dispatch) => {
-        await wixRequest({
-            dispatch,
-            wixCollection: 'homepage',
-            loadingVar: HOMEPAGE_LOADING,
-            failVar: HOMEPAGE_FAIL,
-            successVar: HOMEPAGE_SUCCESS,
-            parser: parseSingleItemCollection
-        })
+        let response
+        dispatch(createAction(HOMEPAGE_LOADING, true))
+        
+        try {
+            //response = await loadData(wixCollection)
+            const prismicDoc = await client.getSingle('homepage')
+            console.log(prismicDoc)
+        } catch (error) {
+            dispatch(createAction(HOMEPAGE_FAIL, error.message))
+        }
+
+        //dispatch(createAction(HOMEPAGE_SUCCESS, parser(response)))
+
+        // await wixRequest({
+        //     dispatch,
+        //     wixCollection: 'homepage',
+        //     loadingVar: HOMEPAGE_LOADING,
+        //     failVar: HOMEPAGE_FAIL,
+        //     successVar: HOMEPAGE_SUCCESS,
+        //     parser: parseSingleItemCollection
+        // })
     }
 }
 
@@ -327,6 +373,32 @@ export function fetchMusicData() {
             failVar: MUSIC_FAIL,
             successVar: MUSIC_SUCCESS,
             parser: parseSingleItemCollection
+        })
+    }
+}
+
+export function fetchMusicResumeData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'musicResume',
+            loadingVar: MUSIC_RESUME_LOADING,
+            failVar: MUSIC_RESUME_FAIL,
+            successVar: MUSIC_RESUME_SUCCESS,
+            parser: parseSingleItemCollection
+        })
+    }
+}
+
+export function fetchMusicResourcesData() {
+    return async (dispatch) => {
+        await wixRequest({
+            dispatch,
+            wixCollection: 'musicResources',
+            loadingVar: MUSIC_RESUME_LOADING,
+            failVar: MUSIC_RESUME_FAIL,
+            successVar: MUSIC_RESUME_SUCCESS,
+            parser: parseMultiItemCollection
         })
     }
 }

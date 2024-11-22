@@ -7,11 +7,11 @@ import Header from "../../components/Header"
 import SubHeader from "../../components/SubHeader"
 import ButtonLink from "../../components/ButtonLink"
 import ParagraphText from "../../components/ParagraphText"
-import { wixData as wixDataState } from "../../state"
+import { externalData as externalDataState } from "../../state"
 
 import "./Technologies.styl"
 
-const { fetchSoftwareTechnologiesData } = wixDataState
+const { fetchSoftwareTechnologiesData } = externalDataState
 
 function SoftwareTechnologies({
     softwareTechnologiesData,
@@ -53,12 +53,12 @@ function SoftwareTechnologies({
 
 const mapState = state => {
     return {
-        softwareTechnologiesData: state.wixData.softwareTechnologiesData,
-        softwareTechnologiesDataLoading: state.wixData.softwareTechnologiesDataLoading,
-        softwareTechnologiesDataError: state.wixData.softwareTechnologiesDataError,
-		navbarData: state.wixData.navbarData,
-        navbarDataLoading: state.wixData.navbarDataLoading,
-        navbarDataError: state.wixData.navbarDataError
+        softwareTechnologiesData: state.externalData.softwareTechnologiesData,
+        softwareTechnologiesDataLoading: state.externalData.softwareTechnologiesDataLoading,
+        softwareTechnologiesDataError: state.externalData.softwareTechnologiesDataError,
+		navbarData: state.externalData.navbarData,
+        navbarDataLoading: state.externalData.navbarDataLoading,
+        navbarDataError: state.externalData.navbarDataError
     }
 }
 

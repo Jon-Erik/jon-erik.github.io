@@ -6,11 +6,13 @@ import Header from "../components/Header"
 import SubHeader from "../components/SubHeader"
 import ParagraphText from "../components/ParagraphText"
 import ButtonLink from "../components/ButtonLink"
-import { wixData as wixDataState } from "../state"
+import { externalData as externalDataState } from "../state"
+
+import { useSinglePrismicDocument } from '@prismicio/react'
 
 import "./Homepage.styl"
 
-const { fetchHomepageData } = wixDataState
+const { fetchHomepageData } = externalDataState
 
 function homepage({
     homepageData,
@@ -22,10 +24,12 @@ function homepage({
     navbarDataError
 }) {
     const { bannerImage, description, mainBannerText, subtitle } = homepageData
+    //const response = useSinglePrismicDocument('homepage')
+   // console.log(response)
 
     useEffect(() => {
         if (!Object.keys(homepageData).length) {
-            onFetchHomepageData()
+            //onFetchHomepageData()
         }
     }, [])
 
@@ -50,12 +54,12 @@ function homepage({
 
 const mapState = state => {
     return {
-        homepageData: state.wixData.homepageData,
-        homepageDataLoading: state.wixData.homepageDataLoading,
-        homepageDataError: state.wixData.homepageDataError,
-		navbarData: state.wixData.navbarData,
-        navbarDataLoading: state.wixData.navbarDataLoading,
-        navbarDataError: state.wixData.navbarDataError
+        homepageData: state.externalData.homepageData,
+        homepageDataLoading: state.externalData.homepageDataLoading,
+        homepageDataError: state.externalData.homepageDataError,
+		navbarData: state.externalData.navbarData,
+        navbarDataLoading: state.externalData.navbarDataLoading,
+        navbarDataError: state.externalData.navbarDataError
     }
 }
 

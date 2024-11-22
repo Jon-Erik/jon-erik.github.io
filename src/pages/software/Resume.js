@@ -6,11 +6,11 @@ import PageContentWrapper from "../../components/PageContentWrapper"
 import Header from "../../components/Header"
 import SubHeader from "../../components/SubHeader"
 import ButtonLink from "../../components/ButtonLink"
-import { wixData as wixDataState } from "../../state"
+import { externalData as externalDataState } from "../../state"
 
 import "./Resume.styl"
 
-const { fetchSoftwareResumeData } = wixDataState
+const { fetchSoftwareResumeData } = externalDataState
 
 function SoftwareResume({
     softwareResumeData,
@@ -36,9 +36,7 @@ function SoftwareResume({
 		<PageContentWrapper loading={softwareResumeDataLoading || navbarDataLoading}>
 			<div className="software-resume">
                 <Header text={mainHeader}/>
-                <SubHeader text={"Work Experience"}/>
                 <div className="imported-html" dangerouslySetInnerHTML={{ __html: workExperience}}/>
-                <SubHeader text={"Education"}/>
                 <div className="imported-html" dangerouslySetInnerHTML={{ __html: education}}/>
                 <div className="links">
                     {softwareLink && softwareLink.children
@@ -53,12 +51,12 @@ function SoftwareResume({
 
 const mapState = state => {
     return {
-        softwareResumeData: state.wixData.softwareResumeData,
-        softwareResumeDataLoading: state.wixData.softwareResumeDataLoading,
-        softwareResumeDataError: state.wixData.softwareResumeDataError,
-		navbarData: state.wixData.navbarData,
-        navbarDataLoading: state.wixData.navbarDataLoading,
-        navbarDataError: state.wixData.navbarDataError
+        softwareResumeData: state.externalData.softwareResumeData,
+        softwareResumeDataLoading: state.externalData.softwareResumeDataLoading,
+        softwareResumeDataError: state.externalData.softwareResumeDataError,
+		navbarData: state.externalData.navbarData,
+        navbarDataLoading: state.externalData.navbarDataLoading,
+        navbarDataError: state.externalData.navbarDataError
     }
 }
 

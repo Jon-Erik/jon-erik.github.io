@@ -1,12 +1,12 @@
 import { combineReducers, applyMiddleware, compose, configureStore } from 'redux';
 import { thunk } from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit'
-import wixData, * as wixDataActions from './wixData'
+import externalData, * as externalDataActions from './externalData'
 
 const middleware = [thunk];
 
 const reducer = combineReducers({
-  wixData
+  externalData
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,5 +17,5 @@ const store = configureStore({reducer}, composeEnhancers(
 export default store
 
 export {
-  wixDataActions as wixData
+  externalDataActions as externalData
 }

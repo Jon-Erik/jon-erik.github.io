@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
 
-import { wixData as wixDataState } from "../state"
+import { externalData as externalDataState } from "../state"
 
 import "./Footer.styl"
 
-const { fetchFooterData } = wixDataState
+const { fetchFooterData } = externalDataState
 
 function Footer({
     footerData,
@@ -39,9 +39,9 @@ function Footer({
 
 const mapState = state => {
     return {
-        footerData: state.wixData.footerData,
-        footerDataLoading: state.wixData.footerDataLoading,
-        footerDataError: state.wixData.footerDataError
+        footerData: state.externalData.footerData,
+        footerDataLoading: state.externalData.footerDataLoading,
+        footerDataError: state.externalData.footerDataError
     }
 }
 

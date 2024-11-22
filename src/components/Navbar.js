@@ -4,10 +4,10 @@ import { Link, useLocation } from "react-router-dom"
 
 import "./Navbar.styl"
 
-import { wixData as wixDataState } from "../state"
+import { externalData as externalDataState } from "../state"
 import Loader from "./Loader"
 
-const { fetchNavbarData } = wixDataState
+const { fetchNavbarData } = externalDataState
 
 export function Navbar({ 
     onFetchNavbarData, 
@@ -16,6 +16,8 @@ export function Navbar({
     navbarDataError
 }) {
     const location = useLocation()
+
+    console.log({navbarData})
 
     useEffect(() => {
         if (!navbarData.length) {
@@ -28,15 +30,15 @@ export function Navbar({
     }
     
     return <div className="navbar">
-        <div className="links-list">{navbarData.map(d => <NavBarLink key={d._id} linkData={d} currentRoute={location.pathname} />)}</div>
+        <div className="links-list">{navbarData.map(d => <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} />)}</div>
     </div>
 }
 
 const mapState = state => {
     return {
-        navbarData: state.wixData.navbarData,
-        navbarDataLoading: state.wixData.navbarDataLoading,
-        navbarDataError: state.wixData.navbarDataError
+        navbarData: state.externalData.navbarData,
+        navbarDataLoading: state.externalData.navbarDataLoading,
+        navbarDataError: state.externalData.navbarDataError
     }
 }
 
@@ -54,7 +56,7 @@ function NavBarLink({ linkData, currentRoute }) {
         <Link to={route}>{title}</Link>
         {children.length ? (
             <div className="subnav">
-                {children.map(c => <NavBarSubLink key={c._id} linkData={c} currentRoute={currentRoute}/>)}
+                {children.map(c => <NavBarSubLink key={c.route} linkData={c} currentRoute={currentRoute}/>)}
             </div>
         ) : null}
     </div>

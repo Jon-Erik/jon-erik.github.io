@@ -6,11 +6,11 @@ import PageContentWrapper from "../components/PageContentWrapper"
 import Header from "../components/Header"
 import ParagraphText from "../components/ParagraphText"
 import ButtonLink from "../components/ButtonLink"
-import { wixData as wixDataState } from "../state"
+import { externalData as externalDataState } from "../state"
 
 import "./Software.styl"
 
-const { fetchSoftwareData } = wixDataState
+const { fetchSoftwareData } = externalDataState
 
 function Software({
     softwareData,
@@ -47,12 +47,12 @@ function Software({
 
 const mapState = state => {
     return {
-        softwareData: state.wixData.softwareData,
-        softwareDataLoading: state.wixData.softwareDataLoading,
-        softwareDataError: state.wixData.softwareDataError,
-		navbarData: state.wixData.navbarData,
-        navbarDataLoading: state.wixData.navbarDataLoading,
-        navbarDataError: state.wixData.navbarDataError
+        softwareData: state.externalData.softwareData,
+        softwareDataLoading: state.externalData.softwareDataLoading,
+        softwareDataError: state.externalData.softwareDataError,
+		navbarData: state.externalData.navbarData,
+        navbarDataLoading: state.externalData.navbarDataLoading,
+        navbarDataError: state.externalData.navbarDataError
     }
 }
 
