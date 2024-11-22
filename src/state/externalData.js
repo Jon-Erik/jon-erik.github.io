@@ -230,15 +230,12 @@ async function prismicReq({ dispatch, dataType, loadingVar, failVar, successVar,
 }
 
 function parseSingleItemCollection(rawData) {
-    const data = rawData.dataItems[0].data
-    Object.keys(data).forEach(key => {
-        data[key] = processWixImgURL(data[key])
-    })
-    return data
+   console.log({singleRaw: rawData})
+    return rawData.data
 }
 
 function sortByField(a, b) {
-    return a.sortorder - b.sortorder
+    return a.sort_order - b.sort_order
 }
 
 // URL value returned from wix CMS is like this: wix:image://v1/4abd8b_afba7c517e824975be8177a9743354d1~mv2.jpg/....
@@ -252,11 +249,12 @@ function processWixImgURL(value) {
 
 function parseNavLinks(rawData) {
     const arr = rawData.map(i => i.data)
-    const parsed = arr.filter(i => i.navlevel == 1).sort(sortByField)
+    console.log(arr[0])
+    const parsed = arr.filter(i => i.nav_level == 1).sort(sortByField)
     parsed.forEach(p => {
-        p.children = arr.filter(i => i.parent == p.title && i.navlevel == 2).sort(sortByField)
+        p.children = arr.filter(i => i.parent == p.title && i.nav_level == 2).sort(sortByField)
     })
-    console.log(parsed)
+    console.log({parsed, rawData})
     return parsed
 }
 
@@ -269,28 +267,21 @@ export function fetchNavbarData() {
         await prismicReq({
             dispatch,
             reqType: "allByType",
-            dataType: 'navlinks',
+            dataType: 'nav_links',
             loadingVar: NAVBAR_LOADING,
             failVar: NAVBAR_FAIL,
             successVar: NAVBAR_SUCCESS,
             parser: parseNavLinks
         })
-        //     dispatch,
-        //     wixCollection: 'navbar-links',
-        //     loadingVar: NAVBAR_LOADING,
-        //     failVar: NAVBAR_FAIL,
-        //     successVar: NAVBAR_SUCCESS,
-        //     parser: parseNavbarItems
-        // await wixRequest({
-        // })
     }
 }
 
 export function fetchFooterData() {
     return async (dispatch) => {
-        await wixRequest({
+        await prismicReq({
             dispatch,
-            wixCollection: 'footer',
+            reqType: "single",
+            dataType: 'footer',
             loadingVar: FOOTER_LOADING,
             failVar: FOOTER_FAIL,
             successVar: FOOTER_SUCCESS,

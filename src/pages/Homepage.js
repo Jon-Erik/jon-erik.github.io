@@ -14,35 +14,29 @@ import "./Homepage.styl"
 
 const { fetchHomepageData } = externalDataState
 
-function homepage({
-    homepageData,
-    homepageDataLoading,
-    homepageDataError,
-    onFetchHomepageData,
+function Homepage({
 	navbarData,
     navbarDataLoading,
     navbarDataError
 }) {
-    const { bannerImage, description, mainBannerText, subtitle } = homepageData
-    //const response = useSinglePrismicDocument('homepage')
-   // console.log(response)
+    const [ homepageData, homepageLoading ] = useSinglePrismicDocument('homepage')
+    const portrait = homepageData && homepageData.data.portrait.url
+    const main_header = homepageData && homepageData.data.main_header[0].text
+    const subheader = homepageData && homepageData.data.subheader[0].text
+    const text_content = homepageData && homepageData.data.text_content[0].text
 
-    useEffect(() => {
-        if (!Object.keys(homepageData).length) {
-            //onFetchHomepageData()
-        }
-    }, [])
+    const loading = navbarDataLoading || !homepageLoading || homepageLoading.state !== "loaded"
 
 	return (
-		<PageContentWrapper loading={homepageDataLoading || navbarDataLoading} centerChildren={true}>
+		<PageContentWrapper loading={loading} centerChildren={true}>
 			<div className="homepage">
     		    <div className="image">
-					<img src={bannerImage}/>
+					<img src={portrait}/>
 				</div>
 				<div className="text">
-					<Header text={mainBannerText}/>
-					<SubHeader text={subtitle}/>
-					<ParagraphText text={description}/>
+					<Header text={main_header}/>
+					<SubHeader text={subheader}/>
+					<ParagraphText text={text_content}/>
 					<div className="links">
 						{navbarData.filter(d => d.route !== "/").map(d => <ButtonLink key={d.route} route={d.route} text={d.title}/>)}
 					</div>
@@ -54,9 +48,6 @@ function homepage({
 
 const mapState = state => {
     return {
-        homepageData: state.externalData.homepageData,
-        homepageDataLoading: state.externalData.homepageDataLoading,
-        homepageDataError: state.externalData.homepageDataError,
 		navbarData: state.externalData.navbarData,
         navbarDataLoading: state.externalData.navbarDataLoading,
         navbarDataError: state.externalData.navbarDataError
@@ -67,4 +58,4 @@ const mapDispatch = dispatch => ({
     onFetchHomepageData: () => dispatch(fetchHomepageData())
 })
 
-export default connect(mapState, mapDispatch)(homepage);
+export default connect(mapState, mapDispatch)(Homepage);

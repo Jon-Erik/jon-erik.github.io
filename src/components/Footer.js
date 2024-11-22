@@ -16,7 +16,8 @@ function Footer({
     footerDataError,
     onFetchFooterData
 }) {
-    const {linkedinLink, githubLink} = footerData
+    const {linkedin_link, github_link} = footerData
+    console.log({linkedin_link})
 
     useEffect(() => {
         if (!Object.keys(footerData).length) {
@@ -29,10 +30,10 @@ function Footer({
             Website © {new Date().getFullYear()} Jon-Erik Chandler
         </div>
         <div className="footer-item">
-            <a href={linkedinLink} target="_blank"><LinkedInIcon/></a>
+            <a href={linkedin_link && linkedin_link.url} target="_blank"><LinkedInIcon/></a>
         </div>
         <div className="footer-item">
-            <a href={githubLink} target="_blank"><GitHubIcon/></a>
+            <a href={github_link && github_link.url} target="_blank"><GitHubIcon/></a>
         </div>
     </div>
 }
