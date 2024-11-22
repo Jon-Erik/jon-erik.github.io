@@ -2,6 +2,6 @@ import React from "react"
 
 import "./Header.styl"
 
-export default function Header({text}) {
-    return <h1 className="header">{text}</h1>
+export default function Header({html}) {
+    return <div className="header" dangerouslySetInnerHTML={{ __html: html}} />
 }

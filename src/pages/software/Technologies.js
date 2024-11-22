@@ -1,6 +1,8 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux'
 import { useLocation } from "react-router-dom"
+import { useSinglePrismicDocument } from '@prismicio/react'
+import { asHTML } from '../../services/prismic'
 
 import PageContentWrapper from "../../components/PageContentWrapper"
 import Header from "../../components/Header"
@@ -11,35 +13,27 @@ import { externalData as externalDataState } from "../../state"
 
 import "./Technologies.styl"
 
-const { fetchSoftwareTechnologiesData } = externalDataState
 
 function SoftwareTechnologies({
-    softwareTechnologiesData,
-    softwareTechnologiesDataLoading,
-    softwareTechnologiesDataError,
-    onFetchSoftwareTechnologiesData,
 	navbarData,
     navbarDataLoading,
     navbarDataError
 }) {
-    const { mainHeader, description, textContent } = softwareTechnologiesData
+    const [ softwareTechnologiesData, softwareTechnologiesLoading ] = useSinglePrismicDocument('software_technologies')
+    const main_header_html = asHTML(softwareTechnologiesData && softwareTechnologiesData.data.main_header)
+    const description_html = asHTML(softwareTechnologiesData && softwareTechnologiesData.data.description)
+    const main_content_html = asHTML(softwareTechnologiesData && softwareTechnologiesData.data.main_content)
+
     const { pathname } = useLocation()
-
     const softwareLink = navbarData.find(d => d.route.startsWith("/" + pathname.split("/")[1]))
-    console.log(softwareTechnologiesData)
-
-    useEffect(() => {
-        if (!Object.keys(softwareTechnologiesData).length) {
-            onFetchSoftwareTechnologiesData()
-        }
-    }, [])
+    const loading = navbarDataLoading || !softwareTechnologiesLoading || softwareTechnologiesLoading.state !== "loaded"
 
 	return (
-		<PageContentWrapper loading={softwareTechnologiesDataLoading || navbarDataLoading}>
+		<PageContentWrapper loading={loading}>
 			<div className="software-resume">
-                <Header text={mainHeader}/>
-                <ParagraphText text={description}/>
-                <div className="imported-html" dangerouslySetInnerHTML={{ __html: textContent}}/>
+                <Header html={main_header_html}/>
+                <ParagraphText html={description_html}/>
+                <div className="imported-html" dangerouslySetInnerHTML={{ __html: main_content_html}}/>
                 <div className="links">
                     {softwareLink && softwareLink.children
                         .filter(d => d.route !== pathname)
@@ -53,17 +47,12 @@ function SoftwareTechnologies({
 
 const mapState = state => {
     return {
-        softwareTechnologiesData: state.externalData.softwareTechnologiesData,
-        softwareTechnologiesDataLoading: state.externalData.softwareTechnologiesDataLoading,
-        softwareTechnologiesDataError: state.externalData.softwareTechnologiesDataError,
 		navbarData: state.externalData.navbarData,
         navbarDataLoading: state.externalData.navbarDataLoading,
         navbarDataError: state.externalData.navbarDataError
     }
 }
 
-const mapDispatch = dispatch => ({
-    onFetchSoftwareTechnologiesData: () => dispatch(fetchSoftwareTechnologiesData())
-})
+const mapDispatch = dispatch => ({})
 
 export default connect(mapState, mapDispatch)(SoftwareTechnologies);

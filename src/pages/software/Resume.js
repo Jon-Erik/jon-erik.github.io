@@ -1,7 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { connect } from 'react-redux'
 import { useLocation } from "react-router-dom"
 import { useSinglePrismicDocument } from '@prismicio/react'
+import { asHTML } from '../../services/prismic'
 
 import PageContentWrapper from "../../components/PageContentWrapper"
 import Header from "../../components/Header"
@@ -17,23 +18,21 @@ function SoftwareResume({
     navbarDataLoading,
     navbarDataError
 }) {
-    const { mainHeader, education, workExperience } = softwareResumeData
+    const [ softwareResumeData, softwareResumeLoading ] = useSinglePrismicDocument('software_resume')
+    const main_header_html = asHTML(softwareResumeData && softwareResumeData.data.main_header)
+    const education_html = asHTML(softwareResumeData && softwareResumeData.data.education)
+    const work_experience_html = asHTML(softwareResumeData && softwareResumeData.data.work_experience)
+
     const { pathname } = useLocation()
-
     const softwareLink = navbarData.find(d => d.route.startsWith("/" + pathname.split("/")[1]))
-
-    useEffect(() => {
-        if (!Object.keys(softwareResumeData).length) {
-            onFetchSoftwareResumeData()
-        }
-    }, [])
+    const loading = navbarDataLoading || !softwareResumeLoading || softwareResumeLoading.state !== "loaded"
 
 	return (
-		<PageContentWrapper loading={softwareResumeDataLoading || navbarDataLoading}>
+		<PageContentWrapper loading={loading}>
 			<div className="software-resume">
-                <Header text={mainHeader}/>
-                <div className="imported-html" dangerouslySetInnerHTML={{ __html: workExperience}}/>
-                <div className="imported-html" dangerouslySetInnerHTML={{ __html: education}}/>
+                <Header text={main_header_html}/>
+                <div className="imported-html" dangerouslySetInnerHTML={{ __html: work_experience_html}}/>
+                <div className="imported-html" dangerouslySetInnerHTML={{ __html: education_html}}/>
                 <div className="links">
                     {softwareLink && softwareLink.children
                         .filter(d => d.route !== pathname)

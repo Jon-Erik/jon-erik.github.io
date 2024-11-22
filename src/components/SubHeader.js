@@ -2,6 +2,6 @@ import React from "react"
 
 import "./SubHeader.styl"
 
-export default function SubHeader({text}) {
-    return <h2 className="sub-header">{text}</h2>
+export default function SubHeader({html}) {
+    return <div className="sub-header" dangerouslySetInnerHTML={{ __html: html}} />
 }

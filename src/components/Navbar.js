@@ -17,8 +17,6 @@ export function Navbar({
 }) {
     const location = useLocation()
 
-    console.log({navbarData})
-
     useEffect(() => {
         if (!navbarData.length) {
             onFetchNavbarData()

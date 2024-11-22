@@ -12,4 +12,7 @@ const routes = [
 
 const client = prismic.createClient(repositoryName, { routes, REACT_APP_PRISMIC_ACCESS_TOKEN })
 
-module.exports = { client }
+module.exports = { 
+  client,
+  asHTML: prismic.asHTML 
+}

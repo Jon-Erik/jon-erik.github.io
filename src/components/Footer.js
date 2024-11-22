@@ -17,7 +17,6 @@ function Footer({
     onFetchFooterData
 }) {
     const {linkedin_link, github_link} = footerData
-    console.log({footerData})
 
     useEffect(() => {
         if (!Object.keys(footerData).length) {

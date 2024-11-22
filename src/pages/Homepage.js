@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux'
 import { useSinglePrismicDocument } from '@prismicio/react'
+import { asHTML } from '../services/prismic'
 
 import PageContentWrapper from "../components/PageContentWrapper"
 import Header from "../components/Header"
@@ -18,9 +19,9 @@ function Homepage({
 }) {
     const [ homepageData, homepageLoading ] = useSinglePrismicDocument('homepage')
     const portrait = homepageData && homepageData.data.portrait.url
-    const main_header = homepageData && homepageData.data.main_header[0].text
-    const subheader = homepageData && homepageData.data.subheader[0].text
-    const text_content = homepageData && homepageData.data.text_content[0].text
+    const main_header_html = asHTML(homepageData && homepageData.data.main_header)
+    const subheader_html = asHTML(homepageData && homepageData.data.subheader)
+    const text_content_html = asHTML(homepageData && homepageData.data.text_content)
 
     const loading = navbarDataLoading || !homepageLoading || homepageLoading.state !== "loaded"
 
@@ -31,9 +32,9 @@ function Homepage({
 					<img src={portrait}/>
 				</div>
 				<div className="text">
-					<Header text={main_header}/>
-					<SubHeader text={subheader}/>
-					<ParagraphText text={text_content}/>
+					<Header html={main_header_html}/>
+					<SubHeader html={subheader_html}/>
+					<ParagraphText html={text_content_html}/>
 					<div className="links">
 						{navbarData.filter(d => d.route !== "/").map(d => <ButtonLink key={d.route} route={d.route} text={d.title}/>)}
 					</div>

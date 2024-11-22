@@ -61,7 +61,6 @@ async function prismicReq({ dispatch, dataType, loadingVar, failVar, successVar,
         dispatch(createAction(failVar, error.message))
     }
 
-    console.log({response})
     dispatch(createAction(successVar, parser(response)))
 }
 
@@ -75,12 +74,12 @@ function sortByField(a, b) {
 
 function parseNavLinks(rawData) {
     const arr = rawData.map(i => i.data)
-    console.log(arr[0])
+
     const parsed = arr.filter(i => i.nav_level == 1).sort(sortByField)
     parsed.forEach(p => {
         p.children = arr.filter(i => i.parent == p.title && i.nav_level == 2).sort(sortByField)
     })
-    console.log({parsed, rawData})
+    
     return parsed
 }
 
