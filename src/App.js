@@ -7,8 +7,6 @@ import {
     HashRouter,
 } from "react-router-dom"
 
-import { loadData } from "./services/wixAPI"
-
 import Homepage from './pages/Homepage'
 import Music from './pages/Music'
 import MusicResume from "./pages/music/Resume"
@@ -21,8 +19,6 @@ import NotFound from "./pages/NotFound"
 
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
-
-loadData("homepage")
   
 function App() {
   return (

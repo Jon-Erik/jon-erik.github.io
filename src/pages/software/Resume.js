@@ -1,21 +1,17 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux'
 import { useLocation } from "react-router-dom"
+import { useSinglePrismicDocument } from '@prismicio/react'
 
 import PageContentWrapper from "../../components/PageContentWrapper"
 import Header from "../../components/Header"
 import SubHeader from "../../components/SubHeader"
 import ButtonLink from "../../components/ButtonLink"
-import { externalData as externalDataState } from "../../state"
 
 import "./Resume.styl"
 
-const { fetchSoftwareResumeData } = externalDataState
 
 function SoftwareResume({
-    softwareResumeData,
-    softwareResumeDataLoading,
-    softwareResumeDataError,
     onFetchSoftwareResumeData,
 	navbarData,
     navbarDataLoading,
@@ -51,17 +47,12 @@ function SoftwareResume({
 
 const mapState = state => {
     return {
-        softwareResumeData: state.externalData.softwareResumeData,
-        softwareResumeDataLoading: state.externalData.softwareResumeDataLoading,
-        softwareResumeDataError: state.externalData.softwareResumeDataError,
 		navbarData: state.externalData.navbarData,
         navbarDataLoading: state.externalData.navbarDataLoading,
         navbarDataError: state.externalData.navbarDataError
     }
 }
 
-const mapDispatch = dispatch => ({
-    onFetchSoftwareResumeData: () => dispatch(fetchSoftwareResumeData())
-})
+const mapDispatch = dispatch => ({})
 
 export default connect(mapState, mapDispatch)(SoftwareResume);

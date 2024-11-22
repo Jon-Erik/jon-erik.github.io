@@ -1,18 +1,15 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { connect } from 'react-redux'
+import { useSinglePrismicDocument } from '@prismicio/react'
 
 import PageContentWrapper from "../components/PageContentWrapper"
 import Header from "../components/Header"
 import SubHeader from "../components/SubHeader"
 import ParagraphText from "../components/ParagraphText"
 import ButtonLink from "../components/ButtonLink"
-import { externalData as externalDataState } from "../state"
 
-import { useSinglePrismicDocument } from '@prismicio/react'
 
 import "./Homepage.styl"
-
-const { fetchHomepageData } = externalDataState
 
 function Homepage({
 	navbarData,
@@ -54,8 +51,6 @@ const mapState = state => {
     }
 }
 
-const mapDispatch = dispatch => ({
-    onFetchHomepageData: () => dispatch(fetchHomepageData())
-})
+const mapDispatch = dispatch => ({})
 
 export default connect(mapState, mapDispatch)(Homepage);
