@@ -1,49 +1,41 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { connect } from 'react-redux'
 import { useLocation } from "react-router-dom"
+import { useSinglePrismicDocument } from '@prismicio/react'
+import { asHTML } from '../../services/prismic'
 
 import PageContentWrapper from "../../components/PageContentWrapper"
 import Header from "../../components/Header"
-import SubHeader from "../../components/SubHeader"
 import ButtonLink from "../../components/ButtonLink"
-import { externalData as externalDataState } from "../../state"
 
 import "./Resume.styl"
+import ParagraphText from "../../components/ParagraphText"
 
-const { fetchMusicResourcesData } = externalDataState
 
-function MusicResume({
-    musicResourcesData,
-    musicResourcesDataLoading,
-    musicResourcesDataError,
-    onFetchMusicResourcesData,
+function MusicResources({
 	navbarData,
     navbarDataLoading,
     navbarDataError
 }) {
-    // const { mainHeader, education, performanceExperience } = musicResourcesData
+    const [ musicResourcesRootData, musicResourcesRootLoading ] = useSinglePrismicDocument('music_resources_root')
+    const main_header_html = asHTML(musicResourcesRootData && musicResourcesRootData.data.main_header)
+    const description_html = asHTML(musicResourcesRootData && musicResourcesRootData.data.description)
+    
     const { pathname } = useLocation()
-
     const musicLink = navbarData.find(d => d.route.startsWith("/" + pathname.split("/")[1]))
-
-    useEffect(() => {
-        if (!Object.keys(musicResourcesData).length) {
-            onFetchMusicResourcesData()
-        }
-    }, [])
+    const loading = navbarDataLoading || !musicResourcesRootLoading || musicResourcesRootLoading.state !== "loaded"
 
 	return (
-		<PageContentWrapper loading={musicResourcesDataLoading || navbarDataLoading}>
+		<PageContentWrapper loading={loading}>
 			<div className="software-resume">
-                <Header text={"Music > Resources"}/>
-                {/*<div className="imported-html" dangerouslySetInnerHTML={{ __html: performanceExperience}}/>
-                <div className="imported-html" dangerouslySetInnerHTML={{ __html: education}}/>
+                <Header html={main_header_html}/>
+                <ParagraphText html={description_html}/>
                  <div className="links">
                     {musicLink && musicLink.children
                         .filter(d => d.route !== pathname)
                         .map(d => <ButtonLink key={d.route} route={d.route} text={`View ${d.title}`}/>)
                     }
-                </div>  */}
+                </div>  
     		</div>
 		</PageContentWrapper>
 	)
@@ -51,17 +43,12 @@ function MusicResume({
 
 const mapState = state => {
     return {
-        musicResourcesData: state.externalData.musicResourcesData,
-        musicResourcesDataLoading: state.externalData.musicResourcesDataLoading,
-        musicResourcesDataError: state.externalData.musicResourcesDataError,
 		navbarData: state.externalData.navbarData,
         navbarDataLoading: state.externalData.navbarDataLoading,
         navbarDataError: state.externalData.navbarDataError
     }
 }
 
-const mapDispatch = dispatch => ({
-    onFetchMusicResourcesData: () => dispatch(fetchMusicResourcesData())
-})
+const mapDispatch = dispatch => ({})
 
-export default connect(mapState, mapDispatch)(MusicResume);
+export default connect(mapState, mapDispatch)(MusicResources);
