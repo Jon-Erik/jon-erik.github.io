@@ -41491,7 +41491,7 @@ function MusicEvents({ navbarData, navbarDataLoading, navbarDataError }) {
     const { pathname } = (0, _reactRouterDom.useLocation)();
     const musicLink = navbarData.find((d)=>d.route.startsWith("/" + pathname.split("/")[1]));
     const loading = navbarDataLoading || !musicEventsRootLoading || musicEventsRootLoading.state !== "loaded" || !musicEventsLoading || musicEventsLoading.state !== "loaded";
-    const upcomingEvents = musicEventsData && musicEventsData.filter((e)=>new Date(e.data.date_and_time) < new Date());
+    const upcomingEvents = musicEventsData && musicEventsData.filter((e)=>new Date(e.data.date_and_time) > new Date());
     const pastEvents = musicEventsData && musicEventsData.filter((e)=>new Date(e.data.date_and_time) <= new Date());
     function sortByDate(a, b, asc = false) {
         const dateA = new Date(a.data.date_and_time);
