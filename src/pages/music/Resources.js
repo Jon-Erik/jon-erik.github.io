@@ -22,7 +22,6 @@ function MusicResources({
     const description_html = asHTML(musicResourcesRootData && musicResourcesRootData.data.description)
 
     const [ musicResourcesData, musicResourcesLoading ] = useAllPrismicDocumentsByType('music_resource')
-    console.log(musicResourcesData)
     
     const { pathname } = useLocation()
     const musicLink = navbarData.find(d => d.route.startsWith("/" + pathname.split("/")[1]))

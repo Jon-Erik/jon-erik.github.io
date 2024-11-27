@@ -19,8 +19,8 @@ function Software({
     const [ softwareRootData, softwareRootLoading ] = useSinglePrismicDocument('software_root')
     const main_header_html = asHTML(softwareRootData && softwareRootData.data.main_header)
     const description_html = asHTML(softwareRootData && softwareRootData.data.description)
+    
     const { pathname } = useLocation()
-
     const softwareLink = navbarData.find(d => d.route.startsWith(pathname))
     const loading = navbarDataLoading || !softwareRootLoading || softwareRootLoading.state !== "loaded"
 
