@@ -30,7 +30,7 @@ function MusicEvents({
         || !musicEventsRootLoading || musicEventsRootLoading.state !== "loaded"
         || !musicEventsLoading || musicEventsLoading.state !== "loaded"
 
-    const upcomingEvents = musicEventsData && musicEventsData.filter(e => new Date(e.data.date_and_time) < new Date())
+    const upcomingEvents = musicEventsData && musicEventsData.filter(e => new Date(e.data.date_and_time) > new Date())
     const pastEvents = musicEventsData && musicEventsData.filter(e => new Date(e.data.date_and_time) <= new Date())
 
     function sortByDate(a, b, asc = false) {
