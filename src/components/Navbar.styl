@@ -10,6 +10,16 @@ TitleFont = titleFont
     font-family TitleFont
     font-weight 400
     text-transform uppercase
+    position relative
+
+    button.menu-toggler
+        padding 0
+        margin 0
+        font-size 0
+        border 0
+        background inherit
+        color white
+        display none
 
     a
         color PageBackground
@@ -31,11 +41,15 @@ TitleFont = titleFont
         
         &:hover:after  
             width: 100% 
-            left: 0 
-   
+            left: 0
 
     .links-list
         display flex
+
+    .links-list-mobile
+        display none
+
+    .links-list, .links-list-mobile
         justify-content center
         flex-wrap wrap
 
@@ -68,4 +82,49 @@ TitleFont = titleFont
                     &.active
                         font-weight 700
 
+@media screen and (max-width: 768px)
+    .navbar
+        display flex
+        justify-content space-between
+
+        button.menu-toggler
+            display block
+
+        .links-list .link:not(:first-of-type)
+            display none
+
+        .links-list-mobile
+            display flex
+            position absolute
+            background NavBackground
+            top 44px
+            right 0
+            width 0
+            overflow hidden
+            transition width 0.5s ease-in-out
             
+            .mobile-content-wrapper
+                padding 10px
+                display flex
+                width 100%
+                justify-content space-between
+
+            &.expanded
+                width 250px
+
+            .menu-toggler
+                display flex
+
+            .link
+                margin 0
+                text-align left !important
+
+            .subnav
+                position relative !important
+                display block !important
+                left 0 !important
+
+                .subnav-link
+                    width fit-content
+
+

@@ -1,11 +1,15 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { connect } from 'react-redux'
 import { Link, useLocation } from "react-router-dom"
+import MenuIcon from '@mui/icons-material/Menu'
+import MenuOpenIcon from '@mui/icons-material/MenuOpen'
+import CloseIcon from '@mui/icons-material/Close'
 
 import "./Navbar.styl"
 
 import { externalData as externalDataState } from "../state"
 import Loader from "./Loader"
+import { Menu } from "@mui/material"
 
 const { fetchNavbarData } = externalDataState
 
@@ -16,6 +20,11 @@ export function Navbar({
     navbarDataError
 }) {
     const location = useLocation()
+    const [ menuExpanded, setMenuExpanded ] = useState(false)
+
+    function toggleMenu() {
+        setMenuExpanded(!menuExpanded)
+    }
 
     useEffect(() => {
         if (!navbarData.length) {
@@ -28,7 +37,22 @@ export function Navbar({
     }
     
     return <div className="navbar">
-        <div className="links-list">{navbarData.map(d => <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} />)}</div>
+        <div className="links-list">
+            {navbarData.map(d => <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} />)}
+        </div>
+        <div className={`links-list-mobile ${menuExpanded ? "expanded" : ""}`}>
+            <div className="mobile-content-wrapper">
+                <div>
+                    {navbarData.filter(d => d.route != "/").map(d => <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} />)}
+                </div>
+                <button type="button" className="menu-toggler" title="Close menu" onClick={toggleMenu}>
+                    <CloseIcon />
+                </button>
+            </div>
+        </div>
+        <button type="button" className="menu-toggler" title={menuExpanded ? "Close menu" : "Expand menu"} onClick={toggleMenu}>
+            {menuExpanded ? <MenuOpenIcon /> : <MenuIcon />}
+        </button>
     </div>
 }
 
