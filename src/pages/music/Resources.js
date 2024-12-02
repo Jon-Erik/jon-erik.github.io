@@ -35,8 +35,9 @@ function MusicResources({
                 <Header html={main_header_html}/>
                 <ParagraphText html={description_html}/>
 
-                {musicResourcesData && musicResourcesData.map(r => 
+                {musicResourcesData && musicResourcesData.map((r, i) => 
                     <OneResource 
+                        key={i}
                         title={r.data.title} 
                         media_attachment={r.data.media_attachment} 
                         main_content={r.data.main_content}

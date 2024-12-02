@@ -22,8 +22,8 @@ export function Navbar({
     const location = useLocation()
     const [ menuExpanded, setMenuExpanded ] = useState(false)
 
-    function toggleMenu() {
-        setMenuExpanded(!menuExpanded)
+    function toggleMenu(value) {
+        setMenuExpanded(value !== null ? value : !menuExpanded)
     }
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export function Navbar({
     
     return <div className="navbar">
         <div className="links-list">
-            {navbarData.map(d => <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} />)}
+            {navbarData.map(d => <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} toggleMenu={toggleMenu}/>)}
         </div>
         <div className={`links-list-mobile ${menuExpanded ? "expanded" : ""}`}>
             <div className="mobile-content-wrapper">
@@ -77,7 +77,7 @@ function NavBarLink({ linkData, currentRoute, toggleMenu }) {
     const active = "/" + currentRoute.split("/")[1] == route
 
     return <div className={`link ${active ? "active" : ""}`}>
-        <Link onClick={toggleMenu} to={route}>{title}</Link>
+        <Link onClick={() => toggleMenu(false)} to={route}>{title}</Link>
         {children.length ? (
             <div className="subnav">
                 {children.map(c => 
@@ -93,6 +93,6 @@ function NavBarSubLink({ linkData, currentRoute, toggleMenu }) {
     const active = currentRoute == route
 
     return <div className={`link subnav-link ${active ? "active" : ""}`}>
-        <Link onClick={toggleMenu} to={route}>{title}</Link>
+        <Link onClick={() => toggleMenu(false)} to={route}>{title}</Link>
     </div>
 }
