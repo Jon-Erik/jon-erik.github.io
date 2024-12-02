@@ -4,6 +4,14 @@
   display: flex;
 }
 
+.app-wrapper h1, .app-wrapper h2, .app-wrapper h3, .app-wrapper h4 {
+  font-family: Merriweather Sans, sans-serif;
+}
+
+.app-wrapper p, .app-wrapper li, .app-wrapper strong, .app-wrapper i, .app-wrapper em {
+  font-family: Roboto, sans-serif;
+}
+
 .app-wrapper .page-content {
   flex: 1;
   height: calc(100vh - 77px);
@@ -142,6 +150,27 @@
   margin: auto;
 }
 
+.sub-header {
+  margin: 10px 0;
+}
+
+a.button-link {
+  text-transform: uppercase;
+  color: #ebebeb;
+  background: #53697b;
+  padding: 5px;
+  font-family: Merriweather Sans, sans-serif;
+  text-decoration: none;
+}
+
+a.button-link:hover {
+  filter: brightness(90%);
+}
+
+a.button-link:visited {
+  color: #ebebeb;
+}
+
 .homepage {
   display: flex;
 }
@@ -204,27 +233,6 @@
   }
 }
 
-.sub-header {
-  margin: 10px 0;
-}
-
-a.button-link {
-  text-transform: uppercase;
-  color: #ebebeb;
-  background: #53697b;
-  padding: 5px;
-  font-family: Sen, sans-serif;
-  text-decoration: none;
-}
-
-a.button-link:hover {
-  filter: brightness(90%);
-}
-
-a.button-link:visited {
-  color: #ebebeb;
-}
-
 .one-event {
   margin-bottom: 2em;
 }
@@ -249,7 +257,7 @@ a.button-link:visited {
   text-transform: uppercase;
   background: #53697b;
   padding: 10px;
-  font-family: Sen, sans-serif;
+  font-family: Merriweather Sans, sans-serif;
   font-weight: 400;
   position: relative;
 }
@@ -312,7 +320,7 @@ a.button-link:visited {
 }
 
 .navbar .links-list .link.active, .navbar .links-list-mobile .link.active {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .navbar .links-list .link:hover .subnav, .navbar .links-list-mobile .link:hover .subnav {
@@ -399,7 +407,7 @@ a.button-link:visited {
   background: #53697b;
   justify-content: center;
   padding: 3px;
-  font-family: Cormorant Garamond, serif;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   display: flex;
 }
