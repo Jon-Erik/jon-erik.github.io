@@ -51,6 +51,7 @@ function MusicEvents({
                 <ParagraphText html={description_html}/>
                 
                 <h2>Upcoming Events</h2>
+                {upcomingEvents && upcomingEvents.length == 0 && <p><i>No upcoming events.</i></p>}
                 {upcomingEvents && upcomingEvents.sort(sortByDate).map(e => <OneEvent {...e.data} />)}
                 
                 <h2>Past Events</h2>
@@ -87,22 +88,12 @@ function OneEvent({address, date_and_time, description, link, organization, titl
     const date_and_time_parsed = fecha.format(new Date(date_and_time), "h:mm A, MMMM D, YYYY")
 
     return (
-        <div className="one-resource">
-            <a className="header-link" href={link.url}>
-                <div dangerouslySetInnerHTML={{ __html: title_html}}/>
-            </a>
-            <div className="organization">
-                <div dangerouslySetInnerHTML={{ __html: organization_html}}/>
-            </div>
-            <div className="date-and-time">
-                <div>{date_and_time_parsed}</div>
-            </div>
-            <div className="address">
-                <div dangerouslySetInnerHTML={{ __html: address_html}}/>
-            </div>
-            <div className="description">
-                <div dangerouslySetInnerHTML={{ __html: description_html}}/>
-            </div>
+        <div className="one-event">
+            <a className="header-link" href={link.url} target="_blank" dangerouslySetInnerHTML={{ __html: title_html}}/>
+            <div className="organization" dangerouslySetInnerHTML={{ __html: organization_html}}/>
+            <div className="date-and-time">{date_and_time_parsed}</div>
+            <div className="address" dangerouslySetInnerHTML={{ __html: address_html}}/>
+            <div className="description" dangerouslySetInnerHTML={{ __html: description_html}}/>
         </div>
     )
 }
