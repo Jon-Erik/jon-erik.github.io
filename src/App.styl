@@ -1,7 +1,18 @@
+json("./style-vars.json")
+
+ParagraphFont = paragraphFont
+TitleFont = titleFont
+
 .app-wrapper
     display flex 
     flex-direction column
     height 100vh
+
+    h1, h2, h3, h4
+        font-family titleFont
+
+    p, li, strong, i, em
+        font-family paragraphFont
 
     .page-content
         flex 1

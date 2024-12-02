@@ -23,7 +23,8 @@ export function Navbar({
     const [ menuExpanded, setMenuExpanded ] = useState(false)
 
     function toggleMenu(value) {
-        setMenuExpanded(value !== null ? value : !menuExpanded)
+        const newValue = value !== undefined ? value : !menuExpanded
+        setMenuExpanded(newValue)
     }
 
     useEffect(() => {
@@ -47,12 +48,12 @@ export function Navbar({
                         <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} toggleMenu={toggleMenu} />
                     )}
                 </div>
-                <button type="button" className="menu-toggler" title="Close menu" onClick={toggleMenu}>
+                <button type="button" className="menu-toggler" title="Close menu" onClick={() => toggleMenu()}>
                     <CloseIcon />
                 </button>
             </div>
         </div>
-        <button type="button" className="menu-toggler" title={menuExpanded ? "Close menu" : "Expand menu"} onClick={toggleMenu}>
+        <button type="button" className="menu-toggler" title={menuExpanded ? "Close menu" : "Expand menu"} onClick={() => toggleMenu()}>
             {menuExpanded ? <MenuOpenIcon /> : <MenuIcon />}
         </button>
     </div>

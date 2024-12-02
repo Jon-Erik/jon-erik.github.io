@@ -9,7 +9,7 @@
     "pageBackground": "#ebebeb",
     "accent": "#a29f15",
 
-    "titleFont": "'Sen', sans-serif",
+    "titleFont": "'Merriweather Sans', sans-serif",
     "titleFontSize": "20px",
     "titleFontColor": "#262322",
     "headerFont": "'Libre Baskerville', serif",
@@ -21,7 +21,7 @@
     "subLinkFont": "'Cormorant Garamond', serif",
     "subLinkFontSize": "12px",
     "subLinkFontColor": "#262322",
-    "paragraphFont": "'Cormorant Garamond', serif",
+    "paragraphFont": "'Roboto', sans-serif",
     "paragraphFontSize": "12px",
     "paragraphFontColor": "#262322"
 }
