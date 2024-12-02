@@ -43,7 +43,9 @@ export function Navbar({
         <div className={`links-list-mobile ${menuExpanded ? "expanded" : ""}`}>
             <div className="mobile-content-wrapper">
                 <div>
-                    {navbarData.filter(d => d.route != "/").map(d => <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} />)}
+                    {navbarData.filter(d => d.route != "/").map(d => 
+                        <NavBarLink key={d.route} linkData={d} currentRoute={location.pathname} toggleMenu={toggleMenu} />
+                    )}
                 </div>
                 <button type="button" className="menu-toggler" title="Close menu" onClick={toggleMenu}>
                     <CloseIcon />
@@ -70,25 +72,27 @@ const mapDispatch = dispatch => ({
 
 export default connect(mapState, mapDispatch)(Navbar);
 
-function NavBarLink({ linkData, currentRoute }) {
+function NavBarLink({ linkData, currentRoute, toggleMenu }) {
     const { title, route, children } = linkData
     const active = "/" + currentRoute.split("/")[1] == route
 
     return <div className={`link ${active ? "active" : ""}`}>
-        <Link to={route}>{title}</Link>
+        <Link onClick={toggleMenu} to={route}>{title}</Link>
         {children.length ? (
             <div className="subnav">
-                {children.map(c => <NavBarSubLink key={c.route} linkData={c} currentRoute={currentRoute}/>)}
+                {children.map(c => 
+                    <NavBarSubLink key={c.route} linkData={c} currentRoute={currentRoute} toggleMenu={toggleMenu} />
+                )}
             </div>
         ) : null}
     </div>
 }
 
-function NavBarSubLink({ linkData, currentRoute }) {
+function NavBarSubLink({ linkData, currentRoute, toggleMenu }) {
     const { title, route } = linkData
     const active = currentRoute == route
 
     return <div className={`link subnav-link ${active ? "active" : ""}`}>
-        <Link to={route}>{title}</Link>
+        <Link onClick={toggleMenu} to={route}>{title}</Link>
     </div>
 }
