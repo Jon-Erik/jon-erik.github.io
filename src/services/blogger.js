@@ -1,5 +1,6 @@
 import { req } from "./fetch"
 
+const MAX_RESULTS = 5
 const { 
     REACT_APP_BLOGGER_API_KEY, 
     REACT_APP_BLOGGER_API_URL
@@ -9,7 +10,7 @@ const {
 export async function getBlogPosts(nextPageToken) {
     params = {
         key: REACT_APP_BLOGGER_API_KEY,
-        maxResults: 1,
+        maxResults: MAX_RESULTS,
     }
 
     if (nextPageToken) {
