@@ -31,7 +31,7 @@ function MusicResources({
 
 	return (
 		<PageContentWrapper loading={loading}>
-			<div className="software-resume">
+			<div className="music-resources">
                 <Header html={main_header_html}/>
                 <ParagraphText html={description_html}/>
 
