@@ -9,7 +9,6 @@ import "./Navbar.styl"
 
 import { externalData as externalDataState } from "../state"
 import Loader from "./Loader"
-import { Menu } from "@mui/material"
 
 const { fetchNavbarData } = externalDataState
 
