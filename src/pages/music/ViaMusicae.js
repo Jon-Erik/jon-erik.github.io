@@ -43,8 +43,11 @@ function ViaMusicae({
 
         const { items, nextPageToken: newToken } = await getBlogPosts(nextPageToken);
         setNextPageToken(newToken)
-        const newPosts = posts.concat(items);
-        setPosts(newPosts)
+
+        if (posts.length) {
+            const newPosts = posts.concat(items);
+            setPosts(newPosts)
+        }
 
         setLoadingPosts(false)
     }
