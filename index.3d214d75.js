@@ -42401,8 +42401,10 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
         setLoadingPosts(true);
         const { items, nextPageToken: newToken } = await (0, _blogger.getBlogPosts)(nextPageToken);
         setNextPageToken(newToken);
-        const newPosts = posts.concat(items);
-        setPosts(newPosts);
+        if (posts.length) {
+            const newPosts = posts.concat(items);
+            setPosts(newPosts);
+        }
         setLoadingPosts(false);
     }
     (0, _react.useEffect)(()=>{
@@ -42417,21 +42419,21 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 59,
+                    lineNumber: 62,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                     html: description_html
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 60,
+                    lineNumber: 63,
                     columnNumber: 17
                 }, this),
                 posts.map((p)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(OnePost, {
                         ...p
                     }, void 0, false, {
                         fileName: "src/pages/music/ViaMusicae.js",
-                        lineNumber: 62,
+                        lineNumber: 65,
                         columnNumber: 33
                     }, this)),
                 !loadingPosts && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -42441,23 +42443,23 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
                         onClick: getPosts
                     }, void 0, false, {
                         fileName: "src/pages/music/ViaMusicae.js",
-                        lineNumber: 67,
+                        lineNumber: 70,
                         columnNumber: 29
                     }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("i", {
                         children: "All posts loaded."
                     }, void 0, false, {
                         fileName: "src/pages/music/ViaMusicae.js",
-                        lineNumber: 69,
+                        lineNumber: 72,
                         columnNumber: 29
                     }, this)
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 65,
+                    lineNumber: 68,
                     columnNumber: 21
                 }, this),
                 loadingPosts && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loaderDefault.default), {}, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 74,
+                    lineNumber: 77,
                     columnNumber: 34
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -42467,23 +42469,23 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/music/ViaMusicae.js",
-                            lineNumber: 79,
+                            lineNumber: 82,
                             columnNumber: 35
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 76,
+                    lineNumber: 79,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/music/ViaMusicae.js",
-            lineNumber: 58,
+            lineNumber: 61,
             columnNumber: 4
         }, this)
     }, void 0, false, {
         fileName: "src/pages/music/ViaMusicae.js",
-        lineNumber: 57,
+        lineNumber: 60,
         columnNumber: 3
     }, this);
 }
@@ -42512,14 +42514,14 @@ function OnePost({ title, url, content: content_html, published }) {
                 children: title
             }, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 104,
+                lineNumber: 107,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                 html: content_html
             }, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 105,
+                lineNumber: 108,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -42529,7 +42531,7 @@ function OnePost({ title, url, content: content_html, published }) {
                         date_and_time_parsed,
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                             fileName: "src/pages/music/ViaMusicae.js",
-                            lineNumber: 107,
+                            lineNumber: 110,
                             columnNumber: 39
                         }, this),
                         "View original post ",
@@ -42540,29 +42542,29 @@ function OnePost({ title, url, content: content_html, published }) {
                             children: "here"
                         }, void 0, false, {
                             fileName: "src/pages/music/ViaMusicae.js",
-                            lineNumber: 108,
+                            lineNumber: 111,
                             columnNumber: 36
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 106,
+                    lineNumber: 109,
                     columnNumber: 39
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 106,
+                lineNumber: 109,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 110,
+                lineNumber: 113,
                 columnNumber: 12
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/music/ViaMusicae.js",
-        lineNumber: 103,
+        lineNumber: 106,
         columnNumber: 9
     }, this);
 }
@@ -42581,11 +42583,12 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getBlogPosts", ()=>getBlogPosts);
 var _fetch = require("./fetch");
+const MAX_RESULTS = 5;
 const REACT_APP_BLOGGER_API_KEY = "AIzaSyCjt1eAUXjjMkNl5N28wKAdyCBYtd7mfhA", REACT_APP_BLOGGER_API_URL = "https://www.googleapis.com/blogger/v3/blogs/4010151438036845602/posts";
 async function getBlogPosts(nextPageToken) {
     params = {
         key: REACT_APP_BLOGGER_API_KEY,
-        maxResults: 1
+        maxResults: MAX_RESULTS
     };
     if (nextPageToken) params.pageToken = nextPageToken;
     return await (0, _fetch.req)({

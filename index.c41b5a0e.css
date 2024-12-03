@@ -37,8 +37,9 @@
   margin: 5px 0;
 }
 
-.app-wrapper .page-content .links .button-link:not(:last-of-type) {
-  margin-right: 10px;
+.app-wrapper .page-content .links {
+  flex-wrap: wrap;
+  display: flex;
 }
 
 .loader-wrapper {
@@ -165,6 +166,7 @@ a.button-link {
   text-transform: uppercase;
   color: #ebebeb;
   background: #53697b;
+  margin-bottom: 10px;
   padding: 5px;
   font-family: Roboto, sans-serif;
   text-decoration: none;
@@ -176,6 +178,10 @@ a.button-link:hover {
 
 a.button-link:visited {
   color: #ebebeb;
+}
+
+a.button-link:not(:last-of-type) {
+  margin-right: 10px;
 }
 
 .homepage {
