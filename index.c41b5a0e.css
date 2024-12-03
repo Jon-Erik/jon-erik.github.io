@@ -4,11 +4,17 @@
   display: flex;
 }
 
-.app-wrapper h1, .app-wrapper h2, .app-wrapper h3, .app-wrapper h4 {
+.app-wrapper h1, .app-wrapper h2 {
+  text-transform: uppercase;
   font-family: Merriweather Sans, sans-serif;
+  font-size: 24px;
 }
 
-.app-wrapper p, .app-wrapper li, .app-wrapper strong, .app-wrapper i, .app-wrapper em {
+.app-wrapper h2 {
+  font-size: 21px;
+}
+
+.app-wrapper h3, .app-wrapper h4, .app-wrapper p, .app-wrapper li, .app-wrapper strong, .app-wrapper i, .app-wrapper em {
   font-family: Roboto, sans-serif;
 }
 
@@ -23,11 +29,12 @@
 }
 
 .app-wrapper .page-content .imported-html h3 {
-  margin: 10px 0;
+  margin-top: 20px !important;
+  margin-bottom: 0 !important;
 }
 
 .app-wrapper .page-content .imported-html p, .app-wrapper .page-content .imported-html ul {
-  margin: 3px 0;
+  margin: 5px 0;
 }
 
 .app-wrapper .page-content .links .button-link:not(:last-of-type) {
@@ -159,7 +166,7 @@ a.button-link {
   color: #ebebeb;
   background: #53697b;
   padding: 5px;
-  font-family: Merriweather Sans, sans-serif;
+  font-family: Roboto, sans-serif;
   text-decoration: none;
 }
 
@@ -194,7 +201,9 @@ a.button-link:visited {
 }
 
 .homepage .text h2 {
+  text-transform: none;
   margin: 10px 0 0;
+  font-family: Roboto, sans-serif;
 }
 
 .homepage .text .links {
@@ -257,7 +266,7 @@ a.button-link:visited {
   text-transform: uppercase;
   background: #53697b;
   padding: 10px;
-  font-family: Merriweather Sans, sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   position: relative;
 }
