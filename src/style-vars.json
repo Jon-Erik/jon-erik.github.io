@@ -9,7 +9,7 @@
     "pageBackground": "#ebebeb",
     "accent": "#a29f15",
 
-    "titleFont": "'Merriweather Sans', sans-serif",
+    "titleFont": "'Roboto', sans-serif",
     "titleFontSize": "20px",
     "titleFontColor": "#262322",
     "headerFont": "'Libre Baskerville', serif",

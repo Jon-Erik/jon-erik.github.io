@@ -8,7 +8,15 @@ TitleFont = titleFont
     flex-direction column
     height 100vh
 
-    h1, h2, h3, h4
+    h1, h2
+        font-family 'Merriweather Sans', sans-serif
+        font-size 24px
+        text-transform uppercase
+
+    h2
+        font-size 21px
+
+    h3, h4
         font-family titleFont
 
     p, li, strong, i, em
@@ -23,9 +31,11 @@ TitleFont = titleFont
             margin-bottom 30px
 
             h3
-                margin 10px 0
+                margin-bottom 0 !important
+                margin-top 20px !important
+
             p, ul
-                margin 3px 0
+                margin 5px 0
 
         .links
             .button-link:not(:last-of-type)
