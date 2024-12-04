@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
-import "./Header.styl"
+import './Header.styl'
 
-export default function Header({html}) {
-    return <div className="header" dangerouslySetInnerHTML={{ __html: html}} />
+export default function Header({ html }) {
+  return <div className="header" dangerouslySetInnerHTML={{ __html: html }} />
 }

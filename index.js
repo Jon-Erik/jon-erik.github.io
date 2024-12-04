@@ -9,14 +9,14 @@ import PiwikPro from '@piwikpro/react-piwik-pro'
 
 const { REACT_APP_PIWIK_ID, REACT_APP_PIWIK_URL } = process.env
 
-PiwikPro.initialize(REACT_APP_PIWIK_ID, REACT_APP_PIWIK_URL);
+PiwikPro.initialize(REACT_APP_PIWIK_ID, REACT_APP_PIWIK_URL)
 
 const container = document.getElementById('root')
 const root = createRoot(container)
 root.render(
-    <Provider store={store}>
-        <PrismicProvider client={client}>
-            <App />
-        </PrismicProvider>
-    </Provider>
+  <Provider store={store}>
+    <PrismicProvider client={client}>
+      <App />
+    </PrismicProvider>
+  </Provider>
 )

@@ -1,10 +1,12 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import "./ButtonLink.styl"
+import './ButtonLink.styl'
 
-export default function ButtonLink({route, text}) {
-    return (
-        <Link className="button-link" to={route}>{text}</Link>
-    )
+export default function ButtonLink({ route, text }) {
+  return (
+    <Link className="button-link" to={route}>
+      {text}
+    </Link>
+  )
 }
