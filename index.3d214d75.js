@@ -47117,13 +47117,41 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _pageContentWrapper = require("../components/PageContentWrapper");
+var _pageContentWrapperDefault = parcelHelpers.interopDefault(_pageContentWrapper);
+var _buttonLink = require("../components/ButtonLink");
+var _buttonLinkDefault = parcelHelpers.interopDefault(_buttonLink);
+var _notFoundStyl = require("./NotFound.styl");
 function NotFound() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "NotFound"
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pageContentWrapperDefault.default), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "not-found",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    children: "The requested page could not be found."
+                }, void 0, false, {
+                    fileName: "src/pages/NotFound.js",
+                    lineNumber: 11,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonLinkDefault.default), {
+                    route: "/",
+                    text: "Return to Homepage"
+                }, void 0, false, {
+                    fileName: "src/pages/NotFound.js",
+                    lineNumber: 12,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "src/pages/NotFound.js",
+            lineNumber: 10,
+            columnNumber: 7
+        }, this)
     }, void 0, false, {
         fileName: "src/pages/NotFound.js",
-        lineNumber: 4,
-        columnNumber: 10
+        lineNumber: 9,
+        columnNumber: 5
     }, this);
 }
 _c = NotFound;
@@ -47136,7 +47164,7 @@ $RefreshReg$(_c, "NotFound");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5EEXV":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../components/PageContentWrapper":"26gpu","./NotFound.styl":"kUbwa","../components/ButtonLink":"6MZOD"}],"kUbwa":[function() {},{}],"5EEXV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8fbf = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

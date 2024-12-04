@@ -302,6 +302,10 @@ a.button:visited {
   color: #ebebeb;
 }
 
+.not-found {
+  text-align: center;
+}
+
 .navbar {
   text-transform: uppercase;
   background: #53697b;
