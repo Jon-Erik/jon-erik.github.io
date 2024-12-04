@@ -41373,8 +41373,6 @@ var _pageContentWrapper = require("../../components/PageContentWrapper");
 var _pageContentWrapperDefault = parcelHelpers.interopDefault(_pageContentWrapper);
 var _header = require("../../components/Header");
 var _headerDefault = parcelHelpers.interopDefault(_header);
-var _subHeader = require("../../components/SubHeader");
-var _subHeaderDefault = parcelHelpers.interopDefault(_subHeader);
 var _buttonLink = require("../../components/ButtonLink");
 var _buttonLinkDefault = parcelHelpers.interopDefault(_buttonLink);
 var _resumeStyl = require("./Resume.styl");
@@ -41397,7 +41395,7 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 39,
+                    lineNumber: 38,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -41407,7 +41405,7 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                     }
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 40,
+                    lineNumber: 39,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -41417,7 +41415,7 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                     }
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 44,
+                    lineNumber: 43,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -41427,23 +41425,23 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/music/Resume.js",
-                            lineNumber: 53,
+                            lineNumber: 52,
                             columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 48,
+                    lineNumber: 47,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/music/Resume.js",
-            lineNumber: 38,
+            lineNumber: 37,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/music/Resume.js",
-        lineNumber: 37,
+        lineNumber: 36,
         columnNumber: 5
     }, this);
 }
@@ -41471,7 +41469,7 @@ $RefreshReg$(_c, "MusicResume");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","react-router-dom":"9xmpe","@prismicio/react":"a09YD","../../services/prismic":"hwlgw","../../components/PageContentWrapper":"26gpu","../../components/Header":"hsJbF","../../components/SubHeader":"896x0","../../components/ButtonLink":"6MZOD","./Resume.styl":"lDBNf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lDBNf":[function() {},{}],"3UGbT":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"62sf7","react-router-dom":"9xmpe","@prismicio/react":"a09YD","../../services/prismic":"hwlgw","../../components/PageContentWrapper":"26gpu","../../components/Header":"hsJbF","../../components/ButtonLink":"6MZOD","./Resume.styl":"lDBNf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lDBNf":[function() {},{}],"3UGbT":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$705b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42397,7 +42395,7 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
         setLoadingPosts(true);
         const { items, nextPageToken: newToken } = await (0, _blogger.getBlogPosts)(nextPageToken);
         setNextPageToken(newToken);
-        if (posts.length) {
+        if (items.length) {
             const newPosts = posts.concat(items);
             setPosts(newPosts);
         }
