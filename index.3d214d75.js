@@ -2976,17 +2976,17 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRedux.Provider), 
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
             fileName: "index.js",
             lineNumber: 19,
-            columnNumber: 13
+            columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "index.js",
         lineNumber: 18,
-        columnNumber: 9
+        columnNumber: 5
     }, undefined)
 }, void 0, false, {
     fileName: "index.js",
     lineNumber: 17,
-    columnNumber: 5
+    columnNumber: 3
 }, undefined));
 
   $parcel$ReactRefreshHelpers$e4e3.postlude(module);
@@ -5758,8 +5758,8 @@ function App() {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {}, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 28,
-                    columnNumber: 11
+                    lineNumber: 24,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "page-content",
@@ -5769,148 +5769,148 @@ function App() {
                                 path: "/",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homepageDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 31,
-                                    columnNumber: 40
+                                    lineNumber: 27,
+                                    columnNumber: 38
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 31,
-                                columnNumber: 15
+                                lineNumber: 27,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/software",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _softwareDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 32,
-                                    columnNumber: 48
+                                    lineNumber: 28,
+                                    columnNumber: 46
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 32,
-                                columnNumber: 15
+                                lineNumber: 28,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/software/resume",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _resumeDefault1.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 33,
-                                    columnNumber: 55
+                                    lineNumber: 29,
+                                    columnNumber: 53
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 33,
-                                columnNumber: 15
+                                lineNumber: 29,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/software/technologies",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _technologiesDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 34,
-                                    columnNumber: 61
+                                    lineNumber: 32,
+                                    columnNumber: 24
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 34,
-                                columnNumber: 15
+                                lineNumber: 30,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/music",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _musicDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 35,
-                                    columnNumber: 45
+                                    lineNumber: 34,
+                                    columnNumber: 43
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 35,
-                                columnNumber: 15
+                                lineNumber: 34,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/music/resume",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _resumeDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 36,
-                                    columnNumber: 52
+                                    lineNumber: 35,
+                                    columnNumber: 50
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 36,
-                                columnNumber: 15
+                                lineNumber: 35,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/music/resources",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _resourcesDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 37,
-                                    columnNumber: 55
+                                    lineNumber: 36,
+                                    columnNumber: 53
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 37,
-                                columnNumber: 15
+                                lineNumber: 36,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/music/events",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _eventsDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 38,
-                                    columnNumber: 52
+                                    lineNumber: 37,
+                                    columnNumber: 50
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 38,
-                                columnNumber: 15
+                                lineNumber: 37,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/music/via-musicae",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _viaMusicaeDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 39,
-                                    columnNumber: 57
+                                    lineNumber: 38,
+                                    columnNumber: 55
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 39,
-                                columnNumber: 15
+                                lineNumber: 38,
+                                columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                 path: "/*",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _notFoundDefault.default), {}, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 40,
-                                    columnNumber: 41
+                                    lineNumber: 39,
+                                    columnNumber: 39
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 40,
-                                columnNumber: 15
+                                lineNumber: 39,
+                                columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/App.js",
-                        lineNumber: 30,
-                        columnNumber: 13
+                        lineNumber: 26,
+                        columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 29,
-                    columnNumber: 11
+                    lineNumber: 25,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {}, void 0, false, {
                     fileName: "src/App.js",
-                    lineNumber: 43,
-                    columnNumber: 11
+                    lineNumber: 42,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/App.js",
-            lineNumber: 27,
-            columnNumber: 9
+            lineNumber: 23,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/App.js",
-        lineNumber: 26,
-        columnNumber: 7
+        lineNumber: 22,
+        columnNumber: 5
     }, this);
 }
 _c = App;
@@ -34665,13 +34665,13 @@ function Homepage({ navbarData, navbarDataLoading, navbarDataError }) {
                         src: portrait
                     }, void 0, false, {
                         fileName: "src/pages/Homepage.js",
-                        lineNumber: 32,
-                        columnNumber: 6
+                        lineNumber: 30,
+                        columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/pages/Homepage.js",
-                    lineNumber: 31,
-                    columnNumber: 11
+                    lineNumber: 29,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "text",
@@ -34680,22 +34680,22 @@ function Homepage({ navbarData, navbarDataLoading, navbarDataError }) {
                             html: main_header_html
                         }, void 0, false, {
                             fileName: "src/pages/Homepage.js",
-                            lineNumber: 35,
-                            columnNumber: 6
+                            lineNumber: 33,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _subHeaderDefault.default), {
                             html: subheader_html
                         }, void 0, false, {
                             fileName: "src/pages/Homepage.js",
-                            lineNumber: 36,
-                            columnNumber: 6
+                            lineNumber: 34,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                             html: text_content_html
                         }, void 0, false, {
                             fileName: "src/pages/Homepage.js",
-                            lineNumber: 37,
-                            columnNumber: 6
+                            lineNumber: 35,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             className: "links",
@@ -34704,33 +34704,33 @@ function Homepage({ navbarData, navbarDataLoading, navbarDataError }) {
                                     text: d.title
                                 }, d.route, false, {
                                     fileName: "src/pages/Homepage.js",
-                                    lineNumber: 39,
-                                    columnNumber: 57
+                                    lineNumber: 40,
+                                    columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "src/pages/Homepage.js",
-                            lineNumber: 38,
-                            columnNumber: 6
+                            lineNumber: 36,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/pages/Homepage.js",
-                    lineNumber: 34,
-                    columnNumber: 5
+                    lineNumber: 32,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/Homepage.js",
-            lineNumber: 30,
-            columnNumber: 4
+            lineNumber: 28,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/Homepage.js",
-        lineNumber: 29,
-        columnNumber: 3
+        lineNumber: 27,
+        columnNumber: 5
     }, this);
 }
-_s(Homepage, "13Thb7mUPR5LztLaD7NMfWGGvJc=", false, function() {
+_s(Homepage, "CAqQfmPAniLseiAI5fHwtPxo2Kw=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument)
     ];
@@ -40905,20 +40905,20 @@ function PageContentWrapper({ loading, children, centerChildren }) {
         className: `page-content-wrapper ${loading ? "loading" : ""}`,
         children: loading ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loaderDefault.default), {}, void 0, false, {
             fileName: "src/components/PageContentWrapper.js",
-            lineNumber: 14,
-            columnNumber: 17
+            lineNumber: 18,
+            columnNumber: 9
         }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: `children ${centerChildren ? "vertical-center-content" : ""}`,
             children: children
         }, void 0, false, {
             fileName: "src/components/PageContentWrapper.js",
-            lineNumber: 15,
-            columnNumber: 17
+            lineNumber: 20,
+            columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/components/PageContentWrapper.js",
-        lineNumber: 12,
-        columnNumber: 9
+        lineNumber: 16,
+        columnNumber: 5
     }, this);
 }
 _s(PageContentWrapper, "OD7bBpZva5O2jO+Puf00hKivP7c=");
@@ -40953,12 +40953,12 @@ function Loader({ size = "large" }) {
         }, void 0, false, {
             fileName: "src/components/Loader.js",
             lineNumber: 8,
-            columnNumber: 13
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/Loader.js",
         lineNumber: 7,
-        columnNumber: 9
+        columnNumber: 5
     }, this);
 }
 _c = Loader;
@@ -41131,7 +41131,7 @@ function Header({ html }) {
     }, void 0, false, {
         fileName: "src/components/Header.js",
         lineNumber: 6,
-        columnNumber: 12
+        columnNumber: 10
     }, this);
 }
 _c = Header;
@@ -41165,8 +41165,8 @@ function SubHeader({ html }) {
         }
     }, void 0, false, {
         fileName: "src/components/SubHeader.js",
-        lineNumber: 6,
-        columnNumber: 12
+        lineNumber: 7,
+        columnNumber: 5
     }, this);
 }
 _c = SubHeader;
@@ -41200,8 +41200,8 @@ function ParagraphText({ html }) {
         }
     }, void 0, false, {
         fileName: "src/components/ParagraphText.js",
-        lineNumber: 6,
-        columnNumber: 12
+        lineNumber: 7,
+        columnNumber: 5
     }, this);
 }
 _c = ParagraphText;
@@ -41236,7 +41236,7 @@ function ButtonLink({ route, text }) {
     }, void 0, false, {
         fileName: "src/components/ButtonLink.js",
         lineNumber: 8,
-        columnNumber: 9
+        columnNumber: 5
     }, this);
 }
 _c = ButtonLink;
@@ -41292,15 +41292,15 @@ function Software({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/Music.js",
-                    lineNumber: 31,
-                    columnNumber: 17
+                    lineNumber: 34,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                     html: description_html
                 }, void 0, false, {
                     fileName: "src/pages/Music.js",
-                    lineNumber: 32,
-                    columnNumber: 17
+                    lineNumber: 35,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -41309,27 +41309,27 @@ function Software({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: d.title
                         }, d.route, false, {
                             fileName: "src/pages/Music.js",
-                            lineNumber: 34,
-                            columnNumber: 69
+                            lineNumber: 39,
+                            columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/Music.js",
-                    lineNumber: 33,
-                    columnNumber: 17
+                    lineNumber: 36,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/Music.js",
-            lineNumber: 30,
-            columnNumber: 4
+            lineNumber: 33,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/Music.js",
-        lineNumber: 29,
-        columnNumber: 3
+        lineNumber: 32,
+        columnNumber: 5
     }, this);
 }
-_s(Software, "85qjIyNQoFctKgCumcl2mAMWHSs=", false, function() {
+_s(Software, "E0QIFQlbujzVRV9uRV6JWosel0M=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _reactRouterDom.useLocation)
@@ -41397,8 +41397,8 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 31,
-                    columnNumber: 17
+                    lineNumber: 39,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "imported-html",
@@ -41407,8 +41407,8 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                     }
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 32,
-                    columnNumber: 17
+                    lineNumber: 40,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "imported-html",
@@ -41417,8 +41417,8 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                     }
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 33,
-                    columnNumber: 17
+                    lineNumber: 44,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -41427,27 +41427,27 @@ function MusicResume({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/music/Resume.js",
-                            lineNumber: 37,
-                            columnNumber: 35
+                            lineNumber: 53,
+                            columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/music/Resume.js",
-                    lineNumber: 34,
-                    columnNumber: 17
+                    lineNumber: 48,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/music/Resume.js",
-            lineNumber: 30,
-            columnNumber: 4
+            lineNumber: 38,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/music/Resume.js",
-        lineNumber: 29,
-        columnNumber: 3
+        lineNumber: 37,
+        columnNumber: 5
     }, this);
 }
-_s(MusicResume, "MQLUOWMSZFYefdoLndRYz7HgEac=", false, function() {
+_s(MusicResume, "vdB1/SZlzo7B1S3iEtL3FUEhjRE=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _reactRouterDom.useLocation)
@@ -41525,56 +41525,56 @@ function MusicEvents({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/music/Events.js",
-                    lineNumber: 50,
-                    columnNumber: 17
+                    lineNumber: 63,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                     html: description_html
                 }, void 0, false, {
                     fileName: "src/pages/music/Events.js",
-                    lineNumber: 51,
-                    columnNumber: 17
+                    lineNumber: 64,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Upcoming Events"
                 }, void 0, false, {
                     fileName: "src/pages/music/Events.js",
-                    lineNumber: 53,
-                    columnNumber: 17
+                    lineNumber: 66,
+                    columnNumber: 9
                 }, this),
                 upcomingEvents && upcomingEvents.length == 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("i", {
                         children: "No upcoming events."
                     }, void 0, false, {
                         fileName: "src/pages/music/Events.js",
-                        lineNumber: 54,
-                        columnNumber: 69
+                        lineNumber: 69,
+                        columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "src/pages/music/Events.js",
-                    lineNumber: 54,
-                    columnNumber: 66
+                    lineNumber: 68,
+                    columnNumber: 11
                 }, this),
                 upcomingEvents && upcomingEvents.sort(sortByDate).map((e)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(OneEvent, {
                         ...e.data
                     }, void 0, false, {
                         fileName: "src/pages/music/Events.js",
-                        lineNumber: 55,
-                        columnNumber: 77
+                        lineNumber: 73,
+                        columnNumber: 54
                     }, this)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Past Events"
                 }, void 0, false, {
                     fileName: "src/pages/music/Events.js",
-                    lineNumber: 57,
-                    columnNumber: 17
+                    lineNumber: 75,
+                    columnNumber: 9
                 }, this),
                 pastEvents && pastEvents.sort(sortByDate).map((e)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(OneEvent, {
                         ...e.data
                     }, void 0, false, {
                         fileName: "src/pages/music/Events.js",
-                        lineNumber: 58,
-                        columnNumber: 69
+                        lineNumber: 77,
+                        columnNumber: 50
                     }, this)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -41583,27 +41583,27 @@ function MusicEvents({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/music/Events.js",
-                            lineNumber: 63,
-                            columnNumber: 35
+                            lineNumber: 84,
+                            columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/music/Events.js",
-                    lineNumber: 60,
-                    columnNumber: 17
+                    lineNumber: 79,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/music/Events.js",
-            lineNumber: 49,
-            columnNumber: 4
+            lineNumber: 62,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/music/Events.js",
-        lineNumber: 48,
-        columnNumber: 3
+        lineNumber: 61,
+        columnNumber: 5
     }, this);
 }
-_s(MusicEvents, "bjJNMEnWuVOuRxmy5NssFAE6tps=", false, function() {
+_s(MusicEvents, "YlHXrUGbkHg1sg0oh7q2PePIwN4=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _react1.useAllPrismicDocumentsByType),
@@ -41638,8 +41638,8 @@ function OneEvent({ address, date_and_time, description, link, organization, tit
                 }
             }, void 0, false, {
                 fileName: "src/pages/music/Events.js",
-                lineNumber: 92,
-                columnNumber: 13
+                lineNumber: 127,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "organization",
@@ -41648,16 +41648,16 @@ function OneEvent({ address, date_and_time, description, link, organization, tit
                 }
             }, void 0, false, {
                 fileName: "src/pages/music/Events.js",
-                lineNumber: 93,
-                columnNumber: 13
+                lineNumber: 133,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "date-and-time",
                 children: date_and_time_parsed
             }, void 0, false, {
                 fileName: "src/pages/music/Events.js",
-                lineNumber: 94,
-                columnNumber: 13
+                lineNumber: 137,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "address",
@@ -41666,8 +41666,8 @@ function OneEvent({ address, date_and_time, description, link, organization, tit
                 }
             }, void 0, false, {
                 fileName: "src/pages/music/Events.js",
-                lineNumber: 95,
-                columnNumber: 13
+                lineNumber: 138,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "description",
@@ -41676,14 +41676,14 @@ function OneEvent({ address, date_and_time, description, link, organization, tit
                 }
             }, void 0, false, {
                 fileName: "src/pages/music/Events.js",
-                lineNumber: 96,
-                columnNumber: 13
+                lineNumber: 142,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/music/Events.js",
-        lineNumber: 91,
-        columnNumber: 9
+        lineNumber: 126,
+        columnNumber: 5
     }, this);
 }
 _c1 = OneEvent;
@@ -42232,15 +42232,15 @@ function MusicResources({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/music/Resources.js",
-                    lineNumber: 35,
-                    columnNumber: 17
+                    lineNumber: 44,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                     html: description_html
                 }, void 0, false, {
                     fileName: "src/pages/music/Resources.js",
-                    lineNumber: 36,
-                    columnNumber: 17
+                    lineNumber: 45,
+                    columnNumber: 9
                 }, this),
                 musicResourcesData && musicResourcesData.map((r, i)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(OneResource, {
                         title: r.data.title,
@@ -42248,8 +42248,8 @@ function MusicResources({ navbarData, navbarDataLoading, navbarDataError }) {
                         main_content: r.data.main_content
                     }, i, false, {
                         fileName: "src/pages/music/Resources.js",
-                        lineNumber: 39,
-                        columnNumber: 21
+                        lineNumber: 49,
+                        columnNumber: 13
                     }, this)),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -42258,27 +42258,27 @@ function MusicResources({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/music/Resources.js",
-                            lineNumber: 50,
-                            columnNumber: 35
+                            lineNumber: 62,
+                            columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/music/Resources.js",
-                    lineNumber: 47,
-                    columnNumber: 18
+                    lineNumber: 57,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/music/Resources.js",
-            lineNumber: 34,
-            columnNumber: 4
+            lineNumber: 43,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/music/Resources.js",
-        lineNumber: 33,
-        columnNumber: 3
+        lineNumber: 42,
+        columnNumber: 5
     }, this);
 }
-_s(MusicResources, "WtDjUrQCDC58mFzpW3Rb2ZKUsGM=", false, function() {
+_s(MusicResources, "r11GkTmL+CV+KKMqSoulkBILT9o=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _react1.useAllPrismicDocumentsByType),
@@ -42306,15 +42306,15 @@ function OneResource({ main_content, media_attachment, title }) {
                 html: title_html
             }, void 0, false, {
                 fileName: "src/pages/music/Resources.js",
-                lineNumber: 77,
-                columnNumber: 13
+                lineNumber: 93,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                 html: main_content_html
             }, void 0, false, {
                 fileName: "src/pages/music/Resources.js",
-                lineNumber: 78,
-                columnNumber: 13
+                lineNumber: 94,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "resource-link",
@@ -42324,19 +42324,19 @@ function OneResource({ main_content, media_attachment, title }) {
                     children: linkName
                 }, void 0, false, {
                     fileName: "src/pages/music/Resources.js",
-                    lineNumber: 80,
-                    columnNumber: 17
+                    lineNumber: 96,
+                    columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/music/Resources.js",
-                lineNumber: 79,
-                columnNumber: 13
+                lineNumber: 95,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/music/Resources.js",
-        lineNumber: 76,
-        columnNumber: 9
+        lineNumber: 92,
+        columnNumber: 5
     }, this);
 }
 _c1 = OneResource;
@@ -42390,14 +42390,10 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
     const [nextPageToken, setNextPageToken] = (0, _react.useState)("");
     const [loadingPosts, setLoadingPosts] = (0, _react.useState)(false);
     const [posts, setPosts] = (0, _react.useState)([]);
-    //const [ viaMusicaeData, viaMusicaeLoading ] = useAllPrismicDocumentsByType('music_resource')
     const { pathname } = (0, _reactRouterDom.useLocation)();
     const musicLink = navbarData.find((d)=>d.route.startsWith("/" + pathname.split("/")[1]));
-    const loading = navbarDataLoading || !viaMusicaeRootLoading || viaMusicaeRootLoading.state !== "loaded" //||
-    ;
-    //!viaMusicaeLoading || viaMusicaeLoading.state !== "loaded"
+    const loading = navbarDataLoading || !viaMusicaeRootLoading || viaMusicaeRootLoading.state !== "loaded";
     async function getPosts() {
-        console.log("getting");
         setLoadingPosts(true);
         const { items, nextPageToken: newToken } = await (0, _blogger.getBlogPosts)(nextPageToken);
         setNextPageToken(newToken);
@@ -42419,22 +42415,22 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 62,
-                    columnNumber: 17
+                    lineNumber: 61,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                     html: description_html
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 63,
-                    columnNumber: 17
+                    lineNumber: 62,
+                    columnNumber: 9
                 }, this),
                 posts.map((p)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(OnePost, {
                         ...p
                     }, void 0, false, {
                         fileName: "src/pages/music/ViaMusicae.js",
                         lineNumber: 65,
-                        columnNumber: 33
+                        columnNumber: 11
                     }, this)),
                 !loadingPosts && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "load-more",
@@ -42443,24 +42439,24 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
                         onClick: getPosts
                     }, void 0, false, {
                         fileName: "src/pages/music/ViaMusicae.js",
-                        lineNumber: 70,
-                        columnNumber: 29
+                        lineNumber: 71,
+                        columnNumber: 15
                     }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("i", {
                         children: "All posts loaded."
                     }, void 0, false, {
                         fileName: "src/pages/music/ViaMusicae.js",
-                        lineNumber: 72,
-                        columnNumber: 29
+                        lineNumber: 73,
+                        columnNumber: 15
                     }, this)
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 68,
-                    columnNumber: 21
+                    lineNumber: 69,
+                    columnNumber: 11
                 }, this),
                 loadingPosts && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loaderDefault.default), {}, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 77,
-                    columnNumber: 34
+                    lineNumber: 78,
+                    columnNumber: 26
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -42469,27 +42465,27 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/music/ViaMusicae.js",
-                            lineNumber: 82,
-                            columnNumber: 35
+                            lineNumber: 85,
+                            columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 79,
-                    columnNumber: 17
+                    lineNumber: 80,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/music/ViaMusicae.js",
-            lineNumber: 61,
-            columnNumber: 4
+            lineNumber: 60,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/music/ViaMusicae.js",
-        lineNumber: 60,
-        columnNumber: 3
+        lineNumber: 59,
+        columnNumber: 5
     }, this);
 }
-_s(ViaMusicae, "XNkJS3JXbFwe8E3ZOcA9GhNnQdw=", false, function() {
+_s(ViaMusicae, "mb94UA2t881qy9D/oklICOHL2UM=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _reactRouterDom.useLocation)
@@ -42506,7 +42502,7 @@ const mapState = (state)=>{
 const mapDispatch = (dispatch)=>({});
 exports.default = (0, _reactRedux.connect)(mapState, mapDispatch)(ViaMusicae);
 function OnePost({ title, url, content: content_html, published }) {
-    const date_and_time_parsed = (0, _fechaDefault.default).format(new Date(published), "D MMMM YYYY");
+    const date = (0, _fechaDefault.default).format(new Date(published), "D MMMM YYYY");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "one-post",
         children: [
@@ -42514,27 +42510,28 @@ function OnePost({ title, url, content: content_html, published }) {
                 children: title
             }, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 107,
-                columnNumber: 13
+                lineNumber: 114,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                 html: content_html
             }, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 108,
-                columnNumber: 13
+                lineNumber: 115,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 className: "date-stamp",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("i", {
                     children: [
-                        date_and_time_parsed,
+                        date,
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                             fileName: "src/pages/music/ViaMusicae.js",
-                            lineNumber: 110,
-                            columnNumber: 39
+                            lineNumber: 119,
+                            columnNumber: 11
                         }, this),
-                        "View original post ",
+                        "View original post",
+                        " ",
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
                             href: url,
                             className: "post-link",
@@ -42542,30 +42539,30 @@ function OnePost({ title, url, content: content_html, published }) {
                             children: "here"
                         }, void 0, false, {
                             fileName: "src/pages/music/ViaMusicae.js",
-                            lineNumber: 111,
-                            columnNumber: 36
+                            lineNumber: 121,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/pages/music/ViaMusicae.js",
-                    lineNumber: 109,
-                    columnNumber: 39
+                    lineNumber: 117,
+                    columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 109,
-                columnNumber: 13
+                lineNumber: 116,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                 fileName: "src/pages/music/ViaMusicae.js",
-                lineNumber: 113,
-                columnNumber: 12
+                lineNumber: 126,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/music/ViaMusicae.js",
-        lineNumber: 106,
-        columnNumber: 9
+        lineNumber: 113,
+        columnNumber: 5
     }, this);
 }
 _c1 = OnePost;
@@ -42638,7 +42635,7 @@ function Button({ onClick, text }) {
     }, void 0, false, {
         fileName: "src/components/Button.js",
         lineNumber: 8,
-        columnNumber: 9
+        columnNumber: 5
     }, this);
 }
 _c = Button;
@@ -42694,15 +42691,15 @@ function Software({ navbarData, navbarDataLoading, navbarDataError }) {
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/Software.js",
-                    lineNumber: 30,
-                    columnNumber: 17
+                    lineNumber: 34,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                     html: description_html
                 }, void 0, false, {
                     fileName: "src/pages/Software.js",
-                    lineNumber: 31,
-                    columnNumber: 17
+                    lineNumber: 35,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -42711,27 +42708,27 @@ function Software({ navbarData, navbarDataLoading, navbarDataError }) {
                             text: d.title
                         }, d.route, false, {
                             fileName: "src/pages/Software.js",
-                            lineNumber: 33,
-                            columnNumber: 69
+                            lineNumber: 39,
+                            columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/Software.js",
-                    lineNumber: 32,
-                    columnNumber: 17
+                    lineNumber: 36,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/Software.js",
-            lineNumber: 29,
-            columnNumber: 4
+            lineNumber: 33,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/Software.js",
-        lineNumber: 28,
-        columnNumber: 3
+        lineNumber: 32,
+        columnNumber: 5
     }, this);
 }
-_s(Software, "ib/anGshlmevZXUwGh1LH9Yy6qQ=", false, function() {
+_s(Software, "dJ6PPHzDM1pzb1WnUIgSfqSiy54=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _reactRouterDom.useLocation)
@@ -42799,8 +42796,8 @@ function SoftwareResume({ onFetchSoftwareResumeData, navbarData, navbarDataLoadi
                     text: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/software/Resume.js",
-                    lineNumber: 33,
-                    columnNumber: 17
+                    lineNumber: 44,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "imported-html",
@@ -42809,8 +42806,8 @@ function SoftwareResume({ onFetchSoftwareResumeData, navbarData, navbarDataLoadi
                     }
                 }, void 0, false, {
                     fileName: "src/pages/software/Resume.js",
-                    lineNumber: 34,
-                    columnNumber: 17
+                    lineNumber: 45,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "imported-html",
@@ -42819,8 +42816,8 @@ function SoftwareResume({ onFetchSoftwareResumeData, navbarData, navbarDataLoadi
                     }
                 }, void 0, false, {
                     fileName: "src/pages/software/Resume.js",
-                    lineNumber: 35,
-                    columnNumber: 17
+                    lineNumber: 49,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -42829,27 +42826,27 @@ function SoftwareResume({ onFetchSoftwareResumeData, navbarData, navbarDataLoadi
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/software/Resume.js",
-                            lineNumber: 39,
-                            columnNumber: 35
+                            lineNumber: 58,
+                            columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/software/Resume.js",
-                    lineNumber: 36,
-                    columnNumber: 17
+                    lineNumber: 53,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/software/Resume.js",
-            lineNumber: 32,
-            columnNumber: 4
+            lineNumber: 43,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/software/Resume.js",
-        lineNumber: 31,
-        columnNumber: 3
+        lineNumber: 42,
+        columnNumber: 5
     }, this);
 }
-_s(SoftwareResume, "GbRR8e0iD4hoN15XxH7uuUTNwDo=", false, function() {
+_s(SoftwareResume, "vRc9V4sp9E988sjvPzH5XRcLjyw=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _reactRouterDom.useLocation)
@@ -42920,15 +42917,15 @@ function SoftwareTechnologies({ navbarData, navbarDataLoading, navbarDataError }
                     html: main_header_html
                 }, void 0, false, {
                     fileName: "src/pages/software/Technologies.js",
-                    lineNumber: 34,
-                    columnNumber: 17
+                    lineNumber: 45,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _paragraphTextDefault.default), {
                     html: description_html
                 }, void 0, false, {
                     fileName: "src/pages/software/Technologies.js",
-                    lineNumber: 35,
-                    columnNumber: 17
+                    lineNumber: 46,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "imported-html",
@@ -42937,8 +42934,8 @@ function SoftwareTechnologies({ navbarData, navbarDataLoading, navbarDataError }
                     }
                 }, void 0, false, {
                     fileName: "src/pages/software/Technologies.js",
-                    lineNumber: 36,
-                    columnNumber: 17
+                    lineNumber: 47,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "links",
@@ -42947,27 +42944,27 @@ function SoftwareTechnologies({ navbarData, navbarDataLoading, navbarDataError }
                             text: `View ${d.title}`
                         }, d.route, false, {
                             fileName: "src/pages/software/Technologies.js",
-                            lineNumber: 40,
-                            columnNumber: 35
+                            lineNumber: 56,
+                            columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "src/pages/software/Technologies.js",
-                    lineNumber: 37,
-                    columnNumber: 17
+                    lineNumber: 51,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/pages/software/Technologies.js",
-            lineNumber: 33,
-            columnNumber: 4
+            lineNumber: 44,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/pages/software/Technologies.js",
-        lineNumber: 32,
-        columnNumber: 3
+        lineNumber: 43,
+        columnNumber: 5
     }, this);
 }
-_s(SoftwareTechnologies, "TILK5nlZh58Qi1S9tIru+FOXgEM=", false, function() {
+_s(SoftwareTechnologies, "e7gG5XYICFv/xENOjANibVG9sF0=", false, function() {
     return [
         (0, _react1.useSinglePrismicDocument),
         (0, _reactRouterDom.useLocation)
@@ -47126,7 +47123,7 @@ function NotFound() {
     }, void 0, false, {
         fileName: "src/pages/NotFound.js",
         lineNumber: 4,
-        columnNumber: 12
+        columnNumber: 10
     }, this);
 }
 _c = NotFound;
@@ -47183,13 +47180,13 @@ function Navbar({ onFetchNavbarData, navbarData, navbarDataLoading, navbarDataEr
             size: "small"
         }, void 0, false, {
             fileName: "src/components/Navbar.js",
-            lineNumber: 36,
-            columnNumber: 40
+            lineNumber: 38,
+            columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/components/Navbar.js",
-        lineNumber: 36,
-        columnNumber: 16
+        lineNumber: 37,
+        columnNumber: 7
     }, this);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "navbar",
@@ -47202,13 +47199,13 @@ function Navbar({ onFetchNavbarData, navbarData, navbarDataLoading, navbarDataEr
                         toggleMenu: toggleMenu
                     }, d.route, false, {
                         fileName: "src/components/Navbar.js",
-                        lineNumber: 41,
-                        columnNumber: 34
+                        lineNumber: 47,
+                        columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "src/components/Navbar.js",
-                lineNumber: 40,
-                columnNumber: 9
+                lineNumber: 45,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: `links-list-mobile ${menuExpanded ? "expanded" : ""}`,
@@ -47222,13 +47219,13 @@ function Navbar({ onFetchNavbarData, navbarData, navbarDataLoading, navbarDataEr
                                     toggleMenu: toggleMenu
                                 }, d.route, false, {
                                     fileName: "src/components/Navbar.js",
-                                    lineNumber: 47,
-                                    columnNumber: 25
+                                    lineNumber: 61,
+                                    columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "src/components/Navbar.js",
-                            lineNumber: 45,
-                            columnNumber: 17
+                            lineNumber: 57,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                             type: "button",
@@ -47237,24 +47234,24 @@ function Navbar({ onFetchNavbarData, navbarData, navbarDataLoading, navbarDataEr
                             onClick: ()=>toggleMenu(),
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _closeDefault.default), {}, void 0, false, {
                                 fileName: "src/components/Navbar.js",
-                                lineNumber: 51,
-                                columnNumber: 21
+                                lineNumber: 75,
+                                columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/Navbar.js",
-                            lineNumber: 50,
-                            columnNumber: 17
+                            lineNumber: 69,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Navbar.js",
-                    lineNumber: 44,
-                    columnNumber: 13
+                    lineNumber: 56,
+                    columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Navbar.js",
-                lineNumber: 43,
-                columnNumber: 9
+                lineNumber: 55,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 type: "button",
@@ -47263,26 +47260,26 @@ function Navbar({ onFetchNavbarData, navbarData, navbarDataLoading, navbarDataEr
                 onClick: ()=>toggleMenu(),
                 children: menuExpanded ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _menuOpenDefault.default), {}, void 0, false, {
                     fileName: "src/components/Navbar.js",
-                    lineNumber: 56,
-                    columnNumber: 29
+                    lineNumber: 85,
+                    columnNumber: 25
                 }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _menuDefault.default), {}, void 0, false, {
                     fileName: "src/components/Navbar.js",
-                    lineNumber: 56,
-                    columnNumber: 48
+                    lineNumber: 85,
+                    columnNumber: 44
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Navbar.js",
-                lineNumber: 55,
-                columnNumber: 9
+                lineNumber: 79,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/Navbar.js",
-        lineNumber: 39,
-        columnNumber: 12
+        lineNumber: 44,
+        columnNumber: 5
     }, this);
 }
-_s(Navbar, "RgReaj1ujrXtEWaLwj1qGVsBDzk=", false, function() {
+_s(Navbar, "Va5M0Ldo4hM3z9931Hq5p23JbVU=", false, function() {
     return [
         (0, _reactRouterDom.useLocation)
     ];
@@ -47311,8 +47308,8 @@ function NavBarLink({ linkData, currentRoute, toggleMenu }) {
                 children: title
             }, void 0, false, {
                 fileName: "src/components/Navbar.js",
-                lineNumber: 80,
-                columnNumber: 9
+                lineNumber: 111,
+                columnNumber: 7
             }, this),
             children.length ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "subnav",
@@ -47322,19 +47319,19 @@ function NavBarLink({ linkData, currentRoute, toggleMenu }) {
                         toggleMenu: toggleMenu
                     }, c.route, false, {
                         fileName: "src/components/Navbar.js",
-                        lineNumber: 84,
-                        columnNumber: 21
+                        lineNumber: 117,
+                        columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "src/components/Navbar.js",
-                lineNumber: 82,
-                columnNumber: 13
+                lineNumber: 115,
+                columnNumber: 9
             }, this) : null
         ]
     }, void 0, true, {
         fileName: "src/components/Navbar.js",
-        lineNumber: 79,
-        columnNumber: 12
+        lineNumber: 110,
+        columnNumber: 5
     }, this);
 }
 _c1 = NavBarLink;
@@ -47349,13 +47346,13 @@ function NavBarSubLink({ linkData, currentRoute, toggleMenu }) {
             children: title
         }, void 0, false, {
             fileName: "src/components/Navbar.js",
-            lineNumber: 96,
-            columnNumber: 9
+            lineNumber: 136,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/Navbar.js",
-        lineNumber: 95,
-        columnNumber: 12
+        lineNumber: 135,
+        columnNumber: 5
     }, this);
 }
 _c2 = NavBarSubLink;
@@ -56778,8 +56775,8 @@ function Footer({ footerData, footerDataLoading, footerDataError, onFetchFooterD
                 ]
             }, void 0, true, {
                 fileName: "src/components/Footer.js",
-                lineNumber: 28,
-                columnNumber: 9
+                lineNumber: 29,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "footer-item",
@@ -56788,18 +56785,18 @@ function Footer({ footerData, footerDataLoading, footerDataError, onFetchFooterD
                     target: "_blank",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _linkedInDefault.default), {}, void 0, false, {
                         fileName: "src/components/Footer.js",
-                        lineNumber: 32,
-                        columnNumber: 74
+                        lineNumber: 34,
+                        columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/Footer.js",
-                    lineNumber: 32,
-                    columnNumber: 13
+                    lineNumber: 33,
+                    columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Footer.js",
-                lineNumber: 31,
-                columnNumber: 9
+                lineNumber: 32,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "footer-item",
@@ -56808,24 +56805,24 @@ function Footer({ footerData, footerDataLoading, footerDataError, onFetchFooterD
                     target: "_blank",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _gitHubDefault.default), {}, void 0, false, {
                         fileName: "src/components/Footer.js",
-                        lineNumber: 35,
-                        columnNumber: 70
+                        lineNumber: 39,
+                        columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/Footer.js",
-                    lineNumber: 35,
-                    columnNumber: 13
+                    lineNumber: 38,
+                    columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Footer.js",
-                lineNumber: 34,
-                columnNumber: 9
+                lineNumber: 37,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/Footer.js",
-        lineNumber: 27,
-        columnNumber: 12
+        lineNumber: 28,
+        columnNumber: 5
     }, this);
 }
 _s(Footer, "OD7bBpZva5O2jO+Puf00hKivP7c=");
