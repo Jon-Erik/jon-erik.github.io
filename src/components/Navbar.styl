@@ -24,6 +24,9 @@ TitleFont = titleFont
     a
         color PageBackground
         text-decoration none
+        white-space nowrap
+        position relative
+        
         &:visited
             color PageBackground
 
@@ -58,7 +61,6 @@ TitleFont = titleFont
             margin-left 0.5em
             position relative
             font-size 20px
-            text-align center
             
             &.active
                 font-weight 800
@@ -78,6 +80,7 @@ TitleFont = titleFont
                     font-size 16px
                     margin 3.5px
                     text-transform none
+                    width fit-content
 
                     &.active
                         font-weight 700
