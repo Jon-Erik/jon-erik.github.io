@@ -43,7 +43,7 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
     const { items, nextPageToken: newToken } = await getBlogPosts(nextPageToken)
     setNextPageToken(newToken)
 
-    if (posts.length) {
+    if (items.length) {
       const newPosts = posts.concat(items)
       setPosts(newPosts)
     }

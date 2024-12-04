@@ -6,7 +6,6 @@ import { asHTML } from '../../services/prismic'
 
 import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
-import SubHeader from '../../components/SubHeader'
 import ButtonLink from '../../components/ButtonLink'
 
 import './Resume.styl'
