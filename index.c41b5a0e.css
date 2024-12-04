@@ -323,7 +323,9 @@ a.button:visited {
 
 .navbar a {
   color: #ebebeb;
+  white-space: nowrap;
   text-decoration: none;
+  position: relative;
 }
 
 .navbar a:visited {
@@ -361,7 +363,6 @@ a.button:visited {
 }
 
 .navbar .links-list .link, .navbar .links-list-mobile .link {
-  text-align: center;
   margin-left: .5em;
   margin-right: .5em;
   font-size: 20px;
@@ -386,6 +387,7 @@ a.button:visited {
 
 .navbar .links-list .link .subnav .subnav-link, .navbar .links-list-mobile .link .subnav .subnav-link {
   text-transform: none;
+  width: fit-content;
   margin: 3.5px;
   font-size: 16px;
   font-weight: 500;
