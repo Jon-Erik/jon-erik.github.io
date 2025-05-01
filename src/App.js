@@ -12,6 +12,7 @@ import MusicViaMusicae from './pages/music/ViaMusicae'
 import Software from './pages/Software'
 import SoftwareResume from './pages/software/Resume'
 import SoftwareTechnologies from './pages/software/Technologies'
+import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
 import Navbar from './components/Navbar'
@@ -36,6 +37,7 @@ function App() {
             <Route path="/music/resources" element={<MusicResources />} />
             <Route path="/music/events" element={<MusicEvents />} />
             <Route path="/music/via-musicae" element={<MusicViaMusicae />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>

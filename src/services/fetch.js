@@ -5,12 +5,20 @@ export async function req({
   body,
   params
 }) {
-  const paramsString = new URLSearchParams(params).toString()
-  const response = await fetch(`${url}?${paramsString}`, {
-    method,
-    headers,
-    body: JSON.stringify(body)
-  })
-  const parsed = await response.json()
-  return parsed
+  try {
+    const paramsString = new URLSearchParams(params).toString()
+    // console.log({url, method, headers, body, params})
+    const response = await fetch(`${url}?${paramsString}`, {
+      method,
+      headers,
+      body: JSON.stringify(body)
+    })
+    const parsed = await response.json()
+    return parsed
+  } catch (error) {
+    return {
+      success: false,
+      msg: error.message
+    }
+  }
 }
