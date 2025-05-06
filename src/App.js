@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.styl'
 
-import { Route, Routes, HashRouter } from 'react-router-dom'
+import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
 import Homepage from './pages/Homepage'
 import Music from './pages/Music'
@@ -21,7 +21,7 @@ import Footer from './components/Footer'
 function App() {
   return (
     <div className="app-wrapper">
-      <HashRouter>
+      <BrowserRouter>
         <Navbar />
         <div className="page-content">
           <Routes>
@@ -42,7 +42,7 @@ function App() {
           </Routes>
         </div>
         <Footer />
-      </HashRouter>
+      </BrowserRouter>
     </div>
   )
 }
