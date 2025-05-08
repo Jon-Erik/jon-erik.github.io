@@ -48,7 +48,8 @@ const defaultFormData = {
 		error: "",
 		type: "textarea",
 		maxLength: 1500,
-		minLength: 20
+		minLength: 20,
+		className: "full-width"
 	}
 }
 
@@ -77,9 +78,6 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 	const description_html = asHTML(
 		contactData && contactData.data.description
 	)
-	const loading_text_html = asHTML(
-		contactData && contactData.data.loading_text
-	)
 	const error_text_html = asHTML(
 		contactData && contactData.data.error_text
 	)
@@ -93,6 +91,8 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 		navbarDataLoading ||
 		!contactLoading ||
 		contactLoading.state !== 'loaded'
+
+	const submitting = submitStatus.code == statuses.LOADING
 
 	function updateFormData(fieldName, e) {
 		const newVal = e.target.value
@@ -190,7 +190,7 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 
 		return () => {
 			document.querySelector("#recaptcha").remove()
-			//document.querySelector(".rc-anchor").remove()
+			document.querySelector(".rc-anchor") && document.querySelector(".rc-anchor").remove()
 		}
 	}, [])
 
@@ -203,9 +203,9 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 				{[statuses.ERROR, statuses.NOT_SUBMITTED, statuses.LOADING].includes(submitStatus.code) && (
 					<form>
 						{Object.keys(defaultFormData).map(fieldName => {
-							const { type, value, error, label } = defaultFormData[fieldName]
+							const { type, value, error, label, className } = defaultFormData[fieldName]
 							return (
-								<div key={fieldName} className="form-input">
+								<div key={fieldName} className={`form-input ${className}`}>
 									<label htmlFor={fieldName}>{label}<span className='required'>*</span></label>
 									{error && <span className='error'>{error}</span>}
 									<br/>
@@ -222,7 +222,7 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 									{type == "textarea" && (
 										<textarea 
 											type="text" 
-											rows="4" 
+											rows="8" 
 											className='text-input' 
 											id={fieldName}
 											onBlur={() => validateField(fieldName)} 
@@ -234,26 +234,24 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 							)
 						})}
 
-						<Button 
-							text="Submit" 
-							className="submit" 
-							onClick={submitForm} 
-							isNavLink={false}
-							disabled={formErrs}
-						/>
-						
-						{submitStatus.code == statuses.LOADING && (
-							<div className='loading-status'>
-								<ParagraphText html={loading_text_html} />
+						{submitStatus.code == statuses.ERROR && (
+							<div className='error-status'>
+								<ParagraphText html={error_text_html} />
+								<p>Error: {submitStatus.msg}</p>
 							</div>
 						)}
 
-						{submitStatus.code == statuses.ERROR && (
-							<div className='error-status'>
-								<p>Error: {submitStatus.msg}</p>
-								<ParagraphText html={error_text_html} />
-							</div>
-						)}
+						<Button 
+							text="Submit" 
+							onClick={submitForm} 
+							isNavLink={false}
+							disabled={formErrs || submitting}
+							loading={submitStatus.code == statuses.LOADING}
+							disclaimerHTML={
+								`<span>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a>
+								and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</span>`
+							}
+						/>
 					</form>
 				)}
 
@@ -263,7 +261,6 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 						<ParagraphText html={success_text_html} />
 					</div>
 				)}
-
 
 				<div className="links">
 					{links.map((d) => (
