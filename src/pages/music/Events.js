@@ -1,12 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import {
-  useSinglePrismicDocument,
-  useAllPrismicDocumentsByType
-} from '@prismicio/react'
 import { asHTML } from '../../services/prismic'
 import fecha from 'fecha'
+import { fetchMusicEventsRootData, fetchMusicEventsData } from '../../state/externalData'
 
 import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
@@ -15,40 +12,33 @@ import ButtonLink from '../../components/ButtonLink'
 import './Events.styl'
 import ParagraphText from '../../components/ParagraphText'
 
-function MusicEvents({ navbarData, navbarDataLoading, navbarDataError }) {
-  const [musicEventsRootData, musicEventsRootLoading] =
-    useSinglePrismicDocument('music_events_root')
-  const main_header_html = asHTML(
-    musicEventsRootData && musicEventsRootData.data.main_header
-  )
-  const description_html = asHTML(
-    musicEventsRootData && musicEventsRootData.data.description
-  )
-
-  const [musicEventsData, musicEventsLoading] =
-    useAllPrismicDocumentsByType('music_events')
+function MusicEvents({ 
+  navbarData, 
+  navbarDataLoading,
+  musicEventsRootData,
+  musicEventsRootDataLoading,
+  musicEventsRootDataError,
+  onFetchMusicEventsRootData,
+  musicEventsData,
+  musicEventsDataLoading,
+  musicEventsDataError,
+  onFetchMusicEventsData
+}) {
+  const main_header_html = asHTML(musicEventsRootData && musicEventsRootData.main_header)
+  const description_html = asHTML(musicEventsRootData && musicEventsRootData.description)
 
   const { pathname } = useLocation()
   const musicLink = navbarData.find((d) =>
     d.route.startsWith('/' + pathname.split('/')[1])
   )
-  const loading =
-    navbarDataLoading ||
-    !musicEventsRootLoading ||
-    musicEventsRootLoading.state !== 'loaded' ||
-    !musicEventsLoading ||
-    musicEventsLoading.state !== 'loaded'
+  const loading = navbarDataLoading || musicEventsRootDataLoading || musicEventsDataLoading
 
-  const upcomingEvents =
-    musicEventsData &&
-    musicEventsData.filter((e) => new Date(e.data.date_and_time) > new Date())
-  const pastEvents =
-    musicEventsData &&
-    musicEventsData.filter((e) => new Date(e.data.date_and_time) <= new Date())
+  const upcomingEvents = musicEventsData.filter((e) => new Date(e.date_and_time) > new Date())
+  const pastEvents = musicEventsData.filter((e) => new Date(e.date_and_time) <= new Date())
 
   function sortByDate(a, b, asc = false) {
-    const dateA = new Date(a.data.date_and_time)
-    const dateB = new Date(b.data.date_and_time)
+    const dateA = new Date(a.date_and_time)
+    const dateB = new Date(b.date_and_time)
 
     if (asc) {
       return dateA - dateB
@@ -57,11 +47,16 @@ function MusicEvents({ navbarData, navbarDataLoading, navbarDataError }) {
     }
   }
 
+  useEffect(() => {
+    onFetchMusicEventsRootData()
+    onFetchMusicEventsData()
+  }, [])
+
   return (
     <PageContentWrapper loading={loading}>
-      <div className="software-resume">
-        <Header html={main_header_html} />
-        <ParagraphText html={description_html} />
+      <div className="music-events">
+        <Header html={main_header_html} errMsg={musicEventsRootDataError}/>
+        <ParagraphText html={description_html} errMsg={musicEventsDataError} />
 
         <h2>Upcoming Events</h2>
         {upcomingEvents && upcomingEvents.length == 0 && (
@@ -70,23 +65,22 @@ function MusicEvents({ navbarData, navbarDataLoading, navbarDataError }) {
           </p>
         )}
         {upcomingEvents &&
-          upcomingEvents.sort(sortByDate).map((e) => <OneEvent {...e.data} />)}
+          upcomingEvents.sort(sortByDate).map((e, index) => <OneEvent key={index} {...e} />)}
 
         <h2>Past Events</h2>
         {pastEvents &&
-          pastEvents.sort(sortByDate).map((e) => <OneEvent {...e.data} />)}
+          pastEvents.sort(sortByDate).map((e, index) => <OneEvent key={index} {...e} />)}
 
         <div className="links">
-          {musicLink &&
-            musicLink.children
-              .filter((d) => d.route !== pathname)
-              .map((d) => (
-                <ButtonLink
-                  key={d.route}
-                  route={d.route}
-                  text={`View ${d.title}`}
-                />
-              ))}
+          {musicLink && musicLink.children
+            .filter((d) => d.route !== pathname)
+            .map((d) => (
+              <ButtonLink
+                key={d.route}
+                route={d.route}
+                text={`View ${d.title}`}
+              />
+            ))}
         </div>
       </div>
     </PageContentWrapper>
@@ -97,11 +91,19 @@ const mapState = (state) => {
   return {
     navbarData: state.externalData.navbarData,
     navbarDataLoading: state.externalData.navbarDataLoading,
-    navbarDataError: state.externalData.navbarDataError
+    musicEventsRootData: state.externalData.musicEventsRootData,
+    musicEventsRootDataLoading: state.externalData.musicEventsRootDataLoading,
+    musicEventsRootDataError: state.externalData.musicEventsRootDataError,
+    musicEventsData: state.externalData.musicEventsData,
+    musicEventsDataLoading: state.externalData.musicEventsDataLoading,
+    musicEventsDataError: state.externalData.musicEventsDataError
   }
 }
 
-const mapDispatch = (dispatch) => ({})
+const mapDispatch = (dispatch) => ({
+  onFetchMusicEventsRootData: () => dispatch(fetchMusicEventsRootData()),
+  onFetchMusicEventsData: () => dispatch(fetchMusicEventsData())
+})
 
 export default connect(mapState, mapDispatch)(MusicEvents)
 
@@ -121,7 +123,7 @@ function OneEvent({
     new Date(date_and_time),
     'h:mm A, MMMM D, YYYY'
   )
-
+  
   return (
     <div className="one-event">
       <a

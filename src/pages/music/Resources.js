@@ -1,11 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import {
-  useSinglePrismicDocument,
-  useAllPrismicDocumentsByType
-} from '@prismicio/react'
 import { asHTML } from '../../services/prismic'
+import { fetchMusicResourcesRootData, fetchMusicResourcesData } from '../../state/externalData'
 
 import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
@@ -14,43 +11,43 @@ import ButtonLink from '../../components/ButtonLink'
 import './Resources.styl'
 import ParagraphText from '../../components/ParagraphText'
 
-function MusicResources({ navbarData, navbarDataLoading, navbarDataError }) {
-  const [musicResourcesRootData, musicResourcesRootLoading] =
-    useSinglePrismicDocument('music_resources_root')
-  const main_header_html = asHTML(
-    musicResourcesRootData && musicResourcesRootData.data.main_header
-  )
-  const description_html = asHTML(
-    musicResourcesRootData && musicResourcesRootData.data.description
-  )
-
-  const [musicResourcesData, musicResourcesLoading] =
-    useAllPrismicDocumentsByType('music_resource')
+function MusicResources({ 
+  navbarData, 
+  navbarDataLoading,
+  musicResourcesRootData,
+  musicResourcesRootDataLoading,
+  musicResourcesRootDataError,
+  onFetchMusicResourcesRootData,
+  musicResourcesData,
+  musicResourcesDataLoading,
+  musicResourcesDataError,
+  onFetchMusicResourcesData
+}) {
+  const main_header_html = asHTML(musicResourcesRootData && musicResourcesRootData.main_header)
+  const description_html = asHTML(musicResourcesRootData && musicResourcesRootData.description)
 
   const { pathname } = useLocation()
   const musicLink = navbarData.find((d) =>
     d.route.startsWith('/' + pathname.split('/')[1])
   )
-  const loading =
-    navbarDataLoading ||
-    !musicResourcesRootLoading ||
-    musicResourcesRootLoading.state !== 'loaded' ||
-    !musicResourcesLoading ||
-    musicResourcesLoading.state !== 'loaded'
+  const loading = navbarDataLoading || musicResourcesRootDataLoading || musicResourcesDataLoading
+
+  useEffect(() => {
+    onFetchMusicResourcesRootData()
+    onFetchMusicResourcesData()
+  }, [])
 
   return (
     <PageContentWrapper loading={loading}>
       <div className="music-resources">
-        <Header html={main_header_html} />
-        <ParagraphText html={description_html} />
+        <Header html={main_header_html} errMsg={musicResourcesRootDataError}/>
+        <ParagraphText html={description_html} errMsg={musicResourcesDataError} />
 
         {musicResourcesData &&
           musicResourcesData.map((r, i) => (
             <OneResource
               key={i}
-              title={r.data.title}
-              media_attachment={r.data.media_attachment}
-              main_content={r.data.main_content}
+              { ...r}
             />
           ))}
 
@@ -75,11 +72,19 @@ const mapState = (state) => {
   return {
     navbarData: state.externalData.navbarData,
     navbarDataLoading: state.externalData.navbarDataLoading,
-    navbarDataError: state.externalData.navbarDataError
+    musicResourcesRootData: state.externalData.musicResourcesRootData,
+    musicResourcesRootDataLoading: state.externalData.musicResourcesRootDataLoading,
+    musicResourcesRootDataError: state.externalData.musicResourcesRootDataError,
+    musicResourcesData: state.externalData.musicResourcesData,
+    musicResourcesDataLoading: state.externalData.musicResourcesDataLoading,
+    musicResourcesDataError: state.externalData.musicResourcesDataError
   }
 }
 
-const mapDispatch = (dispatch) => ({})
+const mapDispatch = (dispatch) => ({
+  onFetchMusicResourcesRootData: () => dispatch(fetchMusicResourcesRootData()),
+  onFetchMusicResourcesData: () => dispatch(fetchMusicResourcesData())
+})
 
 export default connect(mapState, mapDispatch)(MusicResources)
 

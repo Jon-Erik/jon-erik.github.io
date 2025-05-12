@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { useSinglePrismicDocument } from '@prismicio/react'
 import { asHTML } from '../services/prismic'
 import { req } from '../services/fetch'
+import { fetchContactData } from '../state/externalData'
 
 import PageContentWrapper from '../components/PageContentWrapper'
 import Header from '../components/Header'
@@ -60,7 +60,14 @@ const statuses = {
 	SUCCESS: 3
 }
 
-function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
+function Contact({ 
+	navbarData, 
+	navbarDataLoading,
+	contactData,
+  	contactDataLoading,
+  	contactDataError,
+	onFetchContactData
+}) {
 	const [formData, setFormData] = useState(defaultFormData)
 	const formErrs = formData ? Object.keys(formData).map(key => {
 		return formData[key].value && !formData[key].error
@@ -70,27 +77,24 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 		msg: "",
 	})
 
-	const [contactData, contactLoading] =
-		useSinglePrismicDocument('contact')
 	const main_header_html = asHTML(
-		contactData && contactData.data.main_header
+		contactData && contactData.main_header
 	)
 	const description_html = asHTML(
-		contactData && contactData.data.description
+		contactData && contactData.description
 	)
 	const error_text_html = asHTML(
-		contactData && contactData.data.error_text
+		contactData && contactData.error_text
 	)
 	const success_text_html = asHTML(
-		contactData && contactData.data.success_text
+		contactData && contactData.success_text
 	)
 
 	const { pathname } = useLocation()
 	const links = navbarData.filter((d) => !d.route.startsWith(pathname))
 	const loading =
 		navbarDataLoading ||
-		!contactLoading ||
-		contactLoading.state !== 'loaded'
+		contactDataLoading
 
 	const submitting = submitStatus.code == statuses.LOADING
 
@@ -180,6 +184,8 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 	}
 
 	useEffect(() => {
+		onFetchContactData()
+
 		const recaptchaScriptTag = document.querySelector("#recaptcha");
 		if (!recaptchaScriptTag) {
 			const scriptTag = document.createElement('script')
@@ -197,7 +203,7 @@ function Contact({ navbarData, navbarDataLoading, navbarDataError }) {
 	return (
 		<PageContentWrapper loading={loading} centerChildren={true}>
 			<div className="contact">
-				<Header html={main_header_html} />
+				<Header html={main_header_html} errMsg={contactDataError}/>
 				<ParagraphText html={description_html} />
 				
 				{[statuses.ERROR, statuses.NOT_SUBMITTED, statuses.LOADING].includes(submitStatus.code) && (
@@ -276,10 +282,14 @@ const mapState = (state) => {
   return {
     navbarData: state.externalData.navbarData,
     navbarDataLoading: state.externalData.navbarDataLoading,
-    navbarDataError: state.externalData.navbarDataError
+	contactData: state.externalData.contactData,
+  	contactDataLoading: state.externalData.contactDataLoading,
+  	contactDataError: state.externalData.contactDataError
   }
 }
 
-const mapDispatch = (dispatch) => ({})
+const mapDispatch = (dispatch) => ({
+	onFetchContactData: () => dispatch(fetchContactData())
+})
 
 export default connect(mapState, mapDispatch)(Contact)

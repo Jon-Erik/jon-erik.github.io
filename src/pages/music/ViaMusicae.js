@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { useSinglePrismicDocument } from '@prismicio/react'
 import { asHTML } from '../../services/prismic'
 import { getBlogPosts } from '../../services/blogger'
 import fecha from 'fecha'
@@ -14,15 +13,18 @@ import Loader from '../../components/Loader'
 
 import './ViaMusicae.styl'
 import ParagraphText from '../../components/ParagraphText'
+import { fetchMusicBlogRootData } from '../../state/externalData'
 
-function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
-  const [viaMusicaeRootData, viaMusicaeRootLoading] =
-    useSinglePrismicDocument('via_musicae_root')
-  const main_header_html = asHTML(
-    viaMusicaeRootData && viaMusicaeRootData.data.main_header
-  )
-  const description_html =
-    viaMusicaeRootData && viaMusicaeRootData.data.description[0].text
+function ViaMusicae({ 
+  navbarData, 
+  navbarDataLoading,
+  musicBlogRootData,
+  musicBlogRootDataLoading,
+  musicBlogRootDataError,
+  onFetchMusicBlogRootData,
+ }) {
+  const main_header_html = asHTML(musicBlogRootData && musicBlogRootData.main_header)
+  const description_html = asHTML(musicBlogRootData && musicBlogRootData.description)
 
   const [nextPageToken, setNextPageToken] = useState('')
   const [loadingPosts, setLoadingPosts] = useState(false)
@@ -32,10 +34,7 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
   const musicLink = navbarData.find((d) =>
     d.route.startsWith('/' + pathname.split('/')[1])
   )
-  const loading =
-    navbarDataLoading ||
-    !viaMusicaeRootLoading ||
-    viaMusicaeRootLoading.state !== 'loaded'
+  const loading = navbarDataLoading || musicBlogRootDataLoading
 
   async function getPosts() {
     setLoadingPosts(true)
@@ -52,17 +51,18 @@ function ViaMusicae({ navbarData, navbarDataLoading, navbarDataError }) {
   }
 
   useEffect(() => {
+    onFetchMusicBlogRootData()
     getPosts()
   }, [])
 
   return (
     <PageContentWrapper loading={loading}>
       <div className="via-musicae">
-        <Header html={main_header_html} />
+        <Header html={main_header_html} errMsg={musicBlogRootDataError}/>
         <ParagraphText html={description_html} />
 
-        {posts.map((p) => (
-          <OnePost {...p} />
+        {posts.map((p, index) => (
+          <OnePost key={index} {...p} />
         ))}
 
         {!loadingPosts && (
@@ -98,11 +98,15 @@ const mapState = (state) => {
   return {
     navbarData: state.externalData.navbarData,
     navbarDataLoading: state.externalData.navbarDataLoading,
-    navbarDataError: state.externalData.navbarDataError
+    musicBlogRootData: state.externalData.musicBlogRootData,
+    musicBlogRootDataLoading: state.externalData.musicBlogRootDataLoading,
+    musicBlogRootDataError: state.externalData.musicBlogRootDataError,
   }
 }
 
-const mapDispatch = (dispatch) => ({})
+const mapDispatch = (dispatch) => ({
+    onFetchMusicBlogRootData: () => dispatch(fetchMusicBlogRootData()),
+})
 
 export default connect(mapState, mapDispatch)(ViaMusicae)
 

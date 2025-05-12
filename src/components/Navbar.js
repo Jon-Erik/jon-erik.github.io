@@ -40,6 +40,10 @@ export function Navbar({
     )
   }
 
+  if (navbarDataError) {
+    return <div>ERROR LOADING: navbarDataError</div>
+  }
+
   return (
     <div className="navbar">
       <div className="links-list">

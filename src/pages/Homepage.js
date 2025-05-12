@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useSinglePrismicDocument } from '@prismicio/react'
 import { asHTML } from '../services/prismic'
+import { fetchHomepageData } from '../state/externalData'
 
 import PageContentWrapper from '../components/PageContentWrapper'
 import Header from '../components/Header'
@@ -11,17 +11,24 @@ import ButtonLink from '../components/ButtonLink'
 
 import './Homepage.styl'
 
-function Homepage({ navbarData, navbarDataLoading, navbarDataError }) {
-  const [homepageData, homepageLoading] = useSinglePrismicDocument('homepage')
-  const portrait = homepageData && homepageData.data.portrait.url
-  const main_header_html = asHTML(homepageData && homepageData.data.main_header)
-  const subheader_html = asHTML(homepageData && homepageData.data.subheader)
-  const text_content_html = asHTML(
-    homepageData && homepageData.data.text_content
-  )
+function Homepage({ 
+  navbarData, 
+  navbarDataLoading, 
+  homepageData,
+  homepageDataLoading,
+  homepageDataError,
+  onFetchHomepageData
+}) {
+  const portrait = homepageData && homepageData.portrait && homepageData.portrait.url
+  const main_header_html = asHTML(homepageData && homepageData.main_header)
+  const subheader_html = asHTML(homepageData && homepageData.subheader)
+  const text_content_html = asHTML(homepageData && homepageData.text_content)
 
-  const loading =
-    navbarDataLoading || !homepageLoading || homepageLoading.state !== 'loaded'
+  const loading = navbarDataLoading || homepageDataLoading 
+
+  useEffect(() => {
+    onFetchHomepageData()
+  }, [])
 
   return (
     <PageContentWrapper loading={loading} centerChildren={true}>
@@ -30,7 +37,7 @@ function Homepage({ navbarData, navbarDataLoading, navbarDataError }) {
           <img src={portrait} />
         </div>
         <div className="text">
-          <Header html={main_header_html} />
+          <Header html={main_header_html} errMsg={homepageDataError} />
           <SubHeader html={subheader_html} />
           <ParagraphText html={text_content_html} />
           <div className="links">
@@ -50,10 +57,14 @@ const mapState = (state) => {
   return {
     navbarData: state.externalData.navbarData,
     navbarDataLoading: state.externalData.navbarDataLoading,
-    navbarDataError: state.externalData.navbarDataError
+    homepageData: state.externalData.homepageData,
+    homepageDataLoading: state.externalData.homepageDataLoading,
+    homepageDataError: state.externalData.homepageDataError,
   }
 }
 
-const mapDispatch = (dispatch) => ({})
+const mapDispatch = (dispatch) => ({
+  onFetchHomepageData: () => dispatch(fetchHomepageData())
+})
 
 export default connect(mapState, mapDispatch)(Homepage)
