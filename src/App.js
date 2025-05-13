@@ -26,6 +26,9 @@ function App() {
         <div className="page-content">
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/">
+              <Route path="*" element={<NotFound />} />
+            </Route>
             <Route path="/software" element={<Software />} />
             <Route path="/software">
               <Route path="resume" element={<SoftwareResume />} />
@@ -39,7 +42,6 @@ function App() {
               <Route path="via-musicae" element={<MusicViaMusicae />} />
             </Route>
             <Route path="/contact" element={<Contact />} />
-            <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>
         <Footer />
