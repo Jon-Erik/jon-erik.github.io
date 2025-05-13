@@ -11,20 +11,21 @@ import ButtonLink from '../components/ButtonLink'
 
 import './Homepage.styl'
 
-function Homepage({ 
-  navbarData, 
-  navbarDataLoading, 
+function Homepage({
+  navbarData,
+  navbarDataLoading,
   homepageData,
   homepageDataLoading,
   homepageDataError,
   onFetchHomepageData
 }) {
-  const portrait = homepageData && homepageData.portrait && homepageData.portrait.url
+  const portrait =
+    homepageData && homepageData.portrait && homepageData.portrait.url
   const main_header_html = asHTML(homepageData && homepageData.main_header)
   const subheader_html = asHTML(homepageData && homepageData.subheader)
   const text_content_html = asHTML(homepageData && homepageData.text_content)
 
-  const loading = navbarDataLoading || homepageDataLoading 
+  const loading = navbarDataLoading || homepageDataLoading
 
   useEffect(() => {
     onFetchHomepageData()
@@ -59,7 +60,7 @@ const mapState = (state) => {
     navbarDataLoading: state.externalData.navbarDataLoading,
     homepageData: state.externalData.homepageData,
     homepageDataLoading: state.externalData.homepageDataLoading,
-    homepageDataError: state.externalData.homepageDataError,
+    homepageDataError: state.externalData.homepageDataError
   }
 }
 

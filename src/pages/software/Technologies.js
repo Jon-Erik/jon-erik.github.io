@@ -19,9 +19,15 @@ function SoftwareTechnologies({
   softwareTechDataError,
   onFetchSoftwareTechData
 }) {
-  const main_header_html = asHTML(softwareTechData && softwareTechData.main_header)
-  const description_html = asHTML(softwareTechData && softwareTechData.description)
-  const main_content_html = asHTML(softwareTechData && softwareTechData.main_content)
+  const main_header_html = asHTML(
+    softwareTechData && softwareTechData.main_header
+  )
+  const description_html = asHTML(
+    softwareTechData && softwareTechData.description
+  )
+  const main_content_html = asHTML(
+    softwareTechData && softwareTechData.main_content
+  )
 
   const { pathname } = useLocation()
   const softwareLink = navbarData.find((d) =>
@@ -65,7 +71,7 @@ const mapState = (state) => {
     navbarDataLoading: state.externalData.navbarDataLoading,
     softwareTechData: state.externalData.softwareTechData,
     softwareTechDataLoading: state.externalData.softwareTechDataLoading,
-    softwareTechDataError: state.externalData.softwareTechDataError,
+    softwareTechDataError: state.externalData.softwareTechDataError
   }
 }
 

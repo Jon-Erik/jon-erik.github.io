@@ -100,7 +100,7 @@ const initialState = {
   softwareResumeDataError: '',
   softwareTechData: {},
   softwareTechDataLoading: false,
-  softwareTechDataError: '',
+  softwareTechDataError: ''
 }
 
 export default produce((draft, action) => {
@@ -295,7 +295,7 @@ function parseSingleItemCollection(rawData) {
 }
 
 function parseMultiItemCollection(rawData) {
-  return rawData.map(item => item.data)
+  return rawData.map((item) => item.data)
 }
 
 function sortByField(a, b) {

@@ -11,8 +11,8 @@ import ButtonLink from '../components/ButtonLink'
 
 import './Software.styl'
 
-function Software({ 
-  navbarData, 
+function Software({
+  navbarData,
   navbarDataLoading,
   softwareData,
   softwareDataLoading,
@@ -53,7 +53,7 @@ const mapState = (state) => {
     navbarDataError: state.externalData.navbarDataError,
     softwareData: state.externalData.softwareData,
     softwareDataLoading: state.externalData.softwareDataLoading,
-    softwareDataError: state.externalData.softwareDataError,
+    softwareDataError: state.externalData.softwareDataError
   }
 }
 

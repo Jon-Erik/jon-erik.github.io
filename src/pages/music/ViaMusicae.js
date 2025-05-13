@@ -15,16 +15,20 @@ import './ViaMusicae.styl'
 import ParagraphText from '../../components/ParagraphText'
 import { fetchMusicBlogRootData } from '../../state/externalData'
 
-function ViaMusicae({ 
-  navbarData, 
+function ViaMusicae({
+  navbarData,
   navbarDataLoading,
   musicBlogRootData,
   musicBlogRootDataLoading,
   musicBlogRootDataError,
-  onFetchMusicBlogRootData,
- }) {
-  const main_header_html = asHTML(musicBlogRootData && musicBlogRootData.main_header)
-  const description_html = asHTML(musicBlogRootData && musicBlogRootData.description)
+  onFetchMusicBlogRootData
+}) {
+  const main_header_html = asHTML(
+    musicBlogRootData && musicBlogRootData.main_header
+  )
+  const description_html = asHTML(
+    musicBlogRootData && musicBlogRootData.description
+  )
 
   const [nextPageToken, setNextPageToken] = useState('')
   const [loadingPosts, setLoadingPosts] = useState(false)
@@ -58,7 +62,7 @@ function ViaMusicae({
   return (
     <PageContentWrapper loading={loading}>
       <div className="via-musicae">
-        <Header html={main_header_html} errMsg={musicBlogRootDataError}/>
+        <Header html={main_header_html} errMsg={musicBlogRootDataError} />
         <ParagraphText html={description_html} />
 
         {posts.map((p, index) => (
@@ -100,12 +104,12 @@ const mapState = (state) => {
     navbarDataLoading: state.externalData.navbarDataLoading,
     musicBlogRootData: state.externalData.musicBlogRootData,
     musicBlogRootDataLoading: state.externalData.musicBlogRootDataLoading,
-    musicBlogRootDataError: state.externalData.musicBlogRootDataError,
+    musicBlogRootDataError: state.externalData.musicBlogRootDataError
   }
 }
 
 const mapDispatch = (dispatch) => ({
-    onFetchMusicBlogRootData: () => dispatch(fetchMusicBlogRootData()),
+  onFetchMusicBlogRootData: () => dispatch(fetchMusicBlogRootData())
 })
 
 export default connect(mapState, mapDispatch)(ViaMusicae)

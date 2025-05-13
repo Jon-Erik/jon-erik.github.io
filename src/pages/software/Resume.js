@@ -12,16 +12,22 @@ import ButtonLink from '../../components/ButtonLink'
 import './Resume.styl'
 
 function SoftwareResume({
-  navbarData, 
+  navbarData,
   navbarDataLoading,
   softwareResumeData,
   softwareResumeDataLoading,
   softwareResumeDataError,
-  onFetchSoftwareResumeData,
+  onFetchSoftwareResumeData
 }) {
-  const main_header_html = asHTML(softwareResumeData && softwareResumeData.main_header)
-  const education_html = asHTML(softwareResumeData && softwareResumeData.education)
-  const work_experience_html = asHTML(softwareResumeData && softwareResumeData.work_experience)
+  const main_header_html = asHTML(
+    softwareResumeData && softwareResumeData.main_header
+  )
+  const education_html = asHTML(
+    softwareResumeData && softwareResumeData.education
+  )
+  const work_experience_html = asHTML(
+    softwareResumeData && softwareResumeData.work_experience
+  )
 
   const { pathname } = useLocation()
   const softwareLink = navbarData.find((d) =>
@@ -62,12 +68,12 @@ const mapState = (state) => {
     navbarDataLoading: state.externalData.navbarDataLoading,
     softwareResumeData: state.externalData.softwareResumeData,
     softwareResumeDataLoading: state.externalData.softwareResumeDataLoading,
-    softwareResumeDataError: state.externalData.softwareResumeDataError,
+    softwareResumeDataError: state.externalData.softwareResumeDataError
   }
 }
 
 const mapDispatch = (dispatch) => ({
-  onFetchSoftwareResumeData: () => dispatch(fetchSoftwareResumeData()),
+  onFetchSoftwareResumeData: () => dispatch(fetchSoftwareResumeData())
 })
 
 export default connect(mapState, mapDispatch)(SoftwareResume)

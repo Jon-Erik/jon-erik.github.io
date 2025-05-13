@@ -11,9 +11,9 @@ import ButtonLink from '../components/ButtonLink'
 
 import './Software.styl'
 
-function Software({ 
-  navbarData, 
-  navbarDataLoading, 
+function Software({
+  navbarData,
+  navbarDataLoading,
   musicData,
   musicDataLoading,
   musicDataError,
@@ -24,7 +24,7 @@ function Software({
 
   const { pathname } = useLocation()
   const softwareLink = navbarData.find((d) => d.route.startsWith(pathname))
-  const loading = navbarDataLoading || musicDataLoading 
+  const loading = navbarDataLoading || musicDataLoading
 
   useEffect(() => {
     onFetchMusicData()
@@ -33,7 +33,7 @@ function Software({
   return (
     <PageContentWrapper loading={loading} centerChildren={true}>
       <div className="software">
-        <Header html={main_header_html} errMsg={musicDataError}/>
+        <Header html={main_header_html} errMsg={musicDataError} />
         <ParagraphText html={description_html} />
         <div className="links">
           {softwareLink &&
@@ -53,12 +53,12 @@ const mapState = (state) => {
     navbarDataError: state.externalData.navbarDataError,
     musicData: state.externalData.musicData,
     musicDataLoading: state.externalData.musicDataLoading,
-    musicDataError: state.externalData.musicDataError,
+    musicDataError: state.externalData.musicDataError
   }
 }
 
 const mapDispatch = (dispatch) => ({
-    onFetchMusicData: () => dispatch(fetchMusicData())
+  onFetchMusicData: () => dispatch(fetchMusicData())
 })
 
 export default connect(mapState, mapDispatch)(Software)

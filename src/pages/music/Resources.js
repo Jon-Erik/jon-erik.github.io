@@ -2,7 +2,10 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { asHTML } from '../../services/prismic'
-import { fetchMusicResourcesRootData, fetchMusicResourcesData } from '../../state/externalData'
+import {
+  fetchMusicResourcesRootData,
+  fetchMusicResourcesData
+} from '../../state/externalData'
 
 import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
@@ -11,8 +14,8 @@ import ButtonLink from '../../components/ButtonLink'
 import './Resources.styl'
 import ParagraphText from '../../components/ParagraphText'
 
-function MusicResources({ 
-  navbarData, 
+function MusicResources({
+  navbarData,
   navbarDataLoading,
   musicResourcesRootData,
   musicResourcesRootDataLoading,
@@ -23,14 +26,21 @@ function MusicResources({
   musicResourcesDataError,
   onFetchMusicResourcesData
 }) {
-  const main_header_html = asHTML(musicResourcesRootData && musicResourcesRootData.main_header)
-  const description_html = asHTML(musicResourcesRootData && musicResourcesRootData.description)
+  const main_header_html = asHTML(
+    musicResourcesRootData && musicResourcesRootData.main_header
+  )
+  const description_html = asHTML(
+    musicResourcesRootData && musicResourcesRootData.description
+  )
 
   const { pathname } = useLocation()
   const musicLink = navbarData.find((d) =>
     d.route.startsWith('/' + pathname.split('/')[1])
   )
-  const loading = navbarDataLoading || musicResourcesRootDataLoading || musicResourcesDataLoading
+  const loading =
+    navbarDataLoading ||
+    musicResourcesRootDataLoading ||
+    musicResourcesDataLoading
 
   useEffect(() => {
     onFetchMusicResourcesRootData()
@@ -40,16 +50,14 @@ function MusicResources({
   return (
     <PageContentWrapper loading={loading}>
       <div className="music-resources">
-        <Header html={main_header_html} errMsg={musicResourcesRootDataError}/>
-        <ParagraphText html={description_html} errMsg={musicResourcesDataError} />
+        <Header html={main_header_html} errMsg={musicResourcesRootDataError} />
+        <ParagraphText
+          html={description_html}
+          errMsg={musicResourcesDataError}
+        />
 
         {musicResourcesData &&
-          musicResourcesData.map((r, i) => (
-            <OneResource
-              key={i}
-              { ...r}
-            />
-          ))}
+          musicResourcesData.map((r, i) => <OneResource key={i} {...r} />)}
 
         <div className="links">
           {musicLink &&
@@ -73,7 +81,8 @@ const mapState = (state) => {
     navbarData: state.externalData.navbarData,
     navbarDataLoading: state.externalData.navbarDataLoading,
     musicResourcesRootData: state.externalData.musicResourcesRootData,
-    musicResourcesRootDataLoading: state.externalData.musicResourcesRootDataLoading,
+    musicResourcesRootDataLoading:
+      state.externalData.musicResourcesRootDataLoading,
     musicResourcesRootDataError: state.externalData.musicResourcesRootDataError,
     musicResourcesData: state.externalData.musicResourcesData,
     musicResourcesDataLoading: state.externalData.musicResourcesDataLoading,

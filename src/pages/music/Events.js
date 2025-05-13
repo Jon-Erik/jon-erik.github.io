@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { asHTML } from '../../services/prismic'
 import fecha from 'fecha'
-import { fetchMusicEventsRootData, fetchMusicEventsData } from '../../state/externalData'
+import {
+  fetchMusicEventsRootData,
+  fetchMusicEventsData
+} from '../../state/externalData'
 
 import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
@@ -12,8 +15,8 @@ import ButtonLink from '../../components/ButtonLink'
 import './Events.styl'
 import ParagraphText from '../../components/ParagraphText'
 
-function MusicEvents({ 
-  navbarData, 
+function MusicEvents({
+  navbarData,
   navbarDataLoading,
   musicEventsRootData,
   musicEventsRootDataLoading,
@@ -24,17 +27,26 @@ function MusicEvents({
   musicEventsDataError,
   onFetchMusicEventsData
 }) {
-  const main_header_html = asHTML(musicEventsRootData && musicEventsRootData.main_header)
-  const description_html = asHTML(musicEventsRootData && musicEventsRootData.description)
+  const main_header_html = asHTML(
+    musicEventsRootData && musicEventsRootData.main_header
+  )
+  const description_html = asHTML(
+    musicEventsRootData && musicEventsRootData.description
+  )
 
   const { pathname } = useLocation()
   const musicLink = navbarData.find((d) =>
     d.route.startsWith('/' + pathname.split('/')[1])
   )
-  const loading = navbarDataLoading || musicEventsRootDataLoading || musicEventsDataLoading
+  const loading =
+    navbarDataLoading || musicEventsRootDataLoading || musicEventsDataLoading
 
-  const upcomingEvents = musicEventsData.filter((e) => new Date(e.date_and_time) > new Date())
-  const pastEvents = musicEventsData.filter((e) => new Date(e.date_and_time) <= new Date())
+  const upcomingEvents = musicEventsData.filter(
+    (e) => new Date(e.date_and_time) > new Date()
+  )
+  const pastEvents = musicEventsData.filter(
+    (e) => new Date(e.date_and_time) <= new Date()
+  )
 
   function sortByDate(a, b, asc = false) {
     const dateA = new Date(a.date_and_time)
@@ -55,7 +67,7 @@ function MusicEvents({
   return (
     <PageContentWrapper loading={loading}>
       <div className="music-events">
-        <Header html={main_header_html} errMsg={musicEventsRootDataError}/>
+        <Header html={main_header_html} errMsg={musicEventsRootDataError} />
         <ParagraphText html={description_html} errMsg={musicEventsDataError} />
 
         <h2>Upcoming Events</h2>
@@ -65,22 +77,27 @@ function MusicEvents({
           </p>
         )}
         {upcomingEvents &&
-          upcomingEvents.sort(sortByDate).map((e, index) => <OneEvent key={index} {...e} />)}
+          upcomingEvents
+            .sort(sortByDate)
+            .map((e, index) => <OneEvent key={index} {...e} />)}
 
         <h2>Past Events</h2>
         {pastEvents &&
-          pastEvents.sort(sortByDate).map((e, index) => <OneEvent key={index} {...e} />)}
+          pastEvents
+            .sort(sortByDate)
+            .map((e, index) => <OneEvent key={index} {...e} />)}
 
         <div className="links">
-          {musicLink && musicLink.children
-            .filter((d) => d.route !== pathname)
-            .map((d) => (
-              <ButtonLink
-                key={d.route}
-                route={d.route}
-                text={`View ${d.title}`}
-              />
-            ))}
+          {musicLink &&
+            musicLink.children
+              .filter((d) => d.route !== pathname)
+              .map((d) => (
+                <ButtonLink
+                  key={d.route}
+                  route={d.route}
+                  text={`View ${d.title}`}
+                />
+              ))}
         </div>
       </div>
     </PageContentWrapper>
@@ -123,7 +140,7 @@ function OneEvent({
     new Date(date_and_time),
     'h:mm A, MMMM D, YYYY'
   )
-  
+
   return (
     <div className="one-event">
       <a
