@@ -27,16 +27,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/software" element={<Software />} />
-            <Route path="/software/resume" element={<SoftwareResume />} />
-            <Route
-              path="/software/technologies"
-              element={<SoftwareTechnologies />}
-            />
+            <Route path="/software">
+              <Route path="resume" element={<SoftwareResume />} />
+              <Route path="technologies" element={<SoftwareTechnologies />} />
+            </Route>
             <Route path="/music" element={<Music />} />
-            <Route path="/music/resume" element={<MusicResume />} />
-            <Route path="/music/resources" element={<MusicResources />} />
-            <Route path="/music/events" element={<MusicEvents />} />
-            <Route path="/music/via-musicae" element={<MusicViaMusicae />} />
+            <Route path="/music">
+              <Route path="resume" element={<MusicResume />} />
+              <Route path="resources" element={<MusicResources />} />
+              <Route path="events" element={<MusicEvents />} />
+              <Route path="via-musicae" element={<MusicViaMusicae />} />
+            </Route>
             <Route path="/contact" element={<Contact />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>

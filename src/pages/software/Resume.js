@@ -42,7 +42,7 @@ function SoftwareResume({
   return (
     <PageContentWrapper loading={loading}>
       <div className="software-resume imported-html">
-        <Header text={main_header_html} errMsg={softwareResumeDataError} />
+        <Header html={main_header_html} errMsg={softwareResumeDataError} />
         <ParagraphText html={work_experience_html} />
         <ParagraphText html={education_html} />
         <div className="links">
