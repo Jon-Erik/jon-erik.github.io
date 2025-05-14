@@ -34,14 +34,21 @@ function Homepage({
   return (
     <PageContentWrapper loading={loading} centerChildren={true}>
       <div className="homepage">
-        <div className="image">
+        <div className="image fade-in">
           <img src={portrait} />
         </div>
         <div className="text">
-          <Header html={main_header_html} errMsg={homepageDataError} />
-          <SubHeader html={subheader_html} />
-          <ParagraphText html={text_content_html} />
-          <div className="links">
+          <Header
+            className="header fade-in"
+            html={main_header_html}
+            errMsg={homepageDataError}
+          />
+          <SubHeader className="sub-header fade-in" html={subheader_html} />
+          <ParagraphText
+            className="paragraph fade-in"
+            html={text_content_html}
+          />
+          <div className="links fade-in">
             {navbarData
               .filter((d) => d.route !== '/')
               .map((d) => (

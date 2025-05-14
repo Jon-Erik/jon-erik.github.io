@@ -1,7 +1,18 @@
 json("./style-vars.json")
 
-ParagraphFont = paragraphFont
 TitleFont = titleFont
+
+HeaderFont = headerFont
+HeaderFontColor = headerFontColor
+HeaderFontSize = headerFontSize
+
+SubLinkFont = subLinkFont
+SubLinkFontColor = subLinkFontColor
+SubLinkFontSize = subLinkFontSize
+
+ParagraphFont = paragraphFont
+ParagraphFontColor = paragraphFontColor
+ParagraphFontSize = paragraphFontSize
 
 .grecaptcha-badge
     visibility hidden
@@ -11,24 +22,35 @@ TitleFont = titleFont
     flex-direction column
     height 100vh
 
-    h1, h2
-        font-family 'Merriweather Sans', sans-serif
-        font-size 24px
-        text-transform uppercase
 
-    h2
-        font-size 21px
-
-    h3, h4
-        font-family titleFont
-
-    p, li, strong, i, em, label, input
-        font-family paragraphFont
 
     .page-content
         flex 1
         height calc(100vh - 77px)
         overflow-y auto
+        h1
+            font-family headerFont
+            font-size headerFontSize
+            text-transform uppercase
+            color headerFontColor
+
+        h2
+            font-family subLinkFont
+            font-size subLinkFontSize
+            text-transform uppercase
+            color subLinkFontColor
+
+        h3, h4
+            font-family titleFont
+
+        p, li, strong, i, em, label, input
+            font-family paragraphFont
+            font-size paragraphFontSize
+            color paragraphFontColor
+        
+        a
+            font-family paragraphFont
+            font-size paragraphFontSize
 
         .imported-html
             margin-bottom 30px

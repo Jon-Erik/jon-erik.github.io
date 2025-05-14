@@ -1,11 +1,36 @@
+@keyframes fadeIn
+  from
+    opacity 0
+  to
+    opacity 1
+
 .homepage
     display flex
+
+    .fade-in
+        opacity 0
+        animation-name fadeIn
+        animation-duration 1.5s
+        animation-iteration-count 1
+        animation-fill-mode forwards
+
+        &.image
+            animation-delay 0s
+        &.header
+            animation-delay 0.5s
+        &.sub-header
+            animation-delay 1s
+        &.paragraph
+            animation-delay 1.5s
+        &.links
+            animation-delay 2s
 
     .image
         img
             max-height 400px
             max-width 400px
             border-radius 100%
+            border 2px solid black
     
     .text
         max-width 400px
@@ -16,14 +41,19 @@
 
         h1
             margin 0
+            animation-delay 0.5s
 
         h2
             margin 10px 0 0 0
             text-transform none
             font-family 'Roboto', sans-serif
+            //animation 1.5s fadeIn
+            //animation-delay 1s
 
         .links
             display flex
+            //animation 1.5s fadeIn
+            //animation-delay 1.5s
 
             .button-link:not(:last-of-type)
                 margin-right 20px

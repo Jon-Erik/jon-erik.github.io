@@ -3,6 +3,8 @@ json("../style-vars.json")
 NavBackground = navBackground
 PageBackground = pageBackground
 TitleFont = titleFont
+SubLinkFontSize = subLinkFontSize
+ParagraphFontSize = paragraphFontSize
 
 .navbar
     background NavBackground
@@ -60,7 +62,7 @@ TitleFont = titleFont
             margin-right 0.5em
             margin-left 0.5em
             position relative
-            font-size 20px
+            font-size subLinkFontSize
             
             &.active
                 font-weight 800
@@ -76,8 +78,8 @@ TitleFont = titleFont
                 left -0.5em
 
                 .subnav-link
-                    font-weight 500
-                    font-size 16px
+                    font-weight 400
+                    font-size ParagraphFontSize
                     margin 3.5px
                     text-transform none
                     width fit-content

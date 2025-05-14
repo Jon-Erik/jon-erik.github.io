@@ -7,14 +7,14 @@ import React from 'react'
 
 import './ParagraphText.styl'
 
-export default function ParagraphText({ html, errMsg }) {
+export default function ParagraphText({ html, errMsg, className }) {
   if (errMsg) {
     return <div>ERROR LOADING: {errMsg}</div>
   }
 
   return (
     <div
-      className="paragraph-text"
+      className={`paragraph-text ${className}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )
