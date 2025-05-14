@@ -1,11 +1,12 @@
 json("../style-vars.json")
 
-NavBackground = navBackground
+BtnBackground = btnBackground
 PageBackground = pageBackground
 TitleFont = titleFont
+SmallFontSize = smallFontSize
 
 a.button, button.button
-    background NavBackground
+    background BtnBackground
     font-family TitleFont
     text-transform uppercase
     padding 5px
@@ -51,5 +52,8 @@ a.button, button.button
 
 .btn-disclaimer
     font-style italic
-    font-size 14px
+    font-size SmallFontSize
     margin-top 0.25em
+
+    a
+        font-size SmallFontSize !important

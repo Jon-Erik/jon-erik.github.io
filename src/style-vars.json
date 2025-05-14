@@ -2,7 +2,8 @@
   "raisinBlack": "#262322",
   "antiFlashWhite": "#ebebeb",
 
-  "navBackground": "#53697b",
+  "btnBackground": "#527897",
+  "navBackground": "#527897",
   "pageBackground": "#ebebeb",
 
   "titleFont": "'Roboto', sans-serif",
@@ -19,5 +20,7 @@
 
   "paragraphFont": "'Roboto', sans-serif",
   "paragraphFontSize": "16px",
-  "paragraphFontColor": "#262322"
+  "paragraphFontColor": "#262322",
+
+  "smallFontSize": "14px"
 }
