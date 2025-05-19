@@ -1,62 +1,70 @@
 import { produce } from 'immer'
+import { DateTime } from 'luxon'
 import createAction from './createAction'
 import { client as prismicClient } from '../services/prismic'
+import * as prismic from '@prismicio/client'
 
-export const NAVBAR_LOADING = 'NAVBAR_LOADING'
-export const NAVBAR_SUCCESS = 'NAVBAR_SUCCESS'
-export const NAVBAR_FAIL = 'NAVBAR_FAIL'
+const today = DateTime.now().toFormat("yyyy'-'MM'-'dd")
 
-export const FOOTER_LOADING = 'FOOTER_LOADING'
-export const FOOTER_SUCCESS = 'FOOTER_SUCCESS'
-export const FOOTER_FAIL = 'FOOTER_FAIL'
+const NAVBAR_LOADING = 'NAVBAR_LOADING'
+const NAVBAR_SUCCESS = 'NAVBAR_SUCCESS'
+const NAVBAR_FAIL = 'NAVBAR_FAIL'
 
-export const HOMEPAGE_LOADING = 'HOMEPAGE_LOADING'
-export const HOMEPAGE_SUCCESS = 'HOMEPAGE_SUCCESS'
-export const HOMEPAGE_FAIL = 'HOMEPAGE_FAIL'
+const FOOTER_LOADING = 'FOOTER_LOADING'
+const FOOTER_SUCCESS = 'FOOTER_SUCCESS'
+const FOOTER_FAIL = 'FOOTER_FAIL'
 
-export const CONTACT_LOADING = 'CONTACT_LOADING'
-export const CONTACT_SUCCESS = 'CONTACT_SUCCESS'
-export const CONTACT_FAIL = 'CONTACT_FAIL'
+const HOMEPAGE_LOADING = 'HOMEPAGE_LOADING'
+const HOMEPAGE_SUCCESS = 'HOMEPAGE_SUCCESS'
+const HOMEPAGE_FAIL = 'HOMEPAGE_FAIL'
 
-export const MUSIC_LOADING = 'MUSIC_LOADING'
-export const MUSIC_SUCCESS = 'MUSIC_SUCCESS'
-export const MUSIC_FAIL = 'MUSIC_FAIL'
+const CONTACT_LOADING = 'CONTACT_LOADING'
+const CONTACT_SUCCESS = 'CONTACT_SUCCESS'
+const CONTACT_FAIL = 'CONTACT_FAIL'
 
-export const MUSIC_EVENTS_ROOT_LOADING = 'MUSIC_EVENTS_ROOT_LOADING'
-export const MUSIC_EVENTS_ROOT_SUCCESS = 'MUSIC_EVENTS_ROOT_SUCCESS'
-export const MUSIC_EVENTS_ROOT_FAIL = 'MUSIC_EVENTS_ROOT_FAIL'
+const MUSIC_LOADING = 'MUSIC_LOADING'
+const MUSIC_SUCCESS = 'MUSIC_SUCCESS'
+const MUSIC_FAIL = 'MUSIC_FAIL'
 
-export const MUSIC_EVENTS_LOADING = 'MUSIC_EVENTS_LOADING'
-export const MUSIC_EVENTS_SUCCESS = 'MUSIC_EVENTS_SUCCESS'
-export const MUSIC_EVENTS_FAIL = 'MUSIC_EVENTS_FAIL'
+const MUSIC_EVENTS_ROOT_LOADING = 'MUSIC_EVENTS_ROOT_LOADING'
+const MUSIC_EVENTS_ROOT_SUCCESS = 'MUSIC_EVENTS_ROOT_SUCCESS'
+const MUSIC_EVENTS_ROOT_FAIL = 'MUSIC_EVENTS_ROOT_FAIL'
 
-export const MUSIC_RESOURCES_ROOT_LOADING = 'MUSIC_RESOURCES_ROOT_LOADING'
-export const MUSIC_RESOURCES_ROOT_SUCCESS = 'MUSIC_RESOURCES_ROOT_SUCCESS'
-export const MUSIC_RESOURCES_ROOT_FAIL = 'MUSIC_RESOURCES_ROOT_FAIL'
+const MUSIC_EVENTS_FUTURE_LOADING = 'MUSIC_EVENTS_FUTURE_LOADING'
+const MUSIC_EVENTS_FUTURE_SUCCESS = 'MUSIC_EVENTS_FUTURE_SUCCESS'
+const MUSIC_EVENTS_FUTURE_FAIL = 'MUSIC_EVENTS_FUTURE_FAIL'
 
-export const MUSIC_RESOURCES_LOADING = 'MUSIC_RESOURCES_LOADING'
-export const MUSIC_RESOURCES_SUCCESS = 'MUSIC_RESOURCES_SUCCESS'
-export const MUSIC_RESOURCES_FAIL = 'MUSIC_RESOURCES_FAIL'
+const MUSIC_EVENTS_PAST_LOADING = 'MUSIC_EVENTS_PAST_LOADING'
+const MUSIC_EVENTS_PAST_SUCCESS = 'MUSIC_EVENTS_PAST_SUCCESS'
+const MUSIC_EVENTS_PAST_FAIL = 'MUSIC_EVENTS_PAST_FAIL'
 
-export const MUSIC_BLOG_LOADING = 'MUSIC_BLOG_LOADING'
-export const MUSIC_BLOG_SUCCESS = 'MUSIC_BLOG_SUCCESS'
-export const MUSIC_BLOG_FAIL = 'MUSIC_BLOG_FAIL'
+const MUSIC_RESOURCES_ROOT_LOADING = 'MUSIC_RESOURCES_ROOT_LOADING'
+const MUSIC_RESOURCES_ROOT_SUCCESS = 'MUSIC_RESOURCES_ROOT_SUCCESS'
+const MUSIC_RESOURCES_ROOT_FAIL = 'MUSIC_RESOURCES_ROOT_FAIL'
 
-export const MUSIC_RESUME_LOADING = 'MUSIC_RESUME_LOADING'
-export const MUSIC_RESUME_SUCCESS = 'MUSIC_RESUME_SUCCESS'
-export const MUSIC_RESUME_FAIL = 'MUSIC_RESUME_FAIL'
+const MUSIC_RESOURCES_LOADING = 'MUSIC_RESOURCES_LOADING'
+const MUSIC_RESOURCES_SUCCESS = 'MUSIC_RESOURCES_SUCCESS'
+const MUSIC_RESOURCES_FAIL = 'MUSIC_RESOURCES_FAIL'
 
-export const SOFTWARE_LOADING = 'SOFTWARE_LOADING'
-export const SOFTWARE_SUCCESS = 'SOFTWARE_SUCCESS'
-export const SOFTWARE_FAIL = 'SOFTWARE_FAIL'
+const MUSIC_BLOG_LOADING = 'MUSIC_BLOG_LOADING'
+const MUSIC_BLOG_SUCCESS = 'MUSIC_BLOG_SUCCESS'
+const MUSIC_BLOG_FAIL = 'MUSIC_BLOG_FAIL'
 
-export const SOFTWARE_RESUME_LOADING = 'SOFTWARE_RESUME_LOADING'
-export const SOFTWARE_RESUME_SUCCESS = 'SOFTWARE_RESUME_SUCCESS'
-export const SOFTWARE_RESUME_FAIL = 'SOFTWARE_RESUME_FAIL'
+const MUSIC_RESUME_LOADING = 'MUSIC_RESUME_LOADING'
+const MUSIC_RESUME_SUCCESS = 'MUSIC_RESUME_SUCCESS'
+const MUSIC_RESUME_FAIL = 'MUSIC_RESUME_FAIL'
 
-export const SOFTWARE_TECH_LOADING = 'SOFTWARE_TECH_LOADING'
-export const SOFTWARE_TECH_SUCCESS = 'SOFTWARE_TECH_SUCCESS'
-export const SOFTWARE_TECH_FAIL = 'SOFTWARE_TECH_FAIL'
+const SOFTWARE_LOADING = 'SOFTWARE_LOADING'
+const SOFTWARE_SUCCESS = 'SOFTWARE_SUCCESS'
+const SOFTWARE_FAIL = 'SOFTWARE_FAIL'
+
+const SOFTWARE_RESUME_LOADING = 'SOFTWARE_RESUME_LOADING'
+const SOFTWARE_RESUME_SUCCESS = 'SOFTWARE_RESUME_SUCCESS'
+const SOFTWARE_RESUME_FAIL = 'SOFTWARE_RESUME_FAIL'
+
+const SOFTWARE_TECH_LOADING = 'SOFTWARE_TECH_LOADING'
+const SOFTWARE_TECH_SUCCESS = 'SOFTWARE_TECH_SUCCESS'
+const SOFTWARE_TECH_FAIL = 'SOFTWARE_TECH_FAIL'
 
 const initialState = {
   navbarData: [],
@@ -77,9 +85,12 @@ const initialState = {
   musicEventsRootData: {},
   musicEventsRootDataLoading: false,
   musicEventsRootDataError: '',
-  musicEventsData: [],
-  musicEventsDataLoading: false,
-  musicEventsDataError: '',
+  musicEventsFutureData: {},
+  musicEventsFutureDataLoading: false,
+  musicEventsFutureDataError: '',
+  musicEventsPastData: {},
+  musicEventsPastDataLoading: false,
+  musicEventsPastDataError: '',
   musicResourcesRootData: {},
   musicResourcesRootDataLoading: false,
   musicResourcesRootDataError: '',
@@ -172,16 +183,27 @@ export default produce((draft, action) => {
       draft.musicEventsRootData = payload
       draft.musicEventsRootDataLoading = false
       break
-    case MUSIC_EVENTS_LOADING:
-      draft.musicEventsDataLoading = payload
+    case MUSIC_EVENTS_FUTURE_LOADING:
+      draft.musicEventsFutureDataLoading = payload
       break
-    case MUSIC_EVENTS_FAIL:
-      draft.musicEventsDataLoading = false
-      draft.musicEventsDataError = payload
+    case MUSIC_EVENTS_FUTURE_FAIL:
+      draft.musicEventsFutureDataLoading = false
+      draft.musicEventsFutureDataError = payload
       break
-    case MUSIC_EVENTS_SUCCESS:
-      draft.musicEventsData = payload
-      draft.musicEventsDataLoading = false
+    case MUSIC_EVENTS_FUTURE_SUCCESS:
+      draft.musicEventsFutureData = payload
+      draft.musicEventsFutureDataLoading = false
+      break
+    case MUSIC_EVENTS_PAST_LOADING:
+      draft.musicEventsPastDataLoading = payload
+      break
+    case MUSIC_EVENTS_PAST_FAIL:
+      draft.musicEventsPastDataLoading = false
+      draft.musicEventsPastDataError = payload
+      break
+    case MUSIC_EVENTS_PAST_SUCCESS:
+      draft.musicEventsPastData = payload
+      draft.musicEventsPastDataLoading = false
       break
     case MUSIC_RESOURCES_ROOT_LOADING:
       draft.musicResourcesRootDataLoading = payload
@@ -270,7 +292,8 @@ async function prismicReq({
   failVar,
   successVar,
   reqType,
-  parser
+  parser,
+  params = {}
 }) {
   let response
   dispatch(createAction(loadingVar, true))
@@ -280,6 +303,8 @@ async function prismicReq({
       response = await prismicClient.getSingle(dataType)
     } else if (reqType === 'allByType') {
       response = await prismicClient.getAllByType(dataType)
+    } else if (reqType === 'byType') {
+      response = await prismicClient.getByType(dataType, params)
     }
   } catch (error) {
     dispatch(createAction(failVar, error.message))
@@ -287,15 +312,15 @@ async function prismicReq({
 
   //console.log({dataType, response})
 
-  dispatch(createAction(successVar, parser(response)))
+  dispatch(createAction(successVar, parser ? parser(response) : response))
 }
 
 function parseSingleItemCollection(rawData) {
-  return rawData.data
+  return rawData ? rawData.data : rawData
 }
 
 function parseMultiItemCollection(rawData) {
-  return rawData.map((item) => item.data)
+  return rawData ? rawData.map((item) => item.data) : rawData
 }
 
 function sortByField(a, b) {
@@ -385,16 +410,44 @@ export function fetchMusicData() {
   }
 }
 
-export function fetchMusicEventsData() {
+export function fetchMusicEventsFutureData({ page, pageSize }) {
+  const params = {
+    page,
+    pageSize,
+    filters: [prismic.filter.dateAfter('my.music_events.date_and_time', today)],
+    orderings: [{ field: 'my.music_events.date_and_time', direction: 'asc' }]
+  }
   return async (dispatch) => {
     await prismicReq({
       dispatch,
-      reqType: 'allByType',
+      reqType: 'byType',
       dataType: 'music_events',
-      loadingVar: MUSIC_EVENTS_LOADING,
-      failVar: MUSIC_EVENTS_FAIL,
-      successVar: MUSIC_EVENTS_SUCCESS,
-      parser: parseMultiItemCollection
+      loadingVar: MUSIC_EVENTS_FUTURE_LOADING,
+      failVar: MUSIC_EVENTS_FUTURE_FAIL,
+      successVar: MUSIC_EVENTS_FUTURE_SUCCESS,
+      params
+    })
+  }
+}
+
+export function fetchMusicEventsPastData({ page, pageSize }) {
+  const params = {
+    page,
+    pageSize,
+    filters: [
+      prismic.filter.dateBefore('my.music_events.date_and_time', today)
+    ],
+    orderings: [{ field: 'my.music_events.date_and_time', direction: 'desc' }]
+  }
+  return async (dispatch) => {
+    await prismicReq({
+      dispatch,
+      reqType: 'byType',
+      dataType: 'music_events',
+      loadingVar: MUSIC_EVENTS_PAST_LOADING,
+      failVar: MUSIC_EVENTS_PAST_FAIL,
+      successVar: MUSIC_EVENTS_PAST_SUCCESS,
+      params
     })
   }
 }

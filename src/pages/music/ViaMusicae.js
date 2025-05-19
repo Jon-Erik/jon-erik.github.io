@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { asHTML } from '../../services/prismic'
 import { getBlogPosts } from '../../services/blogger'
-import fecha from 'fecha'
+import { DateTime } from 'luxon'
 
 import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
@@ -115,7 +115,9 @@ const mapDispatch = (dispatch) => ({
 export default connect(mapState, mapDispatch)(ViaMusicae)
 
 function OnePost({ title, url, content: content_html, published }) {
-  const date = fecha.format(new Date(published), 'D MMMM YYYY')
+  const date = DateTime.fromISO(published).toLocaleString(
+    DateTime.DATETIME_FULL
+  )
 
   return (
     <div className="one-post">

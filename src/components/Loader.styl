@@ -46,6 +46,13 @@ RaisinBlack = raisinBlack
         0% 
             background-position right
 
+    &.white
+        .loader
+            color AntiFlashWhite
+            background AntiFlashWhite
+        .loader:before, .loader:after
+            background AntiFlashWhite
+
     &.small
         height 23px
 
@@ -54,15 +61,12 @@ RaisinBlack = raisinBlack
             animation-delay -0.16s
             width 0.5em
             margin 5px 0
-            color AntiFlashWhite
-            background AntiFlashWhite
 
         .loader:before, .loader:after
             width 0.5em
             animation escaleYsmall 1s infinite ease-in-out
             left 0.8em
             height 1.5em
-            background AntiFlashWhite
 
         .loader:before
             left -0.8em

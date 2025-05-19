@@ -2,10 +2,10 @@ A React.js application hosted on GitHub Pages. It uses the following technologie
 
 - Prismic.io headless CMS and API
 - Piwik Pro analytics tracking
-- React hash router
+- React router
 - Material UI icons
 - Redux state management
 - Parcel bundler
-- Fecha date formatter
+- Luxon date formatter
 - Stylus CSS preprocessor
 - Google fonts

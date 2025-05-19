@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close'
 
 import './Navbar.styl'
 
+import { elementOrParentsHaveClass } from '../services/utils'
 import { externalData as externalDataState } from '../state'
 import Loader from './Loader'
 
@@ -20,28 +21,52 @@ export function Navbar({
 }) {
   const location = useLocation()
   const [menuExpanded, setMenuExpanded] = useState(false)
+  const menuExpandedRef = useRef(menuExpanded)
 
   function toggleMenu(value) {
     const newValue = value !== undefined ? value : !menuExpanded
     setMenuExpanded(newValue)
+    menuExpandedRef.current = newValue
   }
 
   useEffect(() => {
     if (!navbarData.length) {
       onFetchNavbarData()
     }
+
+    function onClickHandler(e) {
+      console.log(e)
+      const clickedExpandedMobileMenu = elementOrParentsHaveClass(
+        'links-list-mobile',
+        e.target
+      )
+      const clickedToggler = elementOrParentsHaveClass('menu-toggler', e.target)
+      if (
+        !clickedExpandedMobileMenu &&
+        !clickedToggler &&
+        menuExpandedRef.current
+      ) {
+        toggleMenu(false)
+      }
+    }
+
+    document.addEventListener('click', onClickHandler)
+
+    return () => {
+      document.removeEventListener('click', onClickHandler)
+    }
   }, [])
 
   if (navbarDataLoading) {
     return (
       <div className="navbar">
-        <Loader size="small" />
+        <Loader size="small" color="white" />
       </div>
     )
   }
 
   if (navbarDataError) {
-    return <div>ERROR LOADING: navbarDataError</div>
+    return <div>ERROR LOADING: {navbarDataError}</div>
   }
 
   return (
@@ -86,7 +111,11 @@ export function Navbar({
         title={menuExpanded ? 'Close menu' : 'Expand menu'}
         onClick={() => toggleMenu()}
       >
-        {menuExpanded ? <MenuOpenIcon /> : <MenuIcon />}
+        {menuExpanded ? (
+          <MenuOpenIcon className="menu-toggler" />
+        ) : (
+          <MenuIcon className="menu-toggler" />
+        )}
       </button>
     </div>
   )

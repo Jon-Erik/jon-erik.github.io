@@ -1,19 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { asHTML } from '../../services/prismic'
-import fecha from 'fecha'
+import { DateTime } from 'luxon'
 import {
   fetchMusicEventsRootData,
-  fetchMusicEventsData
+  fetchMusicEventsFutureData,
+  fetchMusicEventsPastData
 } from '../../state/externalData'
 
 import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
+import Pagination from '../../components/Pagination'
 import ButtonLink from '../../components/ButtonLink'
+import Loader from '../../components/Loader'
 
 import './Events.styl'
 import ParagraphText from '../../components/ParagraphText'
+
+const FUTURE_PAGE_SIZE = 100
+const PAST_PAGE_SIZE = 5
+const DEFAULT_TZ = 'America/New_York'
 
 function MusicEvents({
   navbarData,
@@ -22,10 +29,14 @@ function MusicEvents({
   musicEventsRootDataLoading,
   musicEventsRootDataError,
   onFetchMusicEventsRootData,
-  musicEventsData,
-  musicEventsDataLoading,
-  musicEventsDataError,
-  onFetchMusicEventsData
+  musicEventsFutureData,
+  musicEventsFutureDataLoading,
+  musicEventsFutureDataError,
+  onFetchMusicEventsFutureData,
+  musicEventsPastData,
+  musicEventsPastDataLoading,
+  musicEventsPastDataError,
+  onFetchMusicEventsPastData
 }) {
   const main_header_html = asHTML(
     musicEventsRootData && musicEventsRootData.main_header
@@ -38,54 +49,87 @@ function MusicEvents({
   const musicLink = navbarData.find((d) =>
     d.route.startsWith('/' + pathname.split('/')[1])
   )
-  const loading =
-    navbarDataLoading || musicEventsRootDataLoading || musicEventsDataLoading
+  const loading = navbarDataLoading || musicEventsRootDataLoading
 
-  const upcomingEvents = musicEventsData.filter(
-    (e) => new Date(e.date_and_time) > new Date()
-  )
-  const pastEvents = musicEventsData.filter(
-    (e) => new Date(e.date_and_time) <= new Date()
-  )
+  const [futurePage, setFuturePage] = useState(1)
+  const futureEvents =
+    musicEventsFutureData && musicEventsFutureData.results
+      ? musicEventsFutureData.results.map((item) => item.data)
+      : []
+  // const futureTotalResults = musicEventsFutureData.total_results_size || 0
+  // const futureTotalPages = musicEventsFutureData.total_pages || 0
 
-  function sortByDate(a, b, asc = false) {
-    const dateA = new Date(a.date_and_time)
-    const dateB = new Date(b.date_and_time)
+  const [pastPage, setPastPage] = useState(1)
+  const pastEvents =
+    musicEventsPastData && musicEventsPastData.results
+      ? musicEventsPastData.results.map((item) => item.data)
+      : []
+  const pastTotalResults = musicEventsPastData.total_results_size || 0
 
-    if (asc) {
-      return dateA - dateB
-    } else {
-      return dateB - dateA
-    }
+  function onPastPgChange(newPgNum) {
+    setPastPage(newPgNum)
+    document.getElementById('past-events-header').scrollIntoView()
   }
 
   useEffect(() => {
     onFetchMusicEventsRootData()
-    onFetchMusicEventsData()
   }, [])
+
+  useEffect(() => {
+    onFetchMusicEventsFutureData({
+      page: futurePage,
+      pageSize: FUTURE_PAGE_SIZE
+    })
+  }, [futurePage])
+
+  useEffect(() => {
+    onFetchMusicEventsPastData({ page: pastPage, pageSize: PAST_PAGE_SIZE })
+  }, [pastPage])
 
   return (
     <PageContentWrapper loading={loading}>
       <div className="music-events">
         <Header html={main_header_html} errMsg={musicEventsRootDataError} />
-        <ParagraphText html={description_html} errMsg={musicEventsDataError} />
+        <ParagraphText
+          html={description_html}
+          errMsg={musicEventsFutureDataError || musicEventsPastDataError}
+        />
 
         <h2>Upcoming Events</h2>
-        {upcomingEvents && upcomingEvents.length == 0 && (
-          <p>
-            <i>No upcoming events.</i>
-          </p>
+        {musicEventsFutureDataLoading ? (
+          <Loader size="small" />
+        ) : (
+          <React.Fragment>
+            {futureEvents && futureEvents.length == 0 && (
+              <p>
+                <i>No upcoming events.</i>
+              </p>
+            )}
+            {futureEvents &&
+              futureEvents.map((e, index) => <OneEvent key={index} {...e} />)}
+          </React.Fragment>
         )}
-        {upcomingEvents &&
-          upcomingEvents
-            .sort(sortByDate)
-            .map((e, index) => <OneEvent key={index} {...e} />)}
 
-        <h2>Past Events</h2>
-        {pastEvents &&
-          pastEvents
-            .sort(sortByDate)
-            .map((e, index) => <OneEvent key={index} {...e} />)}
+        <h2 id="past-events-header">Past Events</h2>
+        <Pagination
+          currentPage={pastPage}
+          totalResults={pastTotalResults}
+          pageSize={PAST_PAGE_SIZE}
+          onPageChange={onPastPgChange}
+        />
+        {musicEventsPastDataLoading ? (
+          <Loader size="small" />
+        ) : (
+          pastEvents &&
+          pastEvents.map((e, index) => <OneEvent key={index} {...e} />)
+        )}
+        <Pagination
+          currentPage={pastPage}
+          totalResults={pastTotalResults}
+          pageSize={PAST_PAGE_SIZE}
+          onPageChange={onPastPgChange}
+          hidePageStats={true}
+        />
 
         <div className="links">
           {musicLink &&
@@ -111,15 +155,22 @@ const mapState = (state) => {
     musicEventsRootData: state.externalData.musicEventsRootData,
     musicEventsRootDataLoading: state.externalData.musicEventsRootDataLoading,
     musicEventsRootDataError: state.externalData.musicEventsRootDataError,
-    musicEventsData: state.externalData.musicEventsData,
-    musicEventsDataLoading: state.externalData.musicEventsDataLoading,
-    musicEventsDataError: state.externalData.musicEventsDataError
+    musicEventsFutureData: state.externalData.musicEventsFutureData,
+    musicEventsFutureDataLoading:
+      state.externalData.musicEventsFutureDataLoading,
+    musicEventsFutureDataError: state.externalData.musicEventsFutureDataError,
+    musicEventsPastData: state.externalData.musicEventsPastData,
+    musicEventsPastDataLoading: state.externalData.musicEventsPastDataLoading,
+    musicEventsPastDataError: state.externalData.musicEventsPastDataError
   }
 }
 
 const mapDispatch = (dispatch) => ({
   onFetchMusicEventsRootData: () => dispatch(fetchMusicEventsRootData()),
-  onFetchMusicEventsData: () => dispatch(fetchMusicEventsData())
+  onFetchMusicEventsFutureData: (params) =>
+    dispatch(fetchMusicEventsFutureData(params)),
+  onFetchMusicEventsPastData: (params) =>
+    dispatch(fetchMusicEventsPastData(params))
 })
 
 export default connect(mapState, mapDispatch)(MusicEvents)
@@ -130,16 +181,16 @@ function OneEvent({
   description,
   link,
   organization,
-  title
+  title,
+  time_zone
 }) {
   const address_html = asHTML(address)
   const title_html = asHTML(title)
   const description_html = asHTML(description)
   const organization_html = asHTML(organization)
-  const date_and_time_parsed = fecha.format(
-    new Date(date_and_time),
-    'h:mm A, MMMM D, YYYY'
-  )
+  const date_and_time_parsed = DateTime.fromISO(date_and_time, {
+    zone: time_zone || DEFAULT_TZ
+  }).toLocaleString(DateTime.DATETIME_FULL)
 
   return (
     <div className="one-event">
