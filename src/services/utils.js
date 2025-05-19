@@ -6,9 +6,6 @@ export function elementOrParentsHaveClass(className, el) {
       clickedInClass = true
     } else if (el.parentElement) {
       checkElement(el.parentElement)
-    } else if (el.outerHTML) {
-      //const newEl = document.querySelector(el.outerHTML)
-      //console.log({ outerHTML: el.outerHTML, newEl })
     }
   }
 
