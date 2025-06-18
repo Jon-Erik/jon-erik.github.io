@@ -35,7 +35,6 @@ export function Navbar({
     }
 
     function onClickHandler(e) {
-      console.log(e)
       const clickedExpandedMobileMenu = elementOrParentsHaveClass(
         'links-list-mobile',
         e.target

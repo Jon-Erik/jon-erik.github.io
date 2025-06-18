@@ -68,7 +68,10 @@ function MusicEvents({
 
   function onPastPgChange(newPgNum) {
     setPastPage(newPgNum)
-    document.getElementById('past-events-header').scrollIntoView()
+    setTimeout(() => {
+      // Wait a split second for the new data to load
+      document.getElementById('past-events-header').scrollIntoView(true)
+    }, 100)
   }
 
   useEffect(() => {
