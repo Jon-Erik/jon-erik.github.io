@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import GitHubIcon from '@mui/icons-material/GitHub'
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import { externalData as externalDataState } from '../state'
 
@@ -31,12 +29,12 @@ function Footer({
       </div>
       <div className="footer-item">
         <a href={linkedin_link && linkedin_link.url} target="_blank">
-          <LinkedInIcon />
+          <FaLinkedin />
         </a>
       </div>
       <div className="footer-item">
         <a href={github_link && github_link.url} target="_blank">
-          <GitHubIcon />
+          <FaGithub />
         </a>
       </div>
     </div>

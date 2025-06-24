@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.styl'
 
-import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import { Route, Routes, BrowserRouter } from 'react-router'
 
 import Homepage from './pages/Homepage'
 import Music from './pages/Music'

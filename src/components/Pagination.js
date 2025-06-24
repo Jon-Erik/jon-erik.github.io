@@ -1,9 +1,6 @@
 import React from 'react'
 
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import FirstPageIcon from '@mui/icons-material/FirstPage'
-import LastPageIcon from '@mui/icons-material/LastPage'
+import { LuChevronFirst, LuChevronLast, LuChevronLeft, LuChevronRight } from 'react-icons/lu';
 
 import './Pagination.styl'
 
@@ -49,14 +46,14 @@ export default function Pagination({
           onClick={() => onPageChange(1)}
           title="First Page"
         >
-          <FirstPageIcon />
+          <LuChevronFirst />
         </div>
         <div
           className="selector"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           title="Previous Page"
         >
-          <ChevronLeftIcon />
+          <LuChevronLeft />
         </div>
         {selectorsArr[0] != 1 && <div className="page-num">...</div>}
         {selectorsArr.map((pageNum) => {
@@ -79,14 +76,14 @@ export default function Pagination({
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           title="Next Page"
         >
-          <ChevronRightIcon />
+          <LuChevronRight />
         </div>
         <div
           className="selector"
           onClick={() => onPageChange(totalPages)}
           title="Last Page"
         >
-          <LastPageIcon />
+          <LuChevronLast />
         </div>
       </div>
       {!hidePageStats && (

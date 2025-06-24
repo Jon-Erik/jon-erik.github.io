@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
-import MenuIcon from '@mui/icons-material/Menu'
-import MenuOpenIcon from '@mui/icons-material/MenuOpen'
-import CloseIcon from '@mui/icons-material/Close'
+import { Link, useLocation } from 'react-router'
+import { AiOutlineMenu, AiOutlineMenuFold, AiOutlineClose } from 'react-icons/ai';
 
 import './Navbar.styl'
 
@@ -100,7 +98,7 @@ export function Navbar({
             title="Close menu"
             onClick={() => toggleMenu()}
           >
-            <CloseIcon />
+            <AiOutlineClose />
           </button>
         </div>
       </div>
@@ -111,9 +109,9 @@ export function Navbar({
         onClick={() => toggleMenu()}
       >
         {menuExpanded ? (
-          <MenuOpenIcon className="menu-toggler" />
+          <AiOutlineMenuFold className="menu-toggler" />
         ) : (
-          <MenuIcon className="menu-toggler" />
+          <AiOutlineMenu className="menu-toggler" />
         )}
       </button>
     </div>

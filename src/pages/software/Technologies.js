@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { asHTML } from '../../services/prismic'
 import { fetchSoftwareTechData } from '../../state/externalData'
 

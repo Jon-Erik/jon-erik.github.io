@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { asHTML } from '../services/prismic'
 import { req } from '../services/fetch'
 import { fetchContactData } from '../state/externalData'
