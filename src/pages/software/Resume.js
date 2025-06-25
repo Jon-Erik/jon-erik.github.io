@@ -8,6 +8,7 @@ import PageContentWrapper from '../../components/PageContentWrapper'
 import Header from '../../components/Header'
 import ParagraphText from '../../components/ParagraphText'
 import ButtonLink from '../../components/ButtonLink'
+import Button from '../../components/Button'
 
 import './Resume.styl'
 
@@ -28,6 +29,7 @@ function SoftwareResume({
   const work_experience_html = asHTML(
     softwareResumeData && softwareResumeData.work_experience
   )
+  const resumePdfUrl = softwareResumeData && softwareResumeData.resume_pdf.url
 
   const { pathname } = useLocation()
   const softwareLink = navbarData.find((d) =>
@@ -43,6 +45,9 @@ function SoftwareResume({
     <PageContentWrapper loading={loading}>
       <div className="software-resume imported-html">
         <Header html={main_header_html} errMsg={softwareResumeDataError} />
+        {resumePdfUrl && 
+          <Button text="Download Resume as PDF" onClick={() => window.open(resumePdfUrl, '_blank')}/>
+        }
         <ParagraphText html={work_experience_html} />
         <ParagraphText html={education_html} />
         <div className="links">
