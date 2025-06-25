@@ -29,7 +29,8 @@ function SoftwareResume({
   const work_experience_html = asHTML(
     softwareResumeData && softwareResumeData.work_experience
   )
-  const resumePdfUrl = softwareResumeData && softwareResumeData.resume_pdf.url
+  const resumePdfUrl = softwareResumeData && 
+    softwareResumeData.resume_pdf && softwareResumeData.resume_pdf.url
 
   const { pathname } = useLocation()
   const softwareLink = navbarData.find((d) =>
