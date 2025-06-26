@@ -6,4 +6,3 @@ src/dist/
 /.parcel-cache
 .env
 /.vscode
-.prettierrc.json

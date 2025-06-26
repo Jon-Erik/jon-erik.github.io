@@ -1,6 +1,11 @@
 import React from 'react'
 
-import { LuChevronFirst, LuChevronLast, LuChevronLeft, LuChevronRight } from 'react-icons/lu';
+import {
+  LuChevronFirst,
+  LuChevronLast,
+  LuChevronLeft,
+  LuChevronRight
+} from 'react-icons/lu'
 
 import './Pagination.styl'
 

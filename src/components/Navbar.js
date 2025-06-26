@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import { Link, useLocation } from 'react-router'
-import { AiOutlineMenu, AiOutlineMenuFold, AiOutlineClose } from 'react-icons/ai';
+import {
+  AiOutlineMenu,
+  AiOutlineMenuFold,
+  AiOutlineClose
+} from 'react-icons/ai'
 
 import './Navbar.styl'
 
