@@ -1,6 +1,7 @@
 node_modules
 /old
 /dist
+src/dist/
 /.cache
 /.parcel-cache
 .env
