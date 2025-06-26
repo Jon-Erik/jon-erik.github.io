@@ -14,7 +14,7 @@ export default function ParagraphText({ html, errMsg, className }) {
 
   return (
     <div
-      className={`paragraph-text ${className}`}
+      className={`paragraph-text ${className || ''}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )

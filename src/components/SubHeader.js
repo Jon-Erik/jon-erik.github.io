@@ -8,7 +8,7 @@ export default function SubHeader({ html, errMsg, className }) {
   }
   return (
     <div
-      className={`sub-header ${className}`}
+      className={`sub-header ${className || ''}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )

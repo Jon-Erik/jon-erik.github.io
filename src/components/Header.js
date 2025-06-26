@@ -8,7 +8,7 @@ export default function Header({ html, errMsg, className }) {
   }
   return (
     <div
-      className={`header ${className}`}
+      className={`header ${className || ''}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )
