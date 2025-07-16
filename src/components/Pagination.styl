@@ -8,16 +8,33 @@
 
         .selector
             cursor pointer
+            margin 3px
+
+            &:not(.page-num)
+                background lightgrey
+                border-radius 0.25em
+
+                &:hover
+                    background darkgrey
+                    svg
+                        stroke white
 
             svg
+                padding-top 2px
                 height 24px
                 width 24px
 
+
         .page-num
-            height 24px
-            width 24px
+            height 26px
+            width 26px
             text-align center
-            line-height 24px
+            line-height 26px
+
+            &:hover
+                background darkgrey
+                border-radius 0.25em
+                color white
 
         .active
             font-weight bold
