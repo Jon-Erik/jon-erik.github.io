@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import { Link, useLocation } from 'react-router'
-import {
-  AiOutlineMenu,
-  AiOutlineMenuFold,
-  AiOutlineClose
-} from 'react-icons/ai'
+import { AiOutlineClose } from 'react-icons/ai'
+import { RiMenuFill, RiMenuFold2Line } from 'react-icons/ri'
 
 import './Navbar.styl'
 
@@ -113,9 +110,9 @@ export function Navbar({
         onClick={() => toggleMenu()}
       >
         {menuExpanded ? (
-          <AiOutlineMenuFold className="menu-toggler" />
+          <RiMenuFold2Line className="menu-toggler" />
         ) : (
-          <AiOutlineMenu className="menu-toggler" />
+          <RiMenuFill className="menu-toggler" />
         )}
       </button>
     </div>
