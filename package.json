@@ -25,11 +25,15 @@
     "react-redux": "^9.2.0",
     "react-router": "^7.6.2",
     "redux": "^5.0.1",
-    "redux-thunk": "^3.1.0"
+    "redux-thunk": "^3.1.0",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@parcel/transformer-stylus": "^2.15.4",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6"
+  },
+  "alias": {
+    "howler": "howler/dist/howler.core.min.js"
   }
 }

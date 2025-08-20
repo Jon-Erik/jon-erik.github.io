@@ -14,6 +14,7 @@ import SoftwareResume from './pages/software/Resume'
 import SoftwareTechnologies from './pages/software/Technologies'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import Metronome from './pages/Metronome'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -42,6 +43,7 @@ function App() {
               <Route path="via-musicae" element={<MusicViaMusicae />} />
             </Route>
             <Route path="/contact" element={<Contact />} />
+            <Route path="/metronome" element={<Metronome />} />
           </Routes>
         </div>
         <Footer />
