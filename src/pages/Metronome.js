@@ -5,7 +5,8 @@ import useSound from 'use-sound'
 import './Metronome.styl'
 
 import { MdOutlineDeleteForever } from 'react-icons/md'
-import { IoMdAddCircleOutline } from 'react-icons/io'
+import { IoMdAddCircleOutline, IoIosSettings } from 'react-icons/io'
+import { AiFillSound } from 'react-icons/ai'
 
 // Sound files
 import woodblock from '../static/woodblock.mp3' // from pixabay
@@ -27,6 +28,16 @@ function Metronome() {
 
   // The rhythm division and subdivision(s) highlighted while playing
   const [activeRhythm, setActiveRhythm] = useState([])
+
+  // The rhythm division and subdivision(s) highlighted while playing
+  const [menuOpen, setMenuOpen] = useState([])
+  function toggleMenu(arr) {
+    if (JSON.stringify(arr) === JSON.stringify(menuOpen)) {
+      setMenuOpen([])
+    } else {
+      setMenuOpen(arr)
+    }
+  }
 
   // Metronome sounds init
   const [playWoodblock, woodblockOpts] = useSound(woodblock)
@@ -88,7 +99,7 @@ function Metronome() {
   }
 
   function removeBeatOrSubdivision(index, parents = []) {
-    const newBeats = [...beats]
+    let newBeats = [...beats]
     let currentArr = newBeats
 
     // Using the parent indices, find the array or nested array to add to
@@ -101,6 +112,25 @@ function Metronome() {
     } else {
       currentArr.splice(index, 1)
     }
+
+    // Cycle through all beats and subdivisions, removing subdivisions with only one item
+    // (if not on top level) and setting default sound
+    function removeSingleSubdivisions(beats) {
+      return beats.map((beat) => {
+        if (beat.subdivisions && beat.subdivisions.length == 1) {
+          delete beat.subdivisions
+          beat.sound = 'woodblock'
+        }
+
+        if (beat.subdivisions) {
+          removeSingleSubdivisions(beat.subdivisions)
+        }
+
+        return beat
+      })
+    }
+
+    newBeats = removeSingleSubdivisions(newBeats)
 
     setBeats(newBeats)
   }
@@ -132,7 +162,7 @@ function Metronome() {
           timeouts.push({
             ms: timeToStartOfDivision,
             sound: division.sound,
-            activeRhythm: parents.concat(index + 1)
+            activeRhythm: parents.concat(index)
           })
         }
       })
@@ -184,44 +214,59 @@ function Metronome() {
 
   // Recursive function to display beat and subdivisions and determine if beat/subdivision is active
   function displayBeat(beat, index, level = 1, parents = []) {
-    const currentBeatLocation = parents.concat(index + 1)
+    const currentBeatLocation = parents.concat(index)
     let active = true
-
-    currentBeatLocation.forEach((beatLevel, blIndex) => {
-      if (activeRhythm[blIndex] && activeRhythm[blIndex] === beatLevel) {
+    currentBeatLocation.forEach((beatLocArrItem, blIndex) => {
+      if (
+        activeRhythm[blIndex] !== null &&
+        activeRhythm[blIndex] === beatLocArrItem
+      ) {
         // do nothing
       } else {
         active = false
       }
     })
 
+    const isMenuOpen =
+      JSON.stringify(currentBeatLocation) === JSON.stringify(menuOpen)
+
     return (
-      <div
-        className={`rhythm-division level-${level}`}
-        key={level + ':' + index}
-      >
-        <span className={active ? 'active' : ''}>{index + 1}</span>
-        <span
-          className="remove-beat"
-          onClick={() => addBeatOrSubdivision([...parents, index])}
+      <div key={level + ':' + index}>
+        <div
+          className={`rhythm-division level-${level} ${active ? 'active' : ''}`}
         >
-          <IoMdAddCircleOutline />
-        </span>
-        <span
-          className="remove-beat"
-          onClick={() => removeBeatOrSubdivision(index, parents)}
-        >
-          <MdOutlineDeleteForever />
-        </span>
+          <span className="beat-label">{index + 1}</span>
+          <span
+            className="menu-toggle"
+            onClick={() => toggleMenu(currentBeatLocation)}
+          >
+            <IoIosSettings />
+          </span>
+          <div className={`menu ${isMenuOpen ? 'menu-open' : ''}`}>
+            <div
+              className="menu-item"
+              onClick={() => addBeatOrSubdivision([...parents, index])}
+            >
+              <IoMdAddCircleOutline /> Add beat or subdivision
+            </div>
+            <div
+              className="menu-item"
+              onClick={() => removeBeatOrSubdivision(index, parents)}
+            >
+              <MdOutlineDeleteForever /> Remove beat or subdivision
+            </div>
+            <div
+              className="menu-item"
+              onClick={() => removeBeatOrSubdivision(index, parents)}
+            >
+              <AiFillSound /> Change sound ({beat.sound || 'none'})
+            </div>
+          </div>
+        </div>
         <div className="rhythm-visualization">
           {beat.subdivisions &&
             beat.subdivisions.map((subdivision, subIndex) =>
-              displayBeat(
-                subdivision,
-                subIndex,
-                level + 1,
-                parents.concat(index)
-              )
+              displayBeat(subdivision, subIndex, level + 1, currentBeatLocation)
             )}
         </div>
       </div>

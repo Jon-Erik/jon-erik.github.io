@@ -5,6 +5,24 @@
     .rhythm-division
         min-width 20px
         height fit-content
+        position relative
+        .menu-toggle
+            cursor pointer
+        .menu
+            position absolute
+            z-index 99
+            display none
+            width 250
+            text-align left
+            background black
+            color white
+            padding 5px
+            .menu-item
+                cursor pointer
+                &:not(:last-of-type)
+                    margin-bottom 5px
+            &.menu-open
+                display block
     .level-1
         border 1px solid red
     .level-2
