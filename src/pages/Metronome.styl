@@ -6,23 +6,25 @@
         min-width 20px
         height fit-content
         position relative
-        .menu-toggle
+        .beat-menu-toggle
             cursor pointer
-        .menu
+        .beat-menu
             position absolute
             z-index 99
-            display none
+            visibility hidden
             width 250
             text-align left
             background black
             color white
             padding 5px
-            .menu-item
+            display flex
+            justify-content space-between
+            .menu-item, .close
                 cursor pointer
                 &:not(:last-of-type)
                     margin-bottom 5px
             &.menu-open
-                display block
+                visibility visible
     .level-1
         border 1px solid red
     .level-2

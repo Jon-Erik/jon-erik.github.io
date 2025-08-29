@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PageContentWrapper from '../components/PageContentWrapper'
 import Button from '../components/Button'
 import useSound from 'use-sound'
@@ -6,7 +6,8 @@ import './Metronome.styl'
 
 import { MdOutlineDeleteForever } from 'react-icons/md'
 import { IoMdAddCircleOutline, IoIosSettings } from 'react-icons/io'
-import { AiFillSound } from 'react-icons/ai'
+import { AiFillSound, AiOutlineClose } from 'react-icons/ai'
+import { elementOrParentsHaveClass } from '../services/utils'
 
 // Sound files
 import woodblock from '../static/woodblock.mp3' // from pixabay
@@ -29,13 +30,16 @@ function Metronome() {
   // The rhythm division and subdivision(s) highlighted while playing
   const [activeRhythm, setActiveRhythm] = useState([])
 
-  // The rhythm division and subdivision(s) highlighted while playing
+  // The menu open for a specific beat/division
   const [menuOpen, setMenuOpen] = useState([])
+  const menuOpenRef = useRef(menuOpen)
   function toggleMenu(arr) {
-    if (JSON.stringify(arr) === JSON.stringify(menuOpen)) {
+    if (JSON.stringify(arr) === JSON.stringify(menuOpen) || !arr) {
       setMenuOpen([])
+      menuOpenRef.current = []
     } else {
       setMenuOpen(arr)
+      menuOpenRef.current = arr
     }
   }
 
@@ -135,6 +139,40 @@ function Metronome() {
     setBeats(newBeats)
   }
 
+  function getNewSound(currentSoundStr) {
+    let newSound
+    switch (currentSoundStr) {
+      case 'woodblock':
+        return 'woodblockBright'
+      case 'woodblockBright':
+        return 'woodblockChopped'
+      case 'woodblockChopped':
+        return null
+      case null:
+        return 'woodblock'
+      default:
+        return null
+        break
+    }
+  }
+
+  function changeSound(index, parents = []) {
+    let newBeats = [...beats]
+    let currentArr = newBeats
+
+    // Using the parent indices, find the array or nested array
+    parents.forEach((parentIndex) => {
+      currentArr = currentArr[parentIndex].subdivisions
+    })
+
+    const newSound = getNewSound(currentArr[index].sound)
+
+    currentArr[index].sound = newSound
+    playSound(newSound)
+
+    setBeats(newBeats)
+  }
+
   // Determine the points in time to play metronome sounds in the time length of beat cycle
   function getTimeouts(divisions) {
     const timeouts = []
@@ -174,8 +212,8 @@ function Metronome() {
   }
 
   // Stop/start metronome
-  function toggle() {
-    if (intervalState) {
+  function toggleMetronome(stop = false) {
+    if (intervalState || stop) {
       clearInterval(intervalState)
       setIntervalState(null)
       timeoutState.forEach((timeoutID) => {
@@ -237,29 +275,47 @@ function Metronome() {
         >
           <span className="beat-label">{index + 1}</span>
           <span
-            className="menu-toggle"
-            onClick={() => toggleMenu(currentBeatLocation)}
+            className="beat-menu-toggle"
+            onClick={() => {
+              toggleMenu(currentBeatLocation)
+              toggleMetronome(true)
+            }}
           >
-            <IoIosSettings />
+            <IoIosSettings title="Edit" />
           </span>
-          <div className={`menu ${isMenuOpen ? 'menu-open' : ''}`}>
-            <div
-              className="menu-item"
-              onClick={() => addBeatOrSubdivision([...parents, index])}
-            >
-              <IoMdAddCircleOutline /> Add beat or subdivision
+          <div className={`beat-menu ${isMenuOpen ? 'menu-open' : ''}`}>
+            <div className="items">
+              <div
+                className="menu-item"
+                onClick={() => {
+                  toggleMenu()
+                  addBeatOrSubdivision([...parents, index])
+                }}
+              >
+                <IoMdAddCircleOutline /> Add beat or subdivision
+              </div>
+              <div
+                className="menu-item"
+                onClick={() => {
+                  toggleMenu()
+                  removeBeatOrSubdivision(index, parents)
+                }}
+              >
+                <MdOutlineDeleteForever /> Remove beat or subdivision
+              </div>
+              <div
+                className="menu-item"
+                onClick={() => changeSound(index, parents)}
+              >
+                <AiFillSound /> Change sound ({beat.sound || 'none'})
+              </div>
             </div>
-            <div
-              className="menu-item"
-              onClick={() => removeBeatOrSubdivision(index, parents)}
-            >
-              <MdOutlineDeleteForever /> Remove beat or subdivision
-            </div>
-            <div
-              className="menu-item"
-              onClick={() => removeBeatOrSubdivision(index, parents)}
-            >
-              <AiFillSound /> Change sound ({beat.sound || 'none'})
+            <div>
+              <AiOutlineClose
+                className="close"
+                title="Close"
+                onClick={() => toggleMenu()}
+              />
             </div>
           </div>
         </div>
@@ -272,6 +328,30 @@ function Metronome() {
       </div>
     )
   }
+
+  useEffect(() => {
+    function onClickHandler(e) {
+      const clickedInBeatMenu = elementOrParentsHaveClass('beat-menu', e.target)
+      const clickedInBeatToggle = elementOrParentsHaveClass(
+        'beat-menu-toggle',
+        e.target
+      )
+
+      if (
+        menuOpenRef.current.length &&
+        !clickedInBeatMenu &&
+        !clickedInBeatToggle
+      ) {
+        toggleMenu(setMenuOpen([]))
+      }
+    }
+
+    document.addEventListener('click', onClickHandler)
+
+    return () => {
+      document.removeEventListener('click', onClickHandler)
+    }
+  }, [])
 
   return (
     <PageContentWrapper>
@@ -302,7 +382,10 @@ function Metronome() {
           </div>
         </div>
         <br />
-        <Button text={intervalState ? 'Stop' : 'Play'} onClick={toggle} />
+        <Button
+          text={intervalState ? 'Stop' : 'Play'}
+          onClick={() => toggleMetronome()}
+        />
         <div>
           <h3>Samples</h3>
           {samples.map((sample) => {
