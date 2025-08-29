@@ -23,6 +23,7 @@ const ONE_MINUTE = 60000
 function Metronome() {
   // IDs returned from setInterval()
   const [intervalState, setIntervalState] = useState(null)
+  const playingMetronome = intervalState !== null
 
   // ID returned from setTimeout()
   const [timeoutState, setTimeoutState] = useState([])
@@ -273,16 +274,18 @@ function Metronome() {
         <div
           className={`rhythm-division level-${level} ${active ? 'active' : ''}`}
         >
-          <span className="beat-label">{index + 1}</span>
-          <span
-            className="beat-menu-toggle"
+          <div
+            className="beat-label"
             onClick={() => {
-              toggleMenu(currentBeatLocation)
-              toggleMetronome(true)
+              if (!playingMetronome) {
+                toggleMenu(currentBeatLocation)
+                toggleMetronome(true)
+              }
             }}
           >
-            <IoIosSettings title="Edit" />
-          </span>
+            {index + 1}
+          </div>
+
           <div className={`beat-menu ${isMenuOpen ? 'menu-open' : ''}`}>
             <div className="items">
               <div
@@ -333,7 +336,7 @@ function Metronome() {
     function onClickHandler(e) {
       const clickedInBeatMenu = elementOrParentsHaveClass('beat-menu', e.target)
       const clickedInBeatToggle = elementOrParentsHaveClass(
-        'beat-menu-toggle',
+        'beat-label',
         e.target
       )
 
