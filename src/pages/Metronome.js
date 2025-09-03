@@ -5,7 +5,7 @@ import useSound from 'use-sound'
 import './Metronome.styl'
 
 import { MdOutlineDeleteForever } from 'react-icons/md'
-import { IoMdAddCircleOutline, IoIosSettings } from 'react-icons/io'
+import { IoMdAddCircleOutline } from 'react-icons/io'
 import { AiFillSound, AiOutlineClose } from 'react-icons/ai'
 import { elementOrParentsHaveClass } from '../services/utils'
 
@@ -255,6 +255,7 @@ function Metronome() {
   function displayBeat(beat, index, level = 1, parents = []) {
     const currentBeatLocation = parents.concat(index)
     let active = true
+    let silent = beat.sound == null && !beat.subdivisions
     currentBeatLocation.forEach((beatLocArrItem, blIndex) => {
       if (
         activeRhythm[blIndex] !== null &&
@@ -270,9 +271,9 @@ function Metronome() {
       JSON.stringify(currentBeatLocation) === JSON.stringify(menuOpen)
 
     return (
-      <div key={level + ':' + index}>
+      <div key={level + ':' + index} className={level == 1 ? 'main-beat' : ''}>
         <div
-          className={`rhythm-division level-${level} ${active ? 'active' : ''}`}
+          className={`rhythm-division level-${level} ${active ? 'active' : ''} ${silent ? 'silent' : ''} ${isMenuOpen ? 'menu-open' : ''}`}
         >
           <div
             className="beat-label"
@@ -287,16 +288,19 @@ function Metronome() {
           </div>
 
           <div className={`beat-menu ${isMenuOpen ? 'menu-open' : ''}`}>
+            {/* <FaCaretUp className="caret" /> */}
             <div className="items">
-              <div
-                className="menu-item"
-                onClick={() => {
-                  toggleMenu()
-                  addBeatOrSubdivision([...parents, index])
-                }}
-              >
-                <IoMdAddCircleOutline /> Add beat or subdivision
-              </div>
+              {level < 4 && (
+                <div
+                  className="menu-item"
+                  onClick={() => {
+                    toggleMenu()
+                    addBeatOrSubdivision([...parents, index])
+                  }}
+                >
+                  <IoMdAddCircleOutline /> Add subdivision
+                </div>
+              )}
               <div
                 className="menu-item"
                 onClick={() => {
@@ -304,14 +308,17 @@ function Metronome() {
                   removeBeatOrSubdivision(index, parents)
                 }}
               >
-                <MdOutlineDeleteForever /> Remove beat or subdivision
+                <MdOutlineDeleteForever /> Remove{' '}
+                {level == 1 ? 'beat' : 'subdivision'}
               </div>
-              <div
-                className="menu-item"
-                onClick={() => changeSound(index, parents)}
-              >
-                <AiFillSound /> Change sound ({beat.sound || 'none'})
-              </div>
+              {!beat.subdivisions && (
+                <div
+                  className="menu-item"
+                  onClick={() => changeSound(index, parents)}
+                >
+                  <AiFillSound /> Change sound ({beat.sound || 'silent'})
+                </div>
+              )}
             </div>
             <div>
               <AiOutlineClose
@@ -377,18 +384,20 @@ function Metronome() {
         </div>
         <div>
           <h3>Rhythm</h3>
-          <Button text="Add Beat" onClick={() => addBeatOrSubdivision()} />
-          <br />
+          <div>
+            <Button text="Add Beat" onClick={() => addBeatOrSubdivision()} />
+            <Button
+              text={intervalState ? 'Stop' : 'Play'}
+              onClick={() => toggleMetronome()}
+              className="stop-play"
+            />
+          </div>
           <br />
           <div className="rhythm-visualization">
             {beats.map((beat, index) => displayBeat(beat, index))}
           </div>
         </div>
         <br />
-        <Button
-          text={intervalState ? 'Stop' : 'Play'}
-          onClick={() => toggleMetronome()}
-        />
         <div>
           <h3>Samples</h3>
           {samples.map((sample) => {
