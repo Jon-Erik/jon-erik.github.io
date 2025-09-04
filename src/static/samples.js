@@ -6,34 +6,34 @@ const samples = [
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           }
         ]
       },
       {
-        sound: 'woodblock'
+        sound: 'soundOne'
       },
       {
-        sound: 'woodblock'
+        sound: 'soundOne'
       },
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           }
         ]
       },
       {
-        sound: 'woodblock'
+        sound: 'soundOne'
       }
     ]
   },
@@ -44,18 +44,18 @@ const samples = [
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
             subdivisions: [
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               }
             ]
           }
@@ -64,18 +64,18 @@ const samples = [
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
             subdivisions: [
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               }
             ]
           }
@@ -84,28 +84,28 @@ const samples = [
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           }
         ]
       },
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
             subdivisions: [
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               }
             ]
           }
@@ -114,18 +114,18 @@ const samples = [
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
             subdivisions: [
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               },
               {
-                sound: 'woodblock'
+                sound: 'soundOne'
               }
             ]
           }
@@ -134,22 +134,22 @@ const samples = [
       {
         subdivisions: [
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           },
           {
-            sound: 'woodblock'
+            sound: 'soundOne'
           }
         ]
       }

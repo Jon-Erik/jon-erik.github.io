@@ -10,13 +10,12 @@ import { AiFillSound, AiOutlineClose } from 'react-icons/ai'
 import { elementOrParentsHaveClass } from '../services/utils'
 
 // Sound files
-import woodblock from '../static/woodblock.mp3' // from pixabay
-import woodblockBright from '../static/wood-block-bright.wav'
-import woodblockChopped from '../static/wood-block-chopped.wav'
+import woodblock from '../static/metronome/woodblock.mp3' // from pixabay
+import clickSoft from '../static/metronome/clickSoft.wav' // from freesound.org
+import clickLoud from '../static/metronome/clickLoud.wav' // from freesound.org
 
 // Examples
 import samples from '../static/samples'
-import { current } from '@reduxjs/toolkit'
 
 const ONE_MINUTE = 60000
 
@@ -45,21 +44,20 @@ function Metronome() {
   }
 
   // Metronome sounds init
-  const [playWoodblock, woodblockOpts] = useSound(woodblock)
-  const [playWoodblockBright, woodblockBrightOpts] = useSound(woodblockBright)
-  const [playWoodblockChopped, woodblockChoppedOpts] =
-    useSound(woodblockChopped)
+  const [playSoundOne, soundOneOpts] = useSound(woodblock)
+  const [playSoundTwo, soundTwoOpts] = useSound(clickSoft)
+  const [playSoundThree, soundThreeOpts] = useSound(clickLoud)
 
   function playSound(soundStr) {
     switch (soundStr) {
-      case 'woodblock':
-        playWoodblock()
+      case 'soundOne':
+        playSoundOne()
         break
-      case 'woodblockBright':
-        playWoodblockBright()
+      case 'soundTwo':
+        playSoundTwo()
         break
-      case 'woodblockChopped':
-        playWoodblockChopped()
+      case 'soundThree':
+        playSoundThree()
         break
       default:
         // play nothing
@@ -71,7 +69,7 @@ function Metronome() {
   - "sound" string (can be null if silent)
   - "subdivisions" array with more objects in same format
   */
-  const defaultBeat = { sound: 'woodblock' }
+  const defaultBeat = { sound: 'soundOne' }
   const [bpm, setBpm] = useState(60)
   const [beats, setBeats] = useState([Object.assign({}, defaultBeat)])
   const totalMsOfBeats = (ONE_MINUTE / bpm) * beats.length
@@ -124,7 +122,7 @@ function Metronome() {
       return beats.map((beat) => {
         if (beat.subdivisions && beat.subdivisions.length == 1) {
           delete beat.subdivisions
-          beat.sound = 'woodblock'
+          beat.sound = 'soundOne'
         }
 
         if (beat.subdivisions) {
@@ -141,16 +139,15 @@ function Metronome() {
   }
 
   function getNewSound(currentSoundStr) {
-    let newSound
     switch (currentSoundStr) {
-      case 'woodblock':
-        return 'woodblockBright'
-      case 'woodblockBright':
-        return 'woodblockChopped'
-      case 'woodblockChopped':
+      case 'soundOne':
+        return 'soundTwo'
+      case 'soundTwo':
+        return 'soundThree'
+      case 'soundThree':
         return null
       case null:
-        return 'woodblock'
+        return 'soundOne'
       default:
         return null
         break
@@ -256,6 +253,8 @@ function Metronome() {
     const currentBeatLocation = parents.concat(index)
     let active = true
     let silent = beat.sound == null && !beat.subdivisions
+    let timer
+
     currentBeatLocation.forEach((beatLocArrItem, blIndex) => {
       if (
         activeRhythm[blIndex] !== null &&
@@ -270,21 +269,37 @@ function Metronome() {
     const isMenuOpen =
       JSON.stringify(currentBeatLocation) === JSON.stringify(menuOpen)
 
+    const classNames = []
+    if (active) classNames.push('active')
+    if (silent) classNames.push('silent')
+    if (isMenuOpen) classNames.push('menu-open')
+    if (beat.sound) classNames.push(beat.sound)
+
     return (
       <div key={level + ':' + index} className={level == 1 ? 'main-beat' : ''}>
         <div
-          className={`rhythm-division level-${level} ${active ? 'active' : ''} ${silent ? 'silent' : ''} ${isMenuOpen ? 'menu-open' : ''}`}
+          className={`rhythm-division level-${level} ${classNames.join(' ')}`}
         >
           <div
             className="beat-label"
-            onClick={() => {
-              if (!playingMetronome) {
-                toggleMenu(currentBeatLocation)
-                toggleMetronome(true)
+            onClick={(event) => {
+              clearTimeout(timer)
+              if (event.detail === 1) {
+                timer = setTimeout(() => {
+                  //console.log('SINGLE CLICK')
+                  if (!beat.subdivisions) {
+                    changeSound(index, parents)
+                  }
+                }, 200)
+              } else if (event.detail === 2) {
+                //console.log('DOUBLE CLICK')
+                if (!playingMetronome) {
+                  toggleMenu(currentBeatLocation)
+                }
               }
             }}
           >
-            {index + 1}
+            <div>{index + 1}</div>
           </div>
 
           <div className={`beat-menu ${isMenuOpen ? 'menu-open' : ''}`}>
@@ -311,14 +326,14 @@ function Metronome() {
                 <MdOutlineDeleteForever /> Remove{' '}
                 {level == 1 ? 'beat' : 'subdivision'}
               </div>
-              {!beat.subdivisions && (
+              {/* {!beat.subdivisions && (
                 <div
                   className="menu-item"
                   onClick={() => changeSound(index, parents)}
                 >
                   <AiFillSound /> Change sound ({beat.sound || 'silent'})
                 </div>
-              )}
+              )} */}
             </div>
             <div>
               <AiOutlineClose

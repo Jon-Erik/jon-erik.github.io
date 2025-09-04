@@ -8,18 +8,30 @@
         .main-beat
             margin-bottom 15px
     .rhythm-division
-        min-width 25px
+        min-width 27px
         height 20px
         color white
         margin 1px
         position relative
-        height 25px
+        height 27px
         .beat-label
-            line-height 25px
+            height 100%
+            display flex
+            flex-direction column
+            justify-content space-around
+            user-select none
         &.menu-open 
             .beat-label
                 background  inherit
                 filter brightness(1.5)
+        &.silent
+            border 2px solid black
+        &.soundOne
+            border 2px solid red
+        &.soundTwo
+            border 2px solid rgb(2, 185, 2)
+        &.soundThree
+            border 2px solid blue
 
         .beat-menu-toggle
             cursor pointer
