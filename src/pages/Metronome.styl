@@ -1,4 +1,23 @@
 .metronome
+    .bpm-input
+        text-align center
+        font-size 20px
+        input
+            font-size 20px
+            text-align center
+            width 60px
+    .common-bpms
+        display flex
+        background lightgray
+        overflow auto
+        margin-top 10px
+        .bpm-opt
+            padding 10px 12.5px
+            min-width 52px
+            text-align center
+            cursor pointer
+            &:hover
+                background rgba(245, 245, 245, 0.63)
     .stop-play
         margin-left 10px
     .rhythm-visualization
@@ -76,3 +95,6 @@
             #333 2px, 
             #111 4px
         );
+    table.examples
+        td
+            height 30px

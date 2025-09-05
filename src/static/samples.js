@@ -1,5 +1,46 @@
 const samples = [
   {
+    name: 'Dotted vs triplets example',
+    bpm: 120,
+    beats: [
+      {
+        subdivisions: [
+          {
+            sound: 'soundOne'
+          },
+          {
+            sound: null
+          },
+          {
+            sound: null
+          },
+          {
+            sound: 'soundOne'
+          }
+        ]
+      },
+      {
+        sound: 'soundOne'
+      },
+      {
+        subdivisions: [
+          {
+            sound: 'soundOne'
+          },
+          {
+            sound: null
+          },
+          {
+            sound: 'soundOne'
+          }
+        ]
+      },
+      {
+        sound: 'soundOne'
+      }
+    ]
+  },
+  {
     name: 'Mars (Gustav Holst)',
     bpm: 140,
     beats: [

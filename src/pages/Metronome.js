@@ -6,7 +6,7 @@ import './Metronome.styl'
 
 import { MdOutlineDeleteForever } from 'react-icons/md'
 import { IoMdAddCircleOutline } from 'react-icons/io'
-import { AiFillSound, AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineClose } from 'react-icons/ai'
 import { elementOrParentsHaveClass } from '../services/utils'
 
 // Sound files
@@ -18,6 +18,11 @@ import clickLoud from '../static/metronome/clickLoud.wav' // from freesound.org
 import samples from '../static/samples'
 
 const ONE_MINUTE = 60000
+const COMMON_BPMS = [
+  40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 63, 66, 69, 72, 76, 80, 84, 92,
+  96, 100, 112, 116, 120, 126, 130, 132, 138, 144, 152, 160, 168, 176, 184, 192,
+  200
+]
 
 function Metronome() {
   // IDs returned from setInterval()
@@ -84,6 +89,8 @@ function Metronome() {
       if (currentArr[parentIndex] && !currentArr[parentIndex].subdivisions) {
         currentArr[parentIndex].subdivisions = []
       }
+
+      currentArr[parentIndex].sound = null
 
       currentArr = currentArr[parentIndex].subdivisions
     })
@@ -382,20 +389,51 @@ function Metronome() {
     <PageContentWrapper>
       <div className="metronome">
         <div>
-          <h3>Tempo</h3>
+          <h2>Metronome</h2>
           <p>
-            bpm ={' '}
+            This metronome is meant to model and play complex rhythms for
+            practice.
+          </p>
+          <p>
+            Click/tap once on a beat or subdivision to change the sound.
+            Beats/subdivisions that are striped are silent. Sound can be changed
+            only on the lowest displayed subdivision for that beat or
+            subidivision.
+          </p>
+          <p>
+            Double click/tap on a beat or subdivision to add or remove a
+            subdivision.
+          </p>
+          <p>
+            Set rhythms from the <a href="#examples">examples below</a> to get
+            started.
+          </p>
+          <h3>Tempo</h3>
+          <div className="bpm-input">
+            BPM ={' '}
             <input
               type="number"
               value={bpm}
               onChange={(e) => {
                 setBpm(Math.round(e.target.value))
               }}
-              max={200}
+              max={250}
               min={0}
               step={1}
+              disabled={playingMetronome}
             />
-          </p>
+          </div>
+          <div className="common-bpms">
+            {COMMON_BPMS.map((val) => (
+              <div
+                key={val}
+                className={`bpm-opt ${val === bpm ? 'active' : ''}`}
+                onClick={() => setBpm(val)}
+              >
+                {val}
+              </div>
+            ))}
+          </div>
         </div>
         <div>
           <h3>Rhythm</h3>
@@ -414,22 +452,28 @@ function Metronome() {
         </div>
         <br />
         <div>
-          <h3>Samples</h3>
-          {samples.map((sample) => {
-            const { name, beats, bpm } = sample
-            return (
-              <div key={name}>
-                {name}{' '}
-                <Button
-                  text="set"
-                  onClick={() => {
-                    setBpm(bpm)
-                    setBeats(beats)
-                  }}
-                />
-              </div>
-            )
-          })}
+          <h3 id="examples">Examples</h3>
+          <table className="examples">
+            <tbody>
+              {samples.map((sample) => {
+                const { name, beats, bpm } = sample
+                return (
+                  <tr key={name}>
+                    <td>{name}</td>
+                    <td>
+                      <Button
+                        text="set"
+                        onClick={() => {
+                          setBpm(bpm)
+                          setBeats(beats)
+                        }}
+                      />
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     </PageContentWrapper>
