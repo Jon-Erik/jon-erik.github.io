@@ -10,9 +10,9 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { elementOrParentsHaveClass } from '../services/utils'
 
 // Sound files
-import woodblock from '../static/metronome/woodblock.mp3' // from pixabay
-import clickSoft from '../static/metronome/clickSoft.wav' // from freesound.org
-import clickLoud from '../static/metronome/clickLoud.wav' // from freesound.org
+import woodblock from '../static/metronome/woodblock.wav' // from pixabay
+import woodblock2 from '../static/metronome/woodblock2.wav'
+import woodblock3 from '../static/metronome/woodblock3.wav'
 
 // Examples
 import samples from '../static/samples'
@@ -28,6 +28,7 @@ function Metronome() {
   // IDs returned from setInterval()
   const [intervalState, setIntervalState] = useState(null)
   const playingMetronome = intervalState !== null
+  const [savedRhythms, setSavedRhythms] = useState([])
 
   // ID returned from setTimeout()
   const [timeoutState, setTimeoutState] = useState([])
@@ -48,10 +49,13 @@ function Metronome() {
     }
   }
 
+  // Save name
+  const [saveName, setSaveName] = useState('Rhythm')
+
   // Metronome sounds init
   const [playSoundOne, soundOneOpts] = useSound(woodblock)
-  const [playSoundTwo, soundTwoOpts] = useSound(clickSoft)
-  const [playSoundThree, soundThreeOpts] = useSound(clickLoud)
+  const [playSoundTwo, soundTwoOpts] = useSound(woodblock2)
+  const [playSoundThree, soundThreeOpts] = useSound(woodblock3)
 
   function playSound(soundStr) {
     switch (soundStr) {
@@ -214,6 +218,25 @@ function Metronome() {
     loopArr(divisions, 0, divisions.length)
 
     return timeouts
+  }
+
+  function saveRhythm() {
+    const currentSaved = localStorage.getItem('savedRythms') || '[]'
+
+    const arr = JSON.parse(currentSaved)
+
+    const foundObj = arr.find((i) => i.name === saveName)
+
+    if (foundObj) {
+      foundObj.bpm = bpm
+      foundObj.beats = beats
+    } else {
+      const newObj = { name: saveName, bpm: bpm, beats: beats }
+      arr.push(newObj)
+    }
+
+    localStorage.setItem('savedRhythms', JSON.stringify(arr))
+    setSavedRythms(arr)
   }
 
   // Stop/start metronome
@@ -380,6 +403,10 @@ function Metronome() {
 
     document.addEventListener('click', onClickHandler)
 
+    const saved = localStorage.getItem('savedRhythms') || '[]'
+    console.log(saved)
+    setSavedRhythms(JSON.parse(saved))
+
     return () => {
       document.removeEventListener('click', onClickHandler)
     }
@@ -449,6 +476,18 @@ function Metronome() {
           <div className="rhythm-visualization">
             {beats.map((beat, index) => displayBeat(beat, index))}
           </div>
+          <div>
+            <input
+              type="text"
+              value={saveName}
+              onChange={(e) => {
+                setSaveName(e.target.value)
+              }}
+            />
+            <br />
+            <br />
+            <Button text="Save to Browser" onClick={() => saveRhythm()} />
+          </div>
         </div>
         <br />
         <div>
@@ -456,6 +495,31 @@ function Metronome() {
           <table className="examples">
             <tbody>
               {samples.map((sample) => {
+                const { name, beats, bpm } = sample
+                return (
+                  <tr key={name}>
+                    <td>{name}</td>
+                    <td>
+                      <Button
+                        text="set"
+                        onClick={() => {
+                          setBpm(bpm)
+                          setBeats(beats)
+                        }}
+                      />
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3 id="examples">Saved</h3>
+          <table className="examples">
+            <tbody>
+              {savedRhythms.map((sample) => {
                 const { name, beats, bpm } = sample
                 return (
                   <tr key={name}>
