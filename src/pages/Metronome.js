@@ -19,9 +19,9 @@ import samples from '../static/samples'
 
 const ONE_MINUTE = 60000
 const COMMON_BPMS = [
-  40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 63, 66, 69, 72, 76, 80, 84, 92,
-  96, 100, 112, 116, 120, 126, 130, 132, 138, 144, 152, 160, 168, 176, 184, 192,
-  200
+  40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 63, 66, 69, 72, 76, 80, 84, 88,
+  92, 96, 100, 112, 116, 120, 126, 130, 132, 138, 144, 152, 160, 168, 176, 184,
+  192, 200
 ]
 
 function Metronome() {
@@ -221,22 +221,24 @@ function Metronome() {
   }
 
   function saveRhythm() {
-    const currentSaved = localStorage.getItem('savedRythms') || '[]'
-
-    const arr = JSON.parse(currentSaved)
-
-    const foundObj = arr.find((i) => i.name === saveName)
+    const currentSaved = [...savedRhythms]
+    const foundObj = currentSaved.find((i) => i.name === saveName)
 
     if (foundObj) {
       foundObj.bpm = bpm
       foundObj.beats = beats
     } else {
       const newObj = { name: saveName, bpm: bpm, beats: beats }
-      arr.push(newObj)
+      currentSaved.push(newObj)
     }
 
-    localStorage.setItem('savedRhythms', JSON.stringify(arr))
-    setSavedRythms(arr)
+    saveRhythms(currentSaved)
+  }
+
+  // Save to state and to local storage
+  function saveRhythms(rhythms) {
+    setSavedRhythms(rhythms)
+    localStorage.setItem('savedRhythms', JSON.stringify(rhythms))
   }
 
   // Stop/start metronome
@@ -404,7 +406,6 @@ function Metronome() {
     document.addEventListener('click', onClickHandler)
 
     const saved = localStorage.getItem('savedRhythms') || '[]'
-    console.log(saved)
     setSavedRhythms(JSON.parse(saved))
 
     return () => {
@@ -530,6 +531,18 @@ function Metronome() {
                         onClick={() => {
                           setBpm(bpm)
                           setBeats(beats)
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <Button
+                        text="delete"
+                        onClick={() => {
+                          const currentSaved = [...savedRhythms]
+                          const filtered = currentSaved.filter(
+                            (i) => i.name !== name
+                          )
+                          saveRhythms(filtered)
                         }}
                       />
                     </td>
