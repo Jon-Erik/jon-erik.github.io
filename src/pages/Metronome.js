@@ -472,6 +472,12 @@ function Metronome() {
               onClick={() => toggleMetronome()}
               className="stop-play"
             />
+            <Button
+              text="clear"
+              onClick={() => setBeats([defaultBeat])}
+              className="stop-play"
+              disabled={playingMetronome}
+            />
           </div>
           <br />
           <div className="rhythm-visualization">
