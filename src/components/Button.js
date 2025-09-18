@@ -16,7 +16,14 @@ export default function Button({
   if (isNavLink) {
     return (
       <React.Fragment>
-        <Link className={classNames} onClick={onClick} disabled={disabled}>
+        <Link
+          className={classNames}
+          onClick={() => {
+            if (!disabled) {
+              onClick()
+            }
+          }}
+        >
           {text}
         </Link>
         {disclaimerHTML && (

@@ -21,7 +21,7 @@ const ONE_MINUTE = 60000
 const COMMON_BPMS = [
   40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 63, 66, 69, 72, 76, 80, 84, 88,
   92, 96, 100, 112, 116, 120, 126, 130, 132, 138, 144, 152, 160, 168, 176, 184,
-  192, 200
+  192, 200, 208, 215, 225, 240, 250, 275, 300
 ]
 
 function Metronome() {
@@ -82,6 +82,7 @@ function Metronome() {
   const [bpm, setBpm] = useState(60)
   const [beats, setBeats] = useState([Object.assign({}, defaultBeat)])
   const totalMsOfBeats = (ONE_MINUTE / bpm) * beats.length
+  const commonBpmSelected = COMMON_BPMS.find((i) => i == bpm)
 
   function addBeatOrSubdivision(parents = []) {
     let newBeats = [...beats]
@@ -315,18 +316,20 @@ function Metronome() {
           <div
             className="beat-label"
             onClick={(event) => {
-              clearTimeout(timer)
-              if (event.detail === 1) {
-                timer = setTimeout(() => {
-                  //console.log('SINGLE CLICK')
-                  if (!beat.subdivisions) {
-                    changeSound(index, parents)
+              if (!playingMetronome) {
+                clearTimeout(timer)
+                if (event.detail === 1) {
+                  timer = setTimeout(() => {
+                    //console.log('SINGLE CLICK')
+                    if (!beat.subdivisions) {
+                      changeSound(index, parents)
+                    }
+                  }, 200)
+                } else if (event.detail === 2) {
+                  //console.log('DOUBLE CLICK')
+                  if (!playingMetronome) {
+                    toggleMenu(currentBeatLocation)
                   }
-                }, 200)
-              } else if (event.detail === 2) {
-                //console.log('DOUBLE CLICK')
-                if (!playingMetronome) {
-                  toggleMenu(currentBeatLocation)
                 }
               }
             }}
@@ -413,6 +416,14 @@ function Metronome() {
     }
   }, [])
 
+  useEffect(() => {
+    document.querySelector('.bpm-opt.active') &&
+      document.querySelector('.bpm-opt.active').scrollIntoViewIfNeeded()
+
+    document.querySelector('.bpm-opt.closest') &&
+      document.querySelector('.bpm-opt.closest').scrollIntoViewIfNeeded()
+  }, [bpm])
+
   return (
     <PageContentWrapper>
       <div className="metronome">
@@ -445,28 +456,43 @@ function Metronome() {
               onChange={(e) => {
                 setBpm(Math.round(e.target.value))
               }}
-              max={250}
+              max={300}
               min={0}
               step={1}
               disabled={playingMetronome}
             />
           </div>
           <div className="common-bpms">
-            {COMMON_BPMS.map((val) => (
-              <div
-                key={val}
-                className={`bpm-opt ${val === bpm ? 'active' : ''}`}
-                onClick={() => setBpm(val)}
-              >
-                {val}
-              </div>
-            ))}
+            {COMMON_BPMS.map((val, index) => {
+              let closestToSelectedBpm = false
+              const nextVal = COMMON_BPMS[index + 1] || Infinity
+
+              if (!commonBpmSelected && bpm > val && bpm < nextVal) {
+                closestToSelectedBpm = true
+              }
+
+              return (
+                <div
+                  key={val}
+                  className={`bpm-opt ${val === bpm ? 'active' : ''} ${closestToSelectedBpm ? 'closest' : ''}`}
+                  onClick={() => setBpm(val)}
+                >
+                  {val}
+                </div>
+              )
+            })}
           </div>
         </div>
         <div>
           <h3>Rhythm</h3>
           <div>
-            <Button text="Add Beat" onClick={() => addBeatOrSubdivision()} />
+            <Button
+              text="Add Beat"
+              onClick={() => {
+                addBeatOrSubdivision()
+              }}
+              disabled={playingMetronome}
+            />
             <Button
               text={intervalState ? 'Stop' : 'Play'}
               onClick={() => toggleMetronome()}
@@ -487,6 +513,7 @@ function Metronome() {
             <input
               type="text"
               value={saveName}
+              className="saveName"
               onChange={(e) => {
                 setSaveName(e.target.value)
               }}
@@ -512,6 +539,7 @@ function Metronome() {
                         onClick={() => {
                           setBpm(bpm)
                           setBeats(beats)
+                          setSaveName(name)
                         }}
                       />
                     </td>
@@ -537,6 +565,7 @@ function Metronome() {
                         onClick={() => {
                           setBpm(bpm)
                           setBeats(beats)
+                          setSaveName(name)
                         }}
                       />
                     </td>
