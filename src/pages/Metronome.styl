@@ -1,102 +1,129 @@
 .metronome
-    .bpm-input
-        text-align center
-        font-size 20px
-        input
-            font-size 20px
+    .metronome-wrapper
+        border 1px solid black
+        padding 10px
+    .bpm-control
+        .bpm-input
             text-align center
-            width 60px
-    .common-bpms
-        display flex
-        background lightgray
-        overflow auto
-        margin-top 10px
-        .bpm-opt
-            padding 10px 12.5px
-            min-width 52px
-            text-align center
-            cursor pointer
-            &:hover
-                background rgba(245, 245, 245, 0.63)
-    .stop-play
-        margin-left 10px
-    input.saveName
-        width 300px
-    .rhythm-visualization
-        display flex
-        text-align center
-        flex-wrap wrap
-        .main-beat
-            margin-bottom 15px
-    .rhythm-division
-        min-width 27px
-        height 20px
-        color white
-        margin 1px
-        position relative
-        height 27px
-        .beat-label
-            height 100%
+            font-size 18px
+            min-width 150px
+            margin-bottom 10px
+            input
+                font-size 18px
+                text-align center
+                width 60px
+        .common-bpms
             display flex
-            flex-direction column
-            justify-content space-around
-            user-select none
-        &.menu-open 
-            .beat-label
-                background  inherit
-                filter brightness(1.5)
-        &.silent
-            border 2px solid black
-        &.soundOne
-            border 2px solid red
-        &.soundTwo
-            border 2px solid rgb(2, 185, 2)
-        &.soundThree
-            border 2px solid blue
-
-        .beat-menu-toggle
-            cursor pointer
-        .beat-menu
-            position absolute
-            z-index 99
-            visibility hidden
-            width 250
-            text-align left
-            background black
-            color white
-            padding 5px
-            display flex
-            justify-content space-between
-            .menu-item, .close
+            background lightgray
+            overflow auto
+            margin-bottom 10px
+            .bpm-opt
+                padding 6px
+                min-width 52px
+                text-align center
                 cursor pointer
+                &:hover
+                    background rgba(245, 245, 245, 0.63)
+    .rhythm-control
+        .metronome-btns
+            text-align center
+            margin-bottom 10px
+            .metronome-btn
+                background #527897
+                border none
+                padding 5px 8px
+                border-radius 0.25em
+                color white
+                cursor pointer
+                &:hover
+                    filter brightness(90%)
+                &:disabled
+                    cursor default
+                    filter brightness(80%)
                 &:not(:last-of-type)
-                    margin-bottom 5px
-            &.menu-open
-                visibility visible
-            .caret
+                    margin-right 10px
+        .save-beats
+            text-align center
+            input.saveName
+                width 100%
+                max-width 400px
+                text-align center
+        .rhythm-visualization
+            display flex
+            text-align center
+            flex-wrap wrap
+            justify-content center
+            .main-beat
+                margin-bottom 15px
+        .rhythm-division
+            min-width 27px
+            height 20px
+            color white
+            margin 1px
+            position relative
+            height 27px
+            .beat-label
+                height 100%
+                display flex
+                flex-direction column
+                justify-content space-around
+                user-select none
+            &.menu-open 
+                .beat-label
+                    background  inherit
+                    filter brightness(1.5)
+            &.silent
+                border 2px solid black
+            &.soundOne
+                border 2px solid red
+            &.soundTwo
+                border 2px solid rgb(2, 185, 2)
+            &.soundThree
+                border 2px solid blue
+
+            .beat-menu-toggle
+                cursor pointer
+            .beat-menu
                 position absolute
-                top -9px
-                left -3px
-                color black
-    .level-1
-        background rgb(255, 94, 94)
-    .level-2
-        background rgb(105, 105, 255)
-    .level-3
-        background green
-    .level-4
-        background purple
-    .active
-        font-weight bold
-        filter brightness(1.5)
-    .silent
-        background repeating-linear-gradient(
-            45deg, 
-            #eee, 
-            #111 2px, 
-            #333 2px, 
-            #111 4px
-        );
+                z-index 99
+                visibility hidden
+                width 250
+                text-align left
+                background black
+                color white
+                padding 5px
+                display flex
+                justify-content space-between
+                .menu-item, .close
+                    cursor pointer
+                    &:not(:last-of-type)
+                        margin-bottom 5px
+                &.menu-open
+                    visibility visible
+                .caret
+                    position absolute
+                    top -9px
+                    left -3px
+                    color black
+        .level-1
+            background rgb(255, 94, 94)
+        .level-2
+            background rgb(105, 105, 255)
+        .level-3
+            background green
+        .level-4
+            background purple
+        .active
+            font-weight bold
+            filter brightness(1.5)
+        .silent
+            background repeating-linear-gradient(
+                45deg, 
+                #eee, 
+                #111 2px, 
+                #333 2px, 
+                #111 4px
+            );
     table.examples
         td
             height 30px

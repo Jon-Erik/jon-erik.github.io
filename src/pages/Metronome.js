@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import PageContentWrapper from '../components/PageContentWrapper'
 import Button from '../components/Button'
 import useSound from 'use-sound'
+import { elementOrParentsHaveClass } from '../services/utils'
 import './Metronome.styl'
 
+// Icons
 import { MdOutlineDeleteForever } from 'react-icons/md'
 import { IoMdAddCircleOutline } from 'react-icons/io'
 import { AiOutlineClose } from 'react-icons/ai'
-import { elementOrParentsHaveClass } from '../services/utils'
+import { FaPlay, FaPause, FaPlus, FaSave } from 'react-icons/fa'
 
 // Sound files
 import woodblock from '../static/metronome/woodblock.wav' // from pixabay
@@ -447,83 +449,96 @@ function Metronome() {
             Set rhythms from the <a href="#examples">examples below</a> to get
             started.
           </p>
-          <h3>Tempo</h3>
-          <div className="bpm-input">
-            BPM ={' '}
-            <input
-              type="number"
-              value={bpm}
-              onChange={(e) => {
-                setBpm(Math.round(e.target.value))
-              }}
-              max={300}
-              min={0}
-              step={1}
-              disabled={playingMetronome}
-            />
-          </div>
-          <div className="common-bpms">
-            {COMMON_BPMS.map((val, index) => {
-              let closestToSelectedBpm = false
-              const nextVal = COMMON_BPMS[index + 1] || Infinity
+          <div className="metronome-wrapper">
+            <div className="bpm-control">
+              <div className="bpm-input">
+                BPM ={' '}
+                <input
+                  type="number"
+                  value={bpm}
+                  onChange={(e) => {
+                    setBpm(Math.round(e.target.value))
+                  }}
+                  max={300}
+                  min={0}
+                  step={1}
+                  disabled={playingMetronome}
+                />
+              </div>
+              <div className="common-bpms">
+                {COMMON_BPMS.map((val, index) => {
+                  let closestToSelectedBpm = false
+                  const nextVal = COMMON_BPMS[index + 1] || Infinity
 
-              if (!commonBpmSelected && bpm > val && bpm < nextVal) {
-                closestToSelectedBpm = true
-              }
+                  if (!commonBpmSelected && bpm > val && bpm < nextVal) {
+                    closestToSelectedBpm = true
+                  }
 
-              return (
-                <div
-                  key={val}
-                  className={`bpm-opt ${val === bpm ? 'active' : ''} ${closestToSelectedBpm ? 'closest' : ''}`}
-                  onClick={() => setBpm(val)}
+                  return (
+                    <div
+                      key={val}
+                      className={`bpm-opt ${val === bpm ? 'active' : ''} ${closestToSelectedBpm ? 'closest' : ''}`}
+                      onClick={() => setBpm(val)}
+                    >
+                      {val}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+            <div className="rhythm-control">
+              <div className="rhythm-visualization">
+                {beats.map((beat, index) => displayBeat(beat, index))}
+              </div>
+              <div className="metronome-btns">
+                <button
+                  className="metronome-btn play-pause"
+                  onClick={() => toggleMetronome()}
+                  title="Play/Pause"
                 >
-                  {val}
-                </div>
-              )
-            })}
+                  {playingMetronome ? <FaPause /> : <FaPlay />}
+                </button>
+                <button
+                  className="metronome-btn add-beat"
+                  onClick={() => {
+                    addBeatOrSubdivision()
+                  }}
+                  disabled={playingMetronome}
+                  title="Add Beat"
+                >
+                  <FaPlus />
+                </button>
+                <button
+                  className="metronome-btn clear"
+                  onClick={() => setBeats([defaultBeat])}
+                  disabled={playingMetronome}
+                  title="Clear Beats"
+                >
+                  <AiOutlineClose />
+                </button>
+                <button
+                  className="metronome-btn save"
+                  title="Save to Browser"
+                  disabled={playingMetronome}
+                  onClick={() => saveRhythm()}
+                >
+                  <FaSave />
+                </button>
+              </div>
+              <div className="save-beats">
+                <input
+                  type="text"
+                  value={saveName}
+                  className="saveName"
+                  onChange={(e) => {
+                    setSaveName(e.target.value)
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <h3>Rhythm</h3>
-          <div>
-            <Button
-              text="Add Beat"
-              onClick={() => {
-                addBeatOrSubdivision()
-              }}
-              disabled={playingMetronome}
-            />
-            <Button
-              text={intervalState ? 'Stop' : 'Play'}
-              onClick={() => toggleMetronome()}
-              className="stop-play"
-            />
-            <Button
-              text="clear"
-              onClick={() => setBeats([defaultBeat])}
-              className="stop-play"
-              disabled={playingMetronome}
-            />
-          </div>
-          <br />
-          <div className="rhythm-visualization">
-            {beats.map((beat, index) => displayBeat(beat, index))}
-          </div>
-          <div>
-            <input
-              type="text"
-              value={saveName}
-              className="saveName"
-              onChange={(e) => {
-                setSaveName(e.target.value)
-              }}
-            />
-            <br />
-            <br />
-            <Button text="Save to Browser" onClick={() => saveRhythm()} />
-          </div>
-        </div>
-        <br />
+
         <div>
           <h3 id="examples">Examples</h3>
           <table className="examples">
