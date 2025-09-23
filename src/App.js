@@ -41,9 +41,9 @@ function App() {
               <Route path="resources" element={<MusicResources />} />
               <Route path="events" element={<MusicEvents />} />
               <Route path="via-musicae" element={<MusicViaMusicae />} />
+              <Route path="metronome" element={<Metronome />} />
             </Route>
             <Route path="/contact" element={<Contact />} />
-            <Route path="/metronome" element={<Metronome />} />
           </Routes>
         </div>
         <Footer />
