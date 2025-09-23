@@ -478,7 +478,11 @@ function Metronome() {
                     <div
                       key={val}
                       className={`bpm-opt ${val === bpm ? 'active' : ''} ${closestToSelectedBpm ? 'closest' : ''}`}
-                      onClick={() => setBpm(val)}
+                      onClick={() => {
+                        if (!playingMetronome) {
+                          setBpm(val)
+                        }
+                      }}
                     >
                       {val}
                     </div>
@@ -533,6 +537,7 @@ function Metronome() {
                   onChange={(e) => {
                     setSaveName(e.target.value)
                   }}
+                  disabled={playingMetronome}
                 />
               </div>
             </div>
@@ -556,6 +561,7 @@ function Metronome() {
                           setBeats(beats)
                           setSaveName(name)
                         }}
+                        disabled={playingMetronome}
                       />
                     </td>
                   </tr>
@@ -582,6 +588,7 @@ function Metronome() {
                           setBeats(beats)
                           setSaveName(name)
                         }}
+                        disabled={playingMetronome}
                       />
                     </td>
                     <td>
