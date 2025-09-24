@@ -3,6 +3,8 @@ import PageContentWrapper from '../components/PageContentWrapper'
 import Button from '../components/Button'
 import useSound from 'use-sound'
 import { elementOrParentsHaveClass } from '../services/utils'
+import { createPopper } from '@popperjs/core'
+
 import './Metronome.styl'
 
 // Icons
@@ -246,7 +248,7 @@ function Metronome() {
 
   // Stop/start metronome
   function toggleMetronome(stop = false) {
-    if (intervalState || stop) {
+    if (playingMetronome || stop) {
       clearInterval(intervalState)
       setIntervalState(null)
       timeoutState.forEach((timeoutID) => {
@@ -310,37 +312,46 @@ function Metronome() {
     if (isMenuOpen) classNames.push('menu-open')
     if (beat.sound) classNames.push(beat.sound)
 
+    function handleClick() {
+      if (!timer) {
+        timer = setTimeout(() => {
+          //console.log('SINGLE CLICK')
+          if (!beat.subdivisions) {
+            changeSound(index, parents)
+          }
+        }, 200)
+      } else {
+        //console.log('DOUBLE CLICK')
+        clearTimeout(timer)
+        if (!playingMetronome) {
+          toggleMenu(currentBeatLocation)
+        }
+      }
+    }
+
+    const beatId = currentBeatLocation.join('-')
+    const labelId = `beat-label-${beatId}`
+    const menuId = `beat-menu-${beatId}`
+    const label = document.querySelector('#' + labelId)
+    const menu = document.querySelector('#' + menuId)
+
+    createPopper(label, menu, {
+      placement: 'bottom'
+    })
+
     return (
       <div key={level + ':' + index} className={level == 1 ? 'main-beat' : ''}>
         <div
           className={`rhythm-division level-${level} ${classNames.join(' ')}`}
         >
-          <div
-            className="beat-label"
-            onClick={(event) => {
-              if (!playingMetronome) {
-                clearTimeout(timer)
-                if (event.detail === 1) {
-                  timer = setTimeout(() => {
-                    //console.log('SINGLE CLICK')
-                    if (!beat.subdivisions) {
-                      changeSound(index, parents)
-                    }
-                  }, 200)
-                } else if (event.detail === 2) {
-                  //console.log('DOUBLE CLICK')
-                  if (!playingMetronome) {
-                    toggleMenu(currentBeatLocation)
-                  }
-                }
-              }
-            }}
-          >
+          <div id={labelId} className="beat-label" onClick={handleClick}>
             <div>{index + 1}</div>
           </div>
 
-          <div className={`beat-menu ${isMenuOpen ? 'menu-open' : ''}`}>
-            {/* <FaCaretUp className="caret" /> */}
+          <div
+            id={menuId}
+            className={`beat-menu ${isMenuOpen ? 'menu-open' : ''}`}
+          >
             <div className="items">
               {level < 4 && (
                 <div
