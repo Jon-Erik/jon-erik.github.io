@@ -3,7 +3,7 @@ import PageContentWrapper from '../components/PageContentWrapper'
 import Button from '../components/Button'
 import useSound from 'use-sound'
 import { elementOrParentsHaveClass } from '../services/utils'
-import { computePosition } from '@floating-ui/dom'
+import { computePosition, flip, shift, offset, arrow } from '@floating-ui/dom'
 
 import './Metronome.styl'
 
@@ -329,10 +329,36 @@ function Metronome() {
           // Set up menu position when it is opened so we don't overload processing
           const label = document.querySelector('#' + labelId)
           const menu = document.querySelector('#' + menuId)
-          computePosition(label, menu).then(({ x, y }) => {
+          const arrowEl = document.querySelector('#' + arrowId)
+          computePosition(label, menu, {
+            placement: 'bottom',
+            middleware: [
+              offset(6),
+              flip(),
+              shift({ padding: 5 }),
+              arrow({ element: arrowEl })
+            ]
+          }).then(({ x, y, placement, middlewareData }) => {
             Object.assign(menu.style, {
               left: `${x}px`,
               top: `${y}px`
+            })
+
+            const { x: arrowX, y: arrowY } = middlewareData.arrow
+
+            const staticSide = {
+              top: 'bottom',
+              right: 'left',
+              bottom: 'top',
+              left: 'right'
+            }[placement.split('-')[0]]
+
+            Object.assign(arrowEl.style, {
+              left: arrowX != null ? `${arrowX}px` : '',
+              top: arrowY != null ? `${arrowY}px` : '',
+              right: '',
+              bottom: '',
+              [staticSide]: '-4px'
             })
           })
         }
@@ -342,6 +368,7 @@ function Metronome() {
     const beatId = currentBeatLocation.join('-')
     const labelId = `beat-label-${beatId}`
     const menuId = `beat-menu-${beatId}`
+    const arrowId = `menu-arrow-${beatId}`
 
     return (
       <div key={level + ':' + index} className={level == 1 ? 'main-beat' : ''}>
@@ -386,6 +413,7 @@ function Metronome() {
                 onClick={() => toggleMenu()}
               />
             </div>
+            <div id={arrowId} className="menu-arrow"></div>
           </div>
         </div>
         <div className="rhythm-visualization">
