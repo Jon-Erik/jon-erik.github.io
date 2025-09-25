@@ -3,7 +3,7 @@ import PageContentWrapper from '../components/PageContentWrapper'
 import Button from '../components/Button'
 import useSound from 'use-sound'
 import { elementOrParentsHaveClass } from '../services/utils'
-import { createPopper } from '@popperjs/core'
+import { computePosition } from '@floating-ui/dom'
 
 import './Metronome.styl'
 
@@ -326,11 +326,14 @@ function Metronome() {
         if (!playingMetronome) {
           toggleMenu(currentBeatLocation)
 
-          // Set up popper only when the menu is toggled so we don't overload processing
+          // Set up menu position when it is opened so we don't overload processing
           const label = document.querySelector('#' + labelId)
           const menu = document.querySelector('#' + menuId)
-          createPopper(label, menu, {
-            placement: 'bottom'
+          computePosition(label, menu).then(({ x, y }) => {
+            Object.assign(menu.style, {
+              left: `${x}px`,
+              top: `${y}px`
+            })
           })
         }
       }
@@ -375,14 +378,6 @@ function Metronome() {
                 <MdOutlineDeleteForever /> Remove{' '}
                 {level == 1 ? 'beat' : 'subdivision'}
               </div>
-              {/* {!beat.subdivisions && (
-                <div
-                  className="menu-item"
-                  onClick={() => changeSound(index, parents)}
-                >
-                  <AiFillSound /> Change sound ({beat.sound || 'silent'})
-                </div>
-              )} */}
             </div>
             <div>
               <AiOutlineClose
