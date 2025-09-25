@@ -325,6 +325,13 @@ function Metronome() {
         clearTimeout(timer)
         if (!playingMetronome) {
           toggleMenu(currentBeatLocation)
+
+          // Set up popper only when the menu is toggled so we don't overload processing
+          const label = document.querySelector('#' + labelId)
+          const menu = document.querySelector('#' + menuId)
+          createPopper(label, menu, {
+            placement: 'bottom'
+          })
         }
       }
     }
@@ -332,12 +339,6 @@ function Metronome() {
     const beatId = currentBeatLocation.join('-')
     const labelId = `beat-label-${beatId}`
     const menuId = `beat-menu-${beatId}`
-    const label = document.querySelector('#' + labelId)
-    const menu = document.querySelector('#' + menuId)
-
-    createPopper(label, menu, {
-      placement: 'bottom'
-    })
 
     return (
       <div key={level + ':' + index} className={level == 1 ? 'main-beat' : ''}>
