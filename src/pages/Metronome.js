@@ -246,6 +246,29 @@ function Metronome() {
     localStorage.setItem('savedRhythms', JSON.stringify(rhythms))
   }
 
+  function clearRhythm() {
+    setBeats([Object.assign({}, defaultBeat)])
+    setSaveName('')
+    setBpm(60)
+  }
+
+  function setSavedRhythm(rhythm) {
+    const { name, bpm, beats } = rhythm
+    setBeats(beats)
+    setBpm(bpm)
+    setSaveName(name)
+  }
+
+  function deleteSavedRhythm(name) {
+    const text = `Are you sure you want to delete the saved rhythm "${name}"?`
+    if (!window.confirm(text)) {
+      return
+    }
+    const currentSaved = [...savedRhythms]
+    const filtered = currentSaved.filter((i) => i.name !== name)
+    saveRhythms(filtered)
+  }
+
   // Stop/start metronome
   function toggleMetronome(stop = false) {
     if (playingMetronome || stop) {
@@ -326,7 +349,7 @@ function Metronome() {
         if (!playingMetronome) {
           toggleMenu(currentBeatLocation)
 
-          // Set up menu position when it is opened so we don't overload processing
+          // Set up menu position only when it is opened so we don't overload processing
           const label = document.querySelector('#' + labelId)
           const menu = document.querySelector('#' + menuId)
           const arrowEl = document.querySelector('#' + arrowId)
@@ -549,7 +572,7 @@ function Metronome() {
                 </button>
                 <button
                   className="metronome-btn clear"
-                  onClick={() => setBeats([defaultBeat])}
+                  onClick={clearRhythm}
                   disabled={playingMetronome}
                   title="Clear Beats"
                 >
@@ -559,7 +582,7 @@ function Metronome() {
                   className="metronome-btn save"
                   title="Save to Browser"
                   disabled={playingMetronome}
-                  onClick={() => saveRhythm()}
+                  onClick={saveRhythm}
                 >
                   <FaSave />
                 </button>
@@ -569,9 +592,7 @@ function Metronome() {
                   type="text"
                   value={saveName}
                   className="saveName"
-                  onChange={(e) => {
-                    setSaveName(e.target.value)
-                  }}
+                  onChange={(e) => setSaveName(e.target.value)}
                   disabled={playingMetronome}
                 />
               </div>
@@ -584,18 +605,14 @@ function Metronome() {
           <table className="examples">
             <tbody>
               {samples.map((sample) => {
-                const { name, beats, bpm } = sample
+                const { name } = sample
                 return (
                   <tr key={name}>
                     <td>{name}</td>
                     <td>
                       <Button
                         text="set"
-                        onClick={() => {
-                          setBpm(bpm)
-                          setBeats(beats)
-                          setSaveName(name)
-                        }}
+                        onClick={() => setSavedRhythm(sample)}
                         disabled={playingMetronome}
                       />
                     </td>
@@ -610,32 +627,22 @@ function Metronome() {
           <h3 id="examples">Saved</h3>
           <table className="examples">
             <tbody>
-              {savedRhythms.map((sample) => {
-                const { name, beats, bpm } = sample
+              {savedRhythms.map((saved) => {
+                const { name } = saved
                 return (
                   <tr key={name}>
                     <td>{name}</td>
                     <td>
                       <Button
                         text="set"
-                        onClick={() => {
-                          setBpm(bpm)
-                          setBeats(beats)
-                          setSaveName(name)
-                        }}
+                        onClick={() => setSavedRhythm(saved)}
                         disabled={playingMetronome}
                       />
                     </td>
                     <td>
                       <Button
                         text="delete"
-                        onClick={() => {
-                          const currentSaved = [...savedRhythms]
-                          const filtered = currentSaved.filter(
-                            (i) => i.name !== name
-                          )
-                          saveRhythms(filtered)
-                        }}
+                        onClick={() => deleteSavedRhythm(name)}
                       />
                     </td>
                   </tr>
