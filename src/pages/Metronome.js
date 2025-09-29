@@ -336,17 +336,17 @@ function Metronome() {
     if (beat.sound) classNames.push(beat.sound)
 
     function handleClick() {
-      if (!timer) {
-        timer = setTimeout(() => {
-          //console.log('SINGLE CLICK')
-          if (!beat.subdivisions) {
-            changeSound(index, parents)
-          }
-        }, 200)
-      } else {
-        //console.log('DOUBLE CLICK')
-        clearTimeout(timer)
-        if (!playingMetronome) {
+      if (!playingMetronome) {
+        if (!timer) {
+          timer = setTimeout(() => {
+            //console.log('SINGLE CLICK')
+            if (!beat.subdivisions) {
+              changeSound(index, parents)
+            }
+          }, 200)
+        } else {
+          //console.log('DOUBLE CLICK')
+          clearTimeout(timer)
           toggleMenu(currentBeatLocation)
 
           // Set up menu position only when it is opened so we don't overload processing
