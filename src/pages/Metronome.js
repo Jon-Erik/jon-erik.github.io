@@ -226,14 +226,22 @@ function Metronome() {
   }
 
   function saveRhythm() {
+    const saveNameTrimmed = saveName.trim()
+    if (!saveNameTrimmed) {
+      return
+    }
     const currentSaved = [...savedRhythms]
-    const foundObj = currentSaved.find((i) => i.name === saveName)
+    const foundObj = currentSaved.find((i) => i.name === saveNameTrimmed)
 
     if (foundObj) {
+      const text = `Are you sure you want to overwrite the saved rhythm "${saveNameTrimmed}"?`
+      if (!window.confirm(text)) {
+        return
+      }
       foundObj.bpm = bpm
       foundObj.beats = beats
     } else {
-      const newObj = { name: saveName, bpm: bpm, beats: beats }
+      const newObj = { name: saveNameTrimmed, bpm: bpm, beats: beats }
       currentSaved.push(newObj)
     }
 
@@ -505,7 +513,8 @@ function Metronome() {
           </p>
           <p>
             Set rhythms from the <a href="#examples">examples below</a> to get
-            started.
+            started. Saved rhythms are stored in the browser for your current
+            device.
           </p>
           <div className="metronome-wrapper">
             <div className="bpm-control">
@@ -581,7 +590,7 @@ function Metronome() {
                 <button
                   className="metronome-btn save"
                   title="Save to Browser"
-                  disabled={playingMetronome}
+                  disabled={playingMetronome || !saveName.trim()}
                   onClick={saveRhythm}
                 >
                   <FaSave />
@@ -625,31 +634,35 @@ function Metronome() {
 
         <div>
           <h3 id="examples">Saved</h3>
-          <table className="examples">
-            <tbody>
-              {savedRhythms.map((saved) => {
-                const { name } = saved
-                return (
-                  <tr key={name}>
-                    <td>{name}</td>
-                    <td>
-                      <Button
-                        text="set"
-                        onClick={() => setSavedRhythm(saved)}
-                        disabled={playingMetronome}
-                      />
-                    </td>
-                    <td>
-                      <Button
-                        text="delete"
-                        onClick={() => deleteSavedRhythm(name)}
-                      />
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+          {savedRhythms.length === 0 ? (
+            <i>No saved rhythms</i>
+          ) : (
+            <table className="examples">
+              <tbody>
+                {savedRhythms.map((saved) => {
+                  const { name } = saved
+                  return (
+                    <tr key={name}>
+                      <td>{name}</td>
+                      <td>
+                        <Button
+                          text="set"
+                          onClick={() => setSavedRhythm(saved)}
+                          disabled={playingMetronome}
+                        />
+                      </td>
+                      <td>
+                        <Button
+                          text="delete"
+                          onClick={() => deleteSavedRhythm(name)}
+                        />
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </PageContentWrapper>
