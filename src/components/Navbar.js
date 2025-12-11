@@ -139,9 +139,16 @@ function NavBarLink({ linkData, currentRoute, toggleMenu }) {
 
   return (
     <div className={`link ${active ? 'active' : ''}`}>
-      <Link onClick={() => toggleMenu(false)} to={route}>
-        {title}
-      </Link>
+      {route.startsWith('http') ? (
+        <a href={route} target="_blank" rel="noreferrer">
+          {title}
+        </a>
+      ) : (
+        <Link onClick={() => toggleMenu(false)} to={route}>
+          {title}
+        </Link>
+      )}
+
       {children.length ? (
         <div className="subnav">
           {children.map((c) => (
